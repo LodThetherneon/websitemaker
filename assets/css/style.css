@@ -866,6 +866,197 @@ form.contact-card button {
   
   form.contact-card button { width: 100%; }
 }
+/* =========================================
+   REFERENCIÁK – LAPTOP MOCKUP
+   ========================================= */
+
+.references-laptop {
+  padding-block: 5rem 4rem;
+}
+
+.laptop-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-block: 2.5rem 2rem;
+}
+
+/* 3D perspektíva */
+.laptop-perspective {
+  position: relative;
+  width: min(720px, 100%);
+  aspect-ratio: 16 / 10;
+  transform-style: preserve-3d;
+  perspective: 1400px;
+}
+
+/* Fedél + kijelző */
+.laptop-lid {
+  position: absolute;
+  inset: 0;
+  transform-origin: bottom center;
+  transform: rotateX(80deg);
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.references-laptop .is-visible .laptop-lid,
+.references-laptop.laptop-open .laptop-lid {
+  transform: rotateX(0deg);
+}
+
+.laptop-screen-frame {
+  position: absolute;
+  inset: 4%;
+  border-radius: 1.2rem;
+  background: radial-gradient(circle at 0 0, #1f2937, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.9),
+    0 0 55px rgba(34, 211, 238, 0.25);
+  overflow: hidden;
+}
+
+.laptop-screen-inner {
+  position: absolute;
+  inset: 5%;
+  border-radius: 0.9rem;
+  background: #020617;
+  overflow: hidden;
+}
+
+.laptop-screen-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: opacity 250ms ease, transform 350ms ease;
+}
+
+/* Base / billentyűzet */
+.laptop-base {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: -10%;
+  height: 22%;
+  background: linear-gradient(180deg, #020617, #020617);
+  border-radius: 0 0 1.5rem 1.5rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+  transform: translateZ(-30px) rotateX(80deg);
+  transform-origin: top center;
+}
+
+.laptop-hinge {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: -0.45rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #111827, #4b5563, #111827);
+}
+
+.laptop-keyboard {
+  position: absolute;
+  inset: 18% 10% 30% 10%;
+  border-radius: 0.7rem;
+  background: repeating-linear-gradient(
+    90deg,
+    #020617,
+    #020617 6px,
+    #0b1120 6px,
+    #0b1120 10px
+  );
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.8);
+}
+
+.laptop-trackpad {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8%;
+  width: 26%;
+  height: 26%;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  background: radial-gradient(circle at top, #111827, #020617);
+}
+
+/* Lapozó vezérlők + leírás */
+.references-switcher {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.references-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.15rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.references-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.references-tab.is-active {
+  color: #020617;
+  background: linear-gradient(90deg, #22d3ee, #0ea5e9);
+  box-shadow: 0 10px 28px rgba(34, 211, 238, 0.55);
+}
+
+.references-detail-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.references-detail-text {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.references-detail-list {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  padding-left: 1.2rem;
+}
+
+.references-detail-list li {
+  margin-bottom: 0.3rem;
+}
+
+/* Mobil finomítások */
+@media (max-width: 767px) {
+  .references-laptop {
+    padding-block: 4.2rem 3rem;
+  }
+
+  .laptop-base {
+    bottom: -14%;
+  }
+
+  .references-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .references-switcher {
+    gap: 1.2rem;
+  }
+}
 
 /* =========================================
    11. CUSTOM CURSOR (CSAK ASZTAL)
