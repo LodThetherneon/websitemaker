@@ -3,8 +3,8 @@
    ========================================= */
 
 :root {
-  --bg-main: #0f172a;
-  --bg-card: #020617;
+  --bg-main: #183579;
+  --bg-card: #0f1841;
   --bg-card-soft: #020617cc;
   --accent: #22d3ee;
   --accent-soft: rgba(34, 211, 238, 0.12);
@@ -17,7 +17,6 @@
   --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Teljes biztonság az oldalra görgetés ellen */
 html, body {
   width: 100%;
   max-width: 100%;
@@ -27,7 +26,7 @@ html, body {
 }
 
 body {
-  background: radial-gradient(circle at top, #1f2937 0, #020617 40%, #020617 100%);
+  background: radial-gradient(circle at top, #50688b 0, #050f3a 40%, #010513 100%);
   color: var(--text-main);
   box-sizing: border-box;
 }
@@ -293,7 +292,7 @@ section {
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.45);
-  background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), rgba(15, 23, 42, 0.9));
+  background: radial-gradient(circle at 0 0, rgba(102, 215, 233, 0.18), rgba(15, 23, 42, 0.9));
   color: var(--text-muted);
   font-size: 0.8rem;
   margin-bottom: 1.25rem;
@@ -337,7 +336,7 @@ section {
 .hero-card {
   position: relative;
   border-radius: var(--radius-lg);
-  background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), rgba(15, 23, 42, 0.96));
+  background: radial-gradient(circle at top left, rgba(92, 220, 240, 0.16), rgba(15, 23, 42, 0.96));
   border: 1px solid rgba(148, 163, 184, 0.45);
   box-shadow: var(--shadow-soft);
   padding: 1.5rem 1.6rem;
@@ -372,8 +371,8 @@ section {
   position: relative;
   border-radius: 0.95rem;
   overflow: hidden;
-  background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), rgba(15, 23, 42, 0.98));
-  border: 1px solid rgba(148, 163, 184, 0.55);
+  background: radial-gradient(circle at top left, rgba(99, 217, 235, 0.12), rgba(15, 23, 42, 0.98));
+  border: 1px solid rgba(159, 169, 184, 0.55);
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9), 0 0 40px rgba(34, 211, 238, 0.18);
   isolation: isolate;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
@@ -409,7 +408,7 @@ section {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   padding: 1.35rem 1.4rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+  box-shadow: 0 10px 30px rgba(43, 59, 97, 0.7);
   transition: all var(--transition-fast);
 }
 
