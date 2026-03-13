@@ -109,4 +109,77 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+    // ===== Referencia laptop váltó (csak references.html-en) =====
+  const laptopSection = document.querySelector(".references-laptop");
+  const screenImg = document.getElementById("reference-screen-image");
+  const detail = document.getElementById("reference-detail");
+  const tabs = document.querySelectorAll(".references-tab");
+
+  if (laptopSection && screenImg && detail && tabs.length) {
+    const refs = {
+      energetika: {
+        img: "assets/img/ref1.png",
+        alt: "Energetikai tanúsító referencia oldal",
+        title: "Energetikai tanúsító – letisztult, bizalomépítő felépítés.",
+        text:
+          "Az energetikai referencia egy átlátható, logikusan felépített oldal: árakkal, szolgáltatási területekkel és folyamattal.",
+        bullets: [
+          "Ártáblázat, szolgáltatási területek és folyamat egy oldalon.",
+          "Levegős tipográfia, jól olvasható mobil nézet.",
+          "Erős CTA gombok, egyértelmű kapcsolatfelvétel."
+        ]
+      },
+      klima: {
+        img: "assets/img/ref2.png",
+        alt: "Klímaszerelő landing oldal",
+        title: "Klímaszerelő landing – történet alapú one‑pager.",
+        text:
+          "A klímás referencia egy görgethető történet: probléma, megoldás, folyamat, garanciák és gyakori kérdések.",
+        bullets: [
+          "Hero rész világos üzenettel és fókuszban az ajánlatkérés.",
+          "Szolgáltatás szekciók ikonokkal és rövid leírással.",
+          "Lépésről lépésre bemutatott folyamat, bizalomépítő tartalommal."
+        ]
+      }
+    };
+
+    const renderRef = (key) => {
+      const data = refs[key];
+      if (!data) return;
+
+      // Kép csere kis fade animációval
+      screenImg.style.opacity = "0";
+      setTimeout(() => {
+        screenImg.src = data.img;
+        screenImg.alt = data.alt;
+        screenImg.style.transform = "scale(1.02)";
+        screenImg.style.opacity = "1";
+      }, 180);
+
+      // Szöveg csere
+      detail.querySelector(".references-detail-title").textContent = data.title;
+      detail.querySelector(".references-detail-text").textContent = data.text;
+
+      const list = detail.querySelector(".references-detail-list");
+      list.innerHTML = "";
+      data.bullets.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const key = tab.dataset.ref;
+        tabs.forEach((t) => t.classList.remove("is-active"));
+        tab.classList.add("is-active");
+        renderRef(key);
+      });
+    });
+
+    // Alapértelmezett referencia
+    renderRef("energetika");
+  }
+
 });
