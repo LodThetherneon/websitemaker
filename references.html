@@ -31,98 +31,87 @@
       </div>
     </header>
 
-    <main>
-      <section>
+        <main>
+      <section class="references-laptop">
         <div class="container">
           <header class="section-header reveal">
-            <p class="section-kicker">Válogatott munkák</p>
-            <h1 class="section-title">Mintaprojektek klímás és energetikai vállalkozásoknak.</h1>
+            <p class="section-kicker">Referenciák</p>
+            <h1 class="section-title">
+              Nézd meg a kész oldalakat<br>
+              közvetlenül egy laptop kijelzőjén.
+            </h1>
             <p class="section-lead">
-              Ezek nem valós ügyfelek, hanem bemutató projektek – arra szolgálnak, hogy lásd,
-              hogyan lehet felépíteni egy átgondolt szolgáltatói weboldalt.
+              Ahogy lefelé görgetsz, a laptop „felnyílik”, a kijelzőn pedig
+              váltogathatod az elkészült mintaprojekteket.
             </p>
           </header>
 
-          <div class="projects-grid">
-            <article class="card reveal">
-              <h2 class="card-title">CoolAir Pro – klíma telepítés és karbantartás</h2>
-              <p class="card-body">
-                Egy több szekciós landing oldal, ahol a látogató azonnal megérti, milyen
-                típusú klímákat telepít a cég, hogyan néz ki a folyamat a felméréstől a
-                kivitelezésig, és milyen garanciát kap.
-              </p>
-              <div class="pills">
-                <span class="pill">Hero + szolgáltatás szekciók</span>
-                <span class="pill">Folyamat lépésről lépésre</span>
-                <span class="pill">Gyakori kérdések blokk</span>
-                <span class="pill">HTML • CSS • JS</span>
+          <!-- Laptop mockup -->
+          <div class="laptop-wrapper reveal">
+            <div class="laptop-perspective">
+              <!-- Fedél + kijelző -->
+              <div class="laptop-lid">
+                <div class="laptop-screen-frame">
+                  <div class="laptop-screen-inner">
+                    <img
+                      src="assets/img/ref1.png"
+                      alt="Energetikai tanúsító referencia oldal"
+                      class="laptop-screen-image"
+                      id="reference-screen-image"
+                    >
+                  </div>
+                </div>
               </div>
-              <div class="link-row">
-                <a href="#" class="link-tag">Demo (mintaprojekt)</a>
-                <a href="#" class="link-tag">Kód struktúra</a>
-              </div>
-            </article>
 
-            <article class="card reveal">
-              <h2 class="card-title">EnergoCert – energetikai tanúsítvány</h2>
-              <p class="card-body">
-                Egy energiatakarékosságra és gyors ügyintézésre fókuszáló oldal, ahol
-                külön blokkban szerepelnek az árak, az érintett területek és a tanúsítás
-                lépései. Az érdeklődő pontosan tudja, mire számíthat.
-              </p>
-              <div class="pills">
-                <span class="pill">Ártáblázat</span>
-                <span class="pill">Szolgáltatási területek</span>
-                <span class="pill">Tanúsítás folyamata</span>
-                <span class="pill">HTML • CSS</span>
+              <!-- Billentyűzet / base -->
+              <div class="laptop-base">
+                <div class="laptop-hinge"></div>
+                <div class="laptop-keyboard"></div>
+                <div class="laptop-trackpad"></div>
               </div>
-              <div class="link-row">
-                <a href="#" class="link-tag">Demo (mintaprojekt)</a>
-                <a href="#" class="link-tag">Kód struktúra</a>
-              </div>
-            </article>
+            </div>
+          </div>
 
-            <article class="card reveal">
-              <h2 class="card-title">LocalService Hub – helyi szolgáltató gyűjtőoldal</h2>
-              <p class="card-body">
-                Egy olyan felület, ahol több különböző helyi szolgáltatás jelenik meg
-                (klíma, villanyszerelés, kisebb felújítások). A cél az volt, hogy a
-                látogató gyorsan szűrhessen és elérhesse az adott szolgáltató oldalát.
-              </p>
-              <div class="pills">
-                <span class="pill">Kártya alapú lista</span>
-                <span class="pill">Szűrő opciók (UI)</span>
-                <span class="pill">Reszponzív rács</span>
-                <span class="pill">HTML • CSS • JS</span>
-              </div>
-              <div class="link-row">
-                <a href="#" class="link-tag">Demo (mintaprojekt)</a>
-                <a href="#" class="link-tag">Kód struktúra</a>
-              </div>
-            </article>
+          <!-- Lapozó vezérlők + leírás -->
+          <div class="references-switcher reveal">
+            <div class="references-tabs" aria-label="Referencia váltó">
+              <button
+                class="references-tab is-active"
+                data-ref="energetika"
+                type="button"
+              >
+                Energetikai tanúsító oldal
+              </button>
+              <button
+                class="references-tab"
+                data-ref="klima"
+                type="button"
+              >
+                Klímaszerelő landing
+              </button>
+            </div>
 
-            <article class="card reveal">
-              <h2 class="card-title">ServiceFlow – folyamatorientált UI</h2>
-              <p class="card-body">
-                Kísérleti UI, ahol a teljes ügyfélút jelenik meg egy idővonal‑alapú
-                felületen: ajánlatkérés, visszahívás, helyszíni felmérés, kivitelezés,
-                utógondozás. Ideális típusoldal klímás vagy energetikai szolgáltatóknak.
+            <article class="references-detail" id="reference-detail">
+              <h2 class="references-detail-title">
+                Energetikai tanúsító – letisztult, bizalomépítő felépítés.
+              </h2>
+              <p class="references-detail-text">
+                Az első referencia egy energetikai tanúsítói oldal: ártáblázattal,
+                szolgáltatási területekkel és egy lépésről‑lépésre folyamattal.
+                A fókusz azon van, hogy az ügyfél gyorsan megértse, milyen
+                dokumentumra van szüksége, mennyibe kerül és hogyan kérheti.
               </p>
-              <div class="pills">
-                <span class="pill">Timeline UI</span>
-                <span class="pill">Állapotok vizuális jelzése</span>
-                <span class="pill">Scroll animációk</span>
-                <span class="pill">HTML • CSS • JS</span>
-              </div>
-              <div class="link-row">
-                <a href="#" class="link-tag">Demo (mintaprojekt)</a>
-                <a href="#" class="link-tag">Kód struktúra</a>
-              </div>
+              <ul class="references-detail-list">
+                <li>Átlátható szekciók: Hero, szolgáltatások, árak, folyamat, GYIK.</li>
+                <li>Letisztult tipográfia, sok „levegő”, könnyen olvasható mobilon is.</li>
+                <li>Erős CTA gombok, egyértelmű kapcsolatfelvételi lehetőséggel.</li>
+              </ul>
             </article>
           </div>
         </div>
       </section>
     </main>
+
 
     <footer class="site-footer">
   <div class="container site-footer-inner">
