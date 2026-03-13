@@ -192,13 +192,13 @@ main {
   transition: transform 220ms ease, opacity 180ms ease, top 220ms ease;
 }
 
-.nav-toggle span:nth-child(1) { top: 0.88rem; }
-.nav-toggle span:nth-child(2) { top: 1.28rem; }
-.nav-toggle span:nth-child(3) { top: 1.68rem; }
+.nav-toggle span:nth-child(1) { top: 0.72rem; }
+.nav-toggle span:nth-child(2) { top: 1.1rem; }
+.nav-toggle span:nth-child(3) { top: 1.48rem; }
 
-.nav-toggle.is-open span:nth-child(1) { top: 1.28rem; transform: rotate(45deg); }
+.nav-toggle.is-open span:nth-child(1) { top: 1.1rem; transform: rotate(45deg); }
 .nav-toggle.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-toggle.is-open span:nth-child(3) { top: 1.28rem; transform: rotate(-45deg); }
+.nav-toggle.is-open span:nth-child(3) { top: 1.1rem; transform: rotate(-45deg); }
 
 /* =========================================
    3. GOMBOK
@@ -667,10 +667,10 @@ form.contact-card button {
 @media (max-width: 767px) {
   main { padding-top: 5.6rem; }
 
-  .site-header { padding: 0.75rem 0.75rem 0; }
+  .site-header { padding: 0.75rem 0.75rem 0; position:fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 0.75rem 0.75rem 0; }
   body.header-scrolled .site-header { padding-top: 0.45rem; }
 
-  .site-header-inner {
+  .site-header-inner { 
     height: 4.25rem;
     padding: 0 0.85rem;
     border-radius: 0.85rem;
@@ -680,36 +680,54 @@ form.contact-card button {
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.72);
   }
-
-  body.header-scrolled .site-header-inner {
-    height: 3.65rem;
-    border-radius: 0.8rem;
-    background: rgba(15, 23, 42, 0.96);
-    border-color: rgba(148, 163, 184, 0.4);
-    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.88);
-  }
-
   .logo { display: flex; align-items: center; gap: 0.5rem; min-width: 0; flex-shrink: 1; }
-  .logo img { max-height: 1.9rem; width: auto; flex-shrink: 0; }
+  .logo img { max-height: 4rem; width: auto; flex-shrink: 0; }
   .logo-text-main { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  .main-nav { margin-left: auto; position: relative; }
-  .nav-toggle { display: inline-flex; width: 2.45rem; height: 2.45rem; flex-shrink: 0; }
+.main-nav {
+  margin-left: auto;
+  position: relative;
+  display: flex;
+  align-items: center;  
+  align-self: center;
+}
 
-  .nav-links {
-    position: absolute;
-    top: calc(100% + 0.55rem);
-    right: 0; left: auto;
-    width: min(18rem, calc(100vw - 1.5rem));
-    display: flex; flex-direction: column; align-items: flex-start;
-    gap: 1rem; padding: 0; max-height: 0; overflow: hidden; opacity: 0;
-    pointer-events: none; border-radius: 0.85rem;
-    border: 0 solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.98);
-    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.92); backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    transition: max-height var(--transition-fast), opacity var(--transition-fast), padding var(--transition-fast), border-width var(--transition-fast);
-  }
+.nav-toggle {
+  display: inline-flex;
+  width: 2.45rem;
+  height: 2.45rem;
+  flex-shrink: 0;
+  align-items: center;   
+  justify-content: center; 
+  padding: 0%;
+  line-height: 1;
+}
 
+
+.nav-links {
+  position: fixed;          
+  top: 4.5rem;              
+  left: 0.75rem;            
+  right: 0.75rem;           
+  width: calc(100% - 1.5rem);
+  box-sizing: border-box;        
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 0.85rem;
+  border: 0 solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: max-height var(--transition-fast), opacity var(--transition-fast), padding var(--transition-fast), border-width var(--transition-fast);
+}
   .nav-links.open { max-height: 22rem; opacity: 1; pointer-events: auto; padding: 1rem; border-width: 1px; }
   .nav-links a { width: 100%; text-align: left; padding: 0.25rem 0; }
 
@@ -720,7 +738,6 @@ form.contact-card button {
 
   .site-footer-inner { flex-direction: column; align-items: flex-start; }
   
-  /* Mobilon a gomb teljes szélességű legyen az űrlapban */
   form.contact-card button { width: 100%; }
 }
 
