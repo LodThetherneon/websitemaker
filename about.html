@@ -4,14 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bemutatkozás – websitemaker.hu</title>
-  <meta name="description" content="Frontend fejlesztő, aki klímás és energetikai tanúsítós vállalkozásoknak készít modern, reszponzív weboldalakat.">
+  <meta name="description" content="Frontend fejlesztő, gazdaságinformatikus hallgató és IT projektmenedzser szemlélettel. Egyedi, sablonmentes weboldalak vállalkozásoknak.">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="page-shell">
+    <!-- FEJLÉC -->
     <header class="site-header">
-      <div class="container site-header-inner">
+      <div class="site-header-inner">
         <a href="index.html" class="logo">
           <img src="assets/img/logo2.png" alt="websitemaker.hu logó">
           <span class="logo-text-main">websitemaker<span class="logo-text-dot">.hu</span></span>
@@ -22,8 +23,8 @@
             <span></span><span></span><span></span>
           </button>
           <ul class="nav-links" role="list">
-            <li><a href="index.html" class="is-active">Főoldal</a></li>
-            <li><a href="about.html">Bemutatkozás</a></li>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="about.html" class="is-active">Bemutatkozás</a></li>
             <li><a href="references.html">Referenciák</a></li>
             <li><a href="contact.html">Kapcsolat</a></li>
           </ul>
@@ -32,76 +33,128 @@
     </header>
 
     <main>
+      <!-- FŐ BEMUTATKOZÁS BLOKK -->
       <section>
         <div class="container about-layout">
+          <!-- Bal hasáb: ki vagyok én -->
           <div class="about-block reveal">
-            <p class="section-kicker">Bemutatkozás</p>
-            <h1 class="section-title">Webfejlesztő, aki érti a szolgáltatói vállalkozások nyelvét.</h1>
+            <p class="section-kicker">Rólam</p>
+            <h1 class="section-title">
+              Fejlesztő vagyok, aki gazdaságinformatikát tanul,
+              és érti az IT‑rendszerek működését – nem csak a kódot.
+            </h1>
             <p class="section-lead">
-              Klímás és energetikai ügyfeleknek készítek weboldalakat, így pontosan tudom,
-              milyen kérdésekre kell választ adni egy jó honlapon: mit csinálsz, hol dolgozol,
-              mennyibe kerül, mennyi idő alatt és hogyan lehet elérni.
+              Frontend fejlesztőként <strong>egyedi HTML, CSS és JavaScript alapú weboldalakat</strong> készítek,
+              miközben az egyetemen gazdaságinformatikát tanulok, és
+              <strong>IT rendszerek projektmenedzselésével</strong> is foglalkozom.
             </p>
             <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">
-              A websitemaker.hu nem ügynökség, hanem egy fókuszált, fejlesztésre építő műhely.
-              Nem sablonokat másolok, hanem minden projektet külön átgondolok: milyen tartalom
-              kell, hogyan érdemes szerkezetbe rendezni, és milyen vizuális nyelv illik a
-              vállalkozásodhoz.
+              Ez a háttér abban segít, hogy ne csak szép UI‑t építsek, hanem végig tudjam gondolni
+              az üzleti folyamatokat is: honnan érkezik az érdeklődő, milyen lépések vezetnek az ajánlatkérésig,
+              és mitől lesz egy oldal valóban használható a mindennapokban.
             </p>
+
+            <h2 class="card-title" style="margin-top: 1.6rem;">Nem WordPress, hanem egyedi fejlesztés</h2>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.4rem;">
+              Nem sablonos WordPress témákkal dolgozom, hanem <strong>nulláról építem fel a layoutot</strong>.
+              Nincs sablon‑limitáció, nincs „ezt a plugint már nem bírja a rendszer” érzés – a
+              weboldalad <strong>az utolsó pixelig testre szabható</strong>. Ha valamit el tudunk képzelni
+              HTML/CSS/JS‑ben, meg tudjuk csinálni.
+            </p>
+
+            <div class="pills" style="margin-top: 1rem;">
+              <span class="pill">Egyedi, sablonmentes UI</span>
+              <span class="pill">Tiszta, strukturált kód</span>
+              <span class="pill">Reszponzív nézet mobilra és desktopra</span>
+              <span class="pill">GitHub + Netlify deploy</span>
+            </div>
           </div>
 
+          <!-- Jobb hasáb: folyamat menüre bontva -->
           <aside class="about-block reveal">
-            <h2 class="card-title">Hogyan dolgozom?</h2>
+            <h2 class="card-title">Így dolgozunk együtt, lépésről lépésre</h2>
             <div class="timeline">
               <article class="timeline-item">
-                <strong>1. Rövid online egyeztetés</strong>
-                <span>Átbeszéljük, mivel foglalkozol (klíma, energetika, más szolgáltatás), mit vársz a weboldaltól.</span>
+                <span class="timeline-date">1. lépés</span>
+                <h3 class="timeline-title">Rövid online beszélgetés</h3>
+                <p class="timeline-desc">
+                  Megismerem a vállalkozásod: mivel foglalkozol, kiknek értékesítesz,
+                  milyen szolgáltatásokat szeretnél kiemelni, és mi a célod a weboldallal
+                  (több ajánlatkérés, bizalomépítés, profi online jelenlét).
+                </p>
               </article>
+
               <article class="timeline-item">
-                <strong>2. Vázlat és struktúra</strong>
-                <span>Összerakom a menü‑ és oldalszerkezetet: milyen szekciók, milyen blokkok kerüljenek a főoldalra és az aloldalakra.</span>
+                <span class="timeline-date">2. lépés</span>
+                <h3 class="timeline-title">Struktúra és menü felépítése</h3>
+                <p class="timeline-desc">
+                  Összerakom a <strong>menü‑ és oldalszerkezetet</strong>: milyen szekciók kerüljenek
+                  a főoldalra, milyen aloldalakra van szükség (Bemutatkozás, Szolgáltatások, Referenciák,
+                  Kapcsolat), és hogyan vezetjük végig a látogatót az információn.
+                </p>
               </article>
+
               <article class="timeline-item">
-                <strong>3. Dizájn és fejlesztés</strong>
-                <span>Felépítem a reszponzív layoutot, finom animációkat teszek rá, és tesztelem mobilon, tableten, desktopon.</span>
+                <span class="timeline-date">3. lépés</span>
+                <h3 class="timeline-title">UI dizájn + fejlesztés</h3>
+                <p class="timeline-desc">
+                  Elkészítem a <strong>reszponzív layoutot</strong>, finom hover és scroll animációkkal.
+                  Itt jelennek meg a különféle menü‑ és gomb‑animációk, glow effektek,
+                  amiktől az oldal modern és „profi” érzetű lesz – felesleges csicsa nélkül.
+                </p>
               </article>
+
               <article class="timeline-item">
-                <strong>4. Publikálás és finomhangolás</strong>
-                <span>GitHub‑ra kerül a kód, Netlify‑ra az élő oldal. Ha kell, finomítunk a szövegen vagy a szekciókon.</span>
+                <span class="timeline-date">4. lépés</span>
+                <h3 class="timeline-title">Tesztelés, finomhangolás</h3>
+                <p class="timeline-desc">
+                  Mobilon, tableten és desktopon is végigtesztelem az oldalt. Ha valami nem áll kézre,
+                  módosítunk rajta. Itt még lehet alakítani a szövegeken, CTA‑kon, sorrendeken.
+                </p>
+              </article>
+
+              <article class="timeline-item">
+                <span class="timeline-date">5. lépés</span>
+                <h3 class="timeline-title">Élesítés és támogatás</h3>
+                <p class="timeline-desc">
+                  A kód GitHub‑ra, az oldal pedig Netlify‑ra kerül. Később is számíthatsz rám:
+                  új szekciók, landingek, finom hangolások, technikai frissítések – nem tűnök el
+                  az átadás után.
+                </p>
               </article>
             </div>
 
-            <h2 class="card-title" style="margin-top: 1.3rem;">Eszközök, amikkel dolgozom</h2>
-            <div class="pills">
-              <span class="pill">HTML5 & szemantikus markup</span>
-              <span class="pill">CSS3 (Flexbox, Grid)</span>
-              <span class="pill">Vanilla JavaScript</span>
-              <span class="pill">VS Code + Live Server</span>
-              <span class="pill">Git & GitHub</span>
-              <span class="pill">Netlify</span>
+            <h2 class="card-title" style="margin-top: 1.6rem;">Mit kapsz tőlem fejlesztőként?</h2>
+            <div class="pills" style="margin-top: 0.6rem;">
+              <span class="pill">Gazdaságinformatikus szemlélet</span>
+              <span class="pill">Projektmenedzseri gondolkodás</span>
+              <span class="pill">Átlátható, dokumentált kód</span>
+              <span class="pill">Valódi együttműködés, nem dobozos csomag</span>
             </div>
           </aside>
         </div>
       </section>
     </main>
 
+    <!-- LÁBLÉC -->
     <footer class="site-footer">
-  <div class="container site-footer-inner">
-    <div class="footer-left">
-      <p class="footer-brand">@websitemaker.hu – Kiss Zoltán EV.</p>
-      <p class="footer-meta">
-        Modern, reszponzív weboldalak klímás, energetikai és egyéb szolgáltató vállalkozásoknak.
-      </p>
-    </div>
-    <nav class="footer-nav" aria-label="Alsó navigáció">
-      <a href="index.html">Főoldal</a>
-      <a href="references.html">Referenciák</a>
-      <a href="contact.html">Kapcsolat</a>
-      <a href="privacy.html">Adatvédelem</a>
-    </nav>
+      <div class="container site-footer-inner">
+        <div class="footer-left">
+          <p class="footer-brand">@websitemaker.hu – Kiss Zoltán EV.</p>
+          <p class="footer-meta">
+            Modern, reszponzív weboldalak klímás, energetikai és egyéb szolgáltató vállalkozásoknak.
+          </p>
+        </div>
+        <nav class="footer-nav" aria-label="Alsó navigáció">
+          <a href="index.html">Főoldal</a>
+          <a href="references.html">Referenciák</a>
+          <a href="contact.html">Kapcsolat</a>
+          <a href="privacy.html">Adatvédelem</a>
+        </nav>
+      </div>
+    </footer>
   </div>
-</footer>
-  </div>
+
   <!-- Custom Cursor Elemek -->
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
