@@ -150,11 +150,16 @@ main {
   position: relative;
   padding: 0.35rem 0.7rem;
   border-radius: 0.5rem;
-  color: #ffffff;                         
+  color: #ffffff;
   text-decoration: none;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  transition: color 250ms ease, text-shadow 250ms ease, background 250ms ease;
+  transition:
+    color 220ms ease,
+    text-shadow 220ms ease,
+    background 220ms ease,
+    transform 180ms ease;
 }
 .nav-links a::after {
   content: "";
@@ -170,10 +175,11 @@ main {
 
 .nav-links a:hover {
   color: #22d3ee;
+  background: rgba(34, 211, 238, 0.10);
   text-shadow:
     0 0 8px rgba(34, 211, 238, 0.9),
     0 0 20px rgba(34, 211, 238, 0.5);
-  background: rgba(34, 211, 238, 0.08);
+  transform: translateY(-1px);
 }
 
 .nav-links a.is-active {
