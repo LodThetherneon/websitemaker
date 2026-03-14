@@ -162,21 +162,10 @@ main {
     transform 180ms ease;
 }
 
+/* Aláhúzás teljesen kikapcsolva */
 .nav-links a::after {
   content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.25rem;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #22d3ee, #38bdf8);
-  transform-origin: center;
-  transform: scaleX(0);
-  opacity: 0;
-  transition:
-    transform var(--transition-fast),
-    opacity var(--transition-fast);
+  display: none;
 }
 
 .nav-links a:hover {
@@ -196,22 +185,10 @@ main {
     0 0 45px rgba(34, 211, 238, 0.3);
   background: rgba(34, 211, 238, 0.12);
   border: 1px solid rgba(34, 211, 238, 0.25);
-  /* kevésbé kör, enyhén lekerekítve */
   border-radius: 0.75rem;
   box-shadow:
     0 0 0 1px rgba(34, 211, 238, 0.35),
     0 0 20px rgba(34, 211, 238, 0.35);
-}
-
-/* Aktív menüpontnál ne jelenjen meg az aláhúzás */
-.nav-links a.is-active::after {
-  transform: scaleX(0);
-  opacity: 0;
-}
-
-.nav-links a:hover::after {
-  transform: scaleX(1);
-  opacity: 1;
 }
 
 .nav-toggle {
@@ -872,7 +849,7 @@ form.contact-card button {
   perspective: 1600px;
 }
 
-/* MacBook szélesség – 16:10 arány */
+/* MacBook szélesség – lid 16:9, hogy a screenshotok jobban passzoljanak */
 .laptop-perspective {
   position: relative;
   width: min(900px, 96vw);
@@ -880,13 +857,11 @@ form.contact-card button {
 }
 
 /* ---- FEDÉL ---- */
-/* aspect-ratio: 16/10 – a ref2.png arányához igazítva */
 .laptop-lid {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   transform-origin: bottom center;
-  /* Mély zárás: 82 fok – majdnem teljesen csukva */
   transform: rotateX(82deg);
   transition: transform 1000ms cubic-bezier(0.2, 0.8, 0.2, 1);
   transform-style: preserve-3d;
@@ -964,11 +939,11 @@ form.contact-card button {
   cursor: pointer;
 }
 
-/* Kép – magasságra is befér, contain */
+/* Kép – teljesen kitölti a kijelzőt, ne maradjon üres sáv alul */
 .laptop-screen-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: top center;
   display: block;
   background: #020617;
@@ -977,13 +952,12 @@ form.contact-card button {
   z-index: 1;
 }
 
-/* ---- ALAP – egységes alumínium szín, nincs színugrás ---- */
+/* ---- ALAP – teljesen egyszínű szürke, hogy ne "színt váltson" görgetéskor ---- */
 .laptop-base {
   position: relative;
   width: 100%;
   height: 2rem;
-  /* Lapos, egységes tónus – ne legyen színváltás görgetésnél */
-  background: #727276;
+  background: #7a7a7e;
   border-radius: 0 0 0.7rem 0.7rem;
   border: 1.5px solid rgba(255,255,255,0.15);
   border-top: 1px solid rgba(0,0,0,0.35);
@@ -995,7 +969,6 @@ form.contact-card button {
   align-items: center;
 }
 
-/* Trackpad-jelző sáv */
 .laptop-base::after {
   content: "";
   width: 20%;
@@ -1009,14 +982,13 @@ form.contact-card button {
   border: 1px solid rgba(0,0,0,0.15);
 }
 
-/* Szárny-talpak */
 .laptop-foot-left,
 .laptop-foot-right {
   position: absolute;
   bottom: -0.55rem;
   width: 16%;
   height: 0.5rem;
-  background: linear-gradient(180deg, #7a7a7e, #5e5e62);
+  background: #7a7a7e;
   border-radius: 0 0 0.5rem 0.5rem;
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
@@ -1031,7 +1003,7 @@ form.contact-card button {
   gap: 1.2rem;
   max-width: min(900px, 96vw);
   margin-inline: auto;
-  text-align: center;
+  text-align: left;
 }
 
 .references-tabs {
