@@ -60,14 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateLidAngle = () => {
       const rect = laptopWrapper.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // Start: laptop teteje eléri a viewport aljat
-      // End: laptop közepe eléri a viewport 40%-át
-      const start = windowH;
-      const end   = windowH * 0.35;
+      // Mély zárás: 82 fok -> 0 fok
+      // Nyítás: mikor laptop aljára ér a viewport (start) -> mikor középen van (end)
+      const start = windowH * 0.95;
+      const end   = windowH * 0.3;
       let progress = (start - rect.top) / (start - end);
       progress = Math.min(1, Math.max(0, progress));
-      // 75deg csukva -> 0deg nyitva
-      const angle = 75 - (75 * progress);
+      // 82deg (majdnem teljesen csukva) -> 0deg (teljesen nyitva)
+      const angle = 82 - (82 * progress);
       laptopLid.style.transform = `rotateX(${angle}deg)`;
     };
     window.addEventListener("scroll", updateLidAngle, { passive: true });
@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== Referencia váltó =====
   const screenImg = document.getElementById("reference-screen-image");
+  const screenLink = document.getElementById("laptop-screen-link");
   const detail = document.getElementById("reference-detail");
   const tabs = document.querySelectorAll(".references-tab");
 
@@ -84,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       energetika: {
         img: "assets/img/ref1.jpg",
         alt: "Energetikai tanúsító referencia oldal",
+        url: "https://energetikaitanusito1.hu",
         title: "Energetikai tanúsító – letisztult, bizalomépítő felépítés.",
         text: "Az energetikai referencia egy átlátható, logikusan felépített oldal: árakkal, szolgáltatási területekkel és folyamattal.",
         bullets: [
@@ -95,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       klima: {
         img: "assets/img/ref2.jpg",
         alt: "Klímaszerelő landing oldal",
+        url: "https://klimamed.hu",
         title: "Klímaszerelő landing – történet alapú one-pager.",
         text: "A klímás referencia egy görgethető történet: probléma, megoldás, folyamat, garanciák és gyakori kérdések.",
         bullets: [
@@ -114,6 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
         screenImg.alt = data.alt;
         screenImg.style.opacity = "1";
       }, 200);
+      // Link frissítése
+      if (screenLink) {
+        screenLink.href = data.url;
+        screenLink.setAttribute("aria-label", data.title + " megnyitása");
+      }
       detail.querySelector(".references-detail-title").textContent = data.title;
       detail.querySelector(".references-detail-text").textContent = data.text;
       const list = detail.querySelector(".references-detail-list");

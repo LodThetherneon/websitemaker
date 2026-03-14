@@ -845,9 +845,18 @@ form.contact-card button {
   text-align: center;
 }
 
+/* Középre igazított fejléc */
 .references-laptop .section-header {
   text-align: center;
   margin-bottom: 1rem;
+  margin-inline: auto;
+  max-width: 700px;
+}
+
+.references-laptop .section-kicker,
+.references-laptop .section-title,
+.references-laptop .section-lead {
+  text-align: center;
 }
 
 .laptop-wrapper {
@@ -857,21 +866,23 @@ form.contact-card button {
   perspective: 1600px;
 }
 
-/* MacBook szélesség */
+/* MacBook szélesség – 16:10 arány */
 .laptop-perspective {
   position: relative;
   width: min(900px, 96vw);
   transform-style: preserve-3d;
 }
 
-/* ---- FEDÉL (képernyő) ---- */
+/* ---- FEDÉL ---- */
+/* aspect-ratio: 16/10 – a ref2.png arányához igazítva */
 .laptop-lid {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   transform-origin: bottom center;
-  transform: rotateX(75deg);
-  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Mély zárás: 82 fok – majdnem teljesen csukva */
+  transform: rotateX(82deg);
+  transition: transform 1000ms cubic-bezier(0.2, 0.8, 0.2, 1);
   transform-style: preserve-3d;
 }
 
@@ -913,7 +924,7 @@ form.contact-card button {
   z-index: 2;
 }
 
-/* Fényes vonal a keret tetején – MacBook jellegzetes vonása */
+/* Fényes vonal a keret tetején */
 .laptop-screen-frame::after {
   content: "";
   position: absolute;
@@ -933,9 +944,21 @@ form.contact-card button {
   background: #000;
   overflow: hidden;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.8);
+  position: relative;
 }
 
-/* Kép – contain, nem vágódik le */
+/* Kattintható link réteg a kijelzőn */
+.laptop-screen-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: pointer;
+}
+
+/* Kép – magasságra is befér, contain */
 .laptop-screen-image {
   width: 100%;
   height: 100%;
@@ -944,24 +967,26 @@ form.contact-card button {
   display: block;
   background: #020617;
   transition: opacity 300ms ease;
+  position: relative;
+  z-index: 1;
 }
 
-/* ---- ALAP (billentyűzet rész) ---- */
+/* ---- ALAP – egységes alumínium szín, nincs színugrás ---- */
 .laptop-base {
   position: relative;
   width: 100%;
   height: 2rem;
+  /* Ugyanolyan tónus mint a fedél aljának közepe – nincs kontrasztugrás */
   background: linear-gradient(180deg,
-    #b8b8bc 0%,
-    #a0a0a4 30%,
-    #8c8c90 70%,
-    #7c7c80 100%
+    #7a7a7e 0%,
+    #727276 40%,
+    #686868 100%
   );
   border-radius: 0 0 0.7rem 0.7rem;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  border-top: 1px solid rgba(0,0,0,0.3);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-top: 1px solid rgba(0,0,0,0.35);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.18),
     0 20px 50px rgba(0, 0, 0, 0.95);
   display: flex;
   justify-content: center;
@@ -974,12 +999,12 @@ form.contact-card button {
   width: 20%;
   height: 0.3rem;
   background: linear-gradient(90deg,
-    rgba(0,0,0,0.1),
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.1)
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.08)
   );
   border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,0,0,0.15);
 }
 
 /* Szárny-talpak */
@@ -989,9 +1014,9 @@ form.contact-card button {
   bottom: -0.55rem;
   width: 16%;
   height: 0.5rem;
-  background: linear-gradient(180deg, #9a9a9e, #7a7a7e);
+  background: linear-gradient(180deg, #7a7a7e, #5e5e62);
   border-radius: 0 0 0.5rem 0.5rem;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
