@@ -60,13 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateLidAngle = () => {
       const rect = laptopWrapper.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // Mély zárás: 82 fok -> 0 fok
-      // Nyítás: mikor laptop aljára ér a viewport (start) -> mikor középen van (end)
       const start = windowH * 0.95;
       const end   = windowH * 0.3;
       let progress = (start - rect.top) / (start - end);
       progress = Math.min(1, Math.max(0, progress));
-      // 82deg (majdnem teljesen csukva) -> 0deg (teljesen nyitva)
       const angle = 82 - (82 * progress);
       laptopLid.style.transform = `rotateX(${angle}deg)`;
     };
@@ -117,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
         screenImg.alt = data.alt;
         screenImg.style.opacity = "1";
       }, 200);
-      // Link frissítése
       if (screenLink) {
         screenLink.href = data.url;
         screenLink.setAttribute("aria-label", data.title + " megnyitása");
@@ -144,32 +140,22 @@ document.addEventListener("DOMContentLoaded", () => {
     renderRef("energetika");
   }
 
-  // ===== Custom Cursor (CSAK ASZTALON) =====
+  // ===== Custom Cursor – csak a dot, ring törölve =====
   if (window.matchMedia("(pointer: fine)").matches && window.innerWidth >= 768) {
     const dot = document.querySelector(".cursor-dot");
-    const ring = document.querySelector(".cursor-ring");
-    if (dot && ring) {
-      let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    if (dot) {
+      let mouseX = 0, mouseY = 0;
       window.addEventListener("mousemove", (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
       });
-      const animateRing = () => {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
-        requestAnimationFrame(animateRing);
-      };
-      animateRing();
       const interactiveElements = document.querySelectorAll('a, button, input, textarea, .nav-toggle');
       interactiveElements.forEach((el) => {
         el.addEventListener('mouseenter', () => {
-          ring.classList.add('hovered');
           dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%)) scale(1.5)`;
         });
         el.addEventListener('mouseleave', () => {
-          ring.classList.remove('hovered');
           dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%)) scale(1)`;
         });
       });
