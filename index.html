@@ -7,6 +7,243 @@
   <meta name="description" content="Egyoldalas és többoldalas weboldalak fejlesztése vállalkozásoknak. Modern, reszponzív UI, finom animációk, hosszú távú támogatás.">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── HERO KÉPEK – browser mockup stílus ── */
+    .hero-preview-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+    }
+
+    .hero-preview {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--clr-surface, #1a1a2e);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+    }
+    .hero-preview:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 56px rgba(0,0,0,0.45);
+    }
+
+    /* Böngésző fejléc sáv (3 dot + fake URL bar) */
+    .hero-preview::before {
+      content: '';
+      display: block;
+      height: 28px;
+      background: rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background-image:
+        radial-gradient(circle, #ff5f57 5px, transparent 5px),
+        radial-gradient(circle, #febc2e 5px, transparent 5px),
+        radial-gradient(circle, #28c840 5px, transparent 5px);
+      background-repeat: no-repeat;
+      background-size: 10px 10px, 10px 10px, 10px 10px;
+      background-position: 10px center, 26px center, 42px center;
+    }
+
+    /* URL bar hatás */
+    .hero-preview::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 62px;
+      right: 12px;
+      height: 16px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .hero-preview img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .hero-preview figcaption {
+      padding: 0.6rem 1rem 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255,255,255,0.03);
+    }
+    .hero-preview-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--clr-accent, #7c6ff7);
+      white-space: nowrap;
+    }
+    .hero-preview-text {
+      font-size: 0.78rem;
+      color: var(--clr-muted, #aaa);
+      line-height: 1.35;
+    }
+
+    .hero-preview-primary img {
+      height: 190px;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--clr-border, rgba(255,255,255,0.07));
+      border-bottom: 1px solid var(--clr-border, rgba(255,255,255,0.07));
+    }
+    .trust-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem 3.5rem;
+      text-align: center;
+    }
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .trust-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--clr-accent, #7c6ff7);
+      line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.8rem;
+      color: var(--clr-muted, #aaa);
+      letter-spacing: .04em;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .process-section {
+      background: var(--clr-surface-alt, #111122);
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      counter-reset: steps;
+      margin-top: 2.5rem;
+    }
+    .process-step {
+      position: relative;
+      padding: 1.75rem 1.5rem 1.5rem;
+      border-radius: 14px;
+      background: var(--clr-surface, #1a1a2e);
+      border: 1px solid var(--clr-border, rgba(255,255,255,0.07));
+      counter-increment: steps;
+    }
+    .process-step::before {
+      content: counter(steps, decimal-leading-zero);
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--clr-accent, #7c6ff7);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .process-step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+    .process-step p {
+      font-size: 0.875rem;
+      color: var(--clr-muted, #aaa);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* ── WHY ME ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .why-item {
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: var(--clr-surface, #1a1a2e);
+      border: 1px solid var(--clr-border, rgba(255,255,255,0.07));
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .why-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .why-item h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .why-item p {
+      font-size: 0.85rem;
+      color: var(--clr-muted, #aaa);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* ── CTA SZALAG ── */
+    .cta-strip {
+      background: linear-gradient(135deg, var(--clr-accent, #7c6ff7) 0%, #5a52d5 100%);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.75rem;
+    }
+    .cta-strip p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1rem;
+      margin: 0 0 2rem;
+    }
+    .cta-strip .btn-white {
+      background: #fff;
+      color: var(--clr-accent, #7c6ff7);
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .cta-strip .btn-white:hover { opacity: 0.9; }
+
+    /* ── TECH STACK ── */
+    .tech-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    .tech-badge {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--clr-surface, #1a1a2e);
+      border: 1px solid var(--clr-border, rgba(255,255,255,0.1));
+      color: var(--clr-text, #eee);
+      letter-spacing: .03em;
+    }
+  </style>
 </head>
 <body>
   <div class="page-shell">
@@ -32,14 +269,14 @@
     </header>
 
     <main>
-      <!-- HERO -->
+      <!-- ═══ HERO ═══ -->
       <section class="hero">
         <div class="container hero-layout">
           <!-- Bal oldal: szöveg + gombok -->
           <div class="hero-left reveal">
             <div class="hero-eyebrow">
               <span class="hero-eyebrow-dot"></span>
-              <span>Egyedi html weboldal fejlesztés vállalkozásoknak</span>
+              <span>Egyedi HTML weboldal fejlesztés vállalkozásoknak</span>
             </div>
             <h1 class="hero-title">
               Weboldalakat építek, amelyek <span class="accent">átláthatók, gyorsak</span> és jól bemutatják a vállalkozásod.
@@ -50,17 +287,17 @@
             </p>
             <div class="hero-actions">
               <a href="contact.html" class="btn btn-primary">Kérj ajánlatot</a>
-              <a href="about.html" class="btn btn-ghost">Ismerj meg a engem és munkamódszerem</a>
+              <a href="about.html" class="btn btn-ghost">Ismerj meg – és a munkamódszerem</a>
             </div>
             <div class="hero-meta">
               <span>
-                <strong>Specializáció:</strong>
+                <strong>Tech stack:</strong>
                 HTML • CSS • JavaScript • GitHub • Netlify
               </span>
             </div>
           </div>
 
-          <!-- Jobb oldal: 3.jpg + 4.jpg vizuális preview glow-val -->
+          <!-- Jobb oldal: browser mockup képek -->
           <aside class="hero-card reveal" aria-label="Weboldal előnézetek">
             <div class="hero-card-header">
               <div class="hero-chip">Friss layout kísérletek</div>
@@ -72,7 +309,7 @@
 
             <div class="hero-preview-grid">
               <figure class="hero-preview hero-preview-primary">
-                <img src="assets/img/3.png" alt="Hero szekció előnézet">
+                <img src="assets/img/3.png" alt="Hero szekció példa – asztali nézet">
                 <figcaption>
                   <span class="hero-preview-tag">Hero szekció</span>
                   <span class="hero-preview-text">Nagy cím, egyértelmű üzenet, fókuszban a vállalkozásod.</span>
@@ -80,7 +317,7 @@
               </figure>
 
               <figure class="hero-preview hero-preview-secondary">
-                <img src="assets/img/4.png" alt="Szolgáltatás szekció előnézet">
+                <img src="assets/img/4.png" alt="Szolgáltatás szekció példa">
                 <figcaption>
                   <span class="hero-preview-tag">Szolgáltatás blokk</span>
                   <span class="hero-preview-text">Tiszta szekciók, ikonokkal és jól olvasható leírásokkal.</span>
@@ -91,7 +328,31 @@
         </div>
       </section>
 
-      <!-- MIT CSINÁLOK – 3 fő fókusz -->
+      <!-- ═══ TRUST BAR ═══ -->
+      <div class="trust-bar">
+        <div class="container">
+          <div class="trust-bar-inner">
+            <div class="trust-item">
+              <span class="trust-number">100%</span>
+              <span class="trust-label">Egyedi kód, sablon nélkül</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-number">~3–7</span>
+              <span class="trust-label">nap átlagos átadási idő</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-number">Netlify</span>
+              <span class="trust-label">ingyenes hosting lehetőség</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-number">∞</span>
+              <span class="trust-label">Hosszú távú támogatás</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ MIBEN SEGÍTEK ═══ -->
       <section>
         <div class="container">
           <header class="section-header reveal">
@@ -125,7 +386,7 @@
               <p class="card-body">
                 Ha több szolgáltatásod, referenciád, csapatod van, akkor külön aloldalakra bontjuk
                 a tartalmat. A menü átlátható, a látogató pedig gyorsan megtalálja, amit keres –
-                akár mobillóról, akár gépről nézi.
+                akár mobilról, akár gépről nézi.
               </p>
               <div class="pills">
                 <span class="pill">Áttekinthető menü</span>
@@ -149,6 +410,107 @@
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <!-- ═══ HOGYAN DOLGOZOM ═══ -->
+      <section class="process-section">
+        <div class="container">
+          <header class="section-header reveal">
+            <p class="section-kicker">A folyamat</p>
+            <h2 class="section-title">Átlátható, egyszerű munkamenet – lépésről lépésre.</h2>
+            <p class="section-lead">
+              Tudod pontosan, mikor mi történik. Nincs rejtett várakozás, nincs homályos kommunikáció.
+            </p>
+          </header>
+
+          <div class="process-steps">
+            <div class="process-step reveal">
+              <h3>Egyeztetés</h3>
+              <p>Rövid megbeszélés – megismerem a vállalkozásod, céljaidat és elvárásaidat. E-mailben vagy telefonon, ahogy neked kényelmes.</p>
+            </div>
+            <div class="process-step reveal">
+              <h3>Tervezés</h3>
+              <p>Meghatározzuk a struktúrát, a szekciók sorrendjét és a designt. Mielőtt egyetlen sor kód születik, mindent jóváhagysz.</p>
+            </div>
+            <div class="process-step reveal">
+              <h3>Fejlesztés</h3>
+              <p>Megírjuk a kódot – tiszta HTML, CSS és JavaScript, sablon vagy page builder nélkül. Minden a te igényeidre szabva.</p>
+            </div>
+            <div class="process-step reveal">
+              <h3>Visszajelzés &amp; finomítás</h3>
+              <p>Megmutatom az elkészült oldalt, te visszajelzést adsz, és elvégzem a szükséges módosításokat.</p>
+            </div>
+            <div class="process-step reveal">
+              <h3>Átadás &amp; élesítés</h3>
+              <p>Feltöltjük a Netlify-ra (vagy a saját tárhelyre), beállítjuk a domaint – és az oldalad él.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ MIÉRT ÉN ═══ -->
+      <section>
+        <div class="container">
+          <header class="section-header reveal">
+            <p class="section-kicker">Miért én?</p>
+            <h2 class="section-title">Amit egy freelance fejlesztőtől kaphatsz, amit egy ügynökségtől nem mindig.</h2>
+            <p class="section-lead">
+              Közvetlen kommunikáció, valódi személyes felelősségvállalás, és egy fejlesztő, aki tényleg érti a kis- és középvállalkozások igényeit.
+            </p>
+          </header>
+
+          <div class="why-grid">
+            <div class="why-item reveal">
+              <span class="why-icon">⚡</span>
+              <h3>Gyors átadás</h3>
+              <p>Általában 3–7 munkanapon belül kész az oldal – nem heteket, hanem napokat vársz.</p>
+            </div>
+            <div class="why-item reveal">
+              <span class="why-icon">🎯</span>
+              <h3>Személyre szabott</h3>
+              <p>Nincs sablon. Minden oldal az adott vállalkozásra, célközönségre és üzenetre épül.</p>
+            </div>
+            <div class="why-item reveal">
+              <span class="why-icon">📱</span>
+              <h3>Mobilon is tökéletes</h3>
+              <p>Reszponzív design: telefonon, tableten és asztali gépen egyformán szép és használható.</p>
+            </div>
+            <div class="why-item reveal">
+              <span class="why-icon">🔍</span>
+              <h3>SEO-barát alap</h3>
+              <p>Szemantikus HTML, meta tagek, gyors betöltés – jó alap a keresőkben való megjelenéshez.</p>
+            </div>
+            <div class="why-item reveal">
+              <span class="why-icon">💬</span>
+              <h3>Közvetlen kommunikáció</h3>
+              <p>Velem beszélsz, nem egy ügyfélszolgálattal. Gyors válasz, átlátható folyamat.</p>
+            </div>
+            <div class="why-item reveal">
+              <span class="why-icon">🛠️</span>
+              <h3>Átadás utáni segítség</h3>
+              <p>Ha valami változik, kéred, hogy frissítsük az oldalt – itt vagyok, és segítek.</p>
+            </div>
+          </div>
+
+          <div class="tech-strip reveal">
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">GitHub</span>
+            <span class="tech-badge">Netlify</span>
+            <span class="tech-badge">Reszponzív design</span>
+            <span class="tech-badge">Egyedi animációk</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ CTA SZALAG ═══ -->
+      <section class="cta-strip">
+        <div class="container">
+          <h2>Készen állsz egy profi weboldalra?</h2>
+          <p>Írj egy üzenetet – megbeszéljük az igényeidet, és 24 órán belül visszajelzek.</p>
+          <a href="contact.html" class="btn-white">Kérj ingyenes ajánlatot →</a>
         </div>
       </section>
     </main>
