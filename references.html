@@ -16,22 +16,21 @@
           <img src="assets/img/logo2.png" alt="websitemaker.hu logó">
           <span class="logo-text-main">websitemaker<span class="logo-text-dot">.hu</span></span>
         </a>
-
         <nav class="main-nav">
           <button class="nav-toggle" aria-label="Navigáció megnyitása">
             <span></span><span></span><span></span>
           </button>
           <ul class="nav-links" role="list">
-            <li><a href="index.html" class="is-active">Főoldal</a></li>
+            <li><a href="index.html">Főoldal</a></li>
             <li><a href="about.html">Bemutatkozás</a></li>
-            <li><a href="references.html">Referenciák</a></li>
+            <li><a href="references.html" class="is-active">Referenciák</a></li>
             <li><a href="contact.html">Kapcsolat</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-        <main>
+    <main>
       <section class="references-laptop">
         <div class="container">
           <header class="section-header reveal">
@@ -41,20 +40,18 @@
               közvetlenül egy laptop kijelzőjén.
             </h1>
             <p class="section-lead">
-              Ahogy lefelé görgetsz, a laptop „felnyílik”, a kijelzőn pedig
+              Ahogy lefelé görgetsz, a laptop felnyílik, a kijelzőn pedig
               váltogathatod az elkészült mintaprojekteket.
             </p>
           </header>
 
-          <!-- Laptop mockup -->
-          <div class="laptop-wrapper reveal">
+          <div class="laptop-wrapper">
             <div class="laptop-perspective">
-              <!-- Fedél + kijelző -->
-              <div class="laptop-lid">
+              <div class="laptop-lid" id="laptop-lid">
                 <div class="laptop-screen-frame">
                   <div class="laptop-screen-inner">
                     <img
-                      src="assets/img/ref1.png"
+                      src="assets/img/ref1.jpg"
                       alt="Energetikai tanúsító referencia oldal"
                       class="laptop-screen-image"
                       id="reference-screen-image"
@@ -62,48 +59,33 @@
                   </div>
                 </div>
               </div>
-
-              <!-- Billentyűzet / base -->
               <div class="laptop-base">
-                <div class="laptop-hinge"></div>
-                <div class="laptop-keyboard"></div>
-                <div class="laptop-trackpad"></div>
+                <div class="laptop-foot-left"></div>
+                <div class="laptop-foot-right"></div>
               </div>
             </div>
           </div>
 
-          <!-- Lapozó vezérlők + leírás -->
           <div class="references-switcher reveal">
             <div class="references-tabs" aria-label="Referencia váltó">
-              <button
-                class="references-tab is-active"
-                data-ref="energetika"
-                type="button"
-              >
+              <button class="references-tab is-active" data-ref="energetika" type="button">
                 Energetikai tanúsító oldal
               </button>
-              <button
-                class="references-tab"
-                data-ref="klima"
-                type="button"
-              >
+              <button class="references-tab" data-ref="klima" type="button">
                 Klímaszerelő landing
               </button>
             </div>
-
             <article class="references-detail" id="reference-detail">
               <h2 class="references-detail-title">
                 Energetikai tanúsító – letisztult, bizalomépítő felépítés.
               </h2>
               <p class="references-detail-text">
                 Az első referencia egy energetikai tanúsítói oldal: ártáblázattal,
-                szolgáltatási területekkel és egy lépésről‑lépésre folyamattal.
-                A fókusz azon van, hogy az ügyfél gyorsan megértse, milyen
-                dokumentumra van szüksége, mennyibe kerül és hogyan kérheti.
+                szolgáltatási területekkel és egy lépésről lépésre folyamattal.
               </p>
               <ul class="references-detail-list">
                 <li>Átlátható szekciók: Hero, szolgáltatások, árak, folyamat, GYIK.</li>
-                <li>Letisztult tipográfia, sok „levegő”, könnyen olvasható mobilon is.</li>
+                <li>Letisztult tipográfia, sok levegő, könnyen olvasható mobilon is.</li>
                 <li>Erős CTA gombok, egyértelmű kapcsolatfelvételi lehetőséggel.</li>
               </ul>
             </article>
@@ -112,28 +94,24 @@
       </section>
     </main>
 
-
     <footer class="site-footer">
-  <div class="container site-footer-inner">
-    <div class="footer-left">
-      <p class="footer-brand">@websitemaker.hu – Kiss Zoltán EV.</p>
-      <p class="footer-meta">
-        Modern, reszponzív weboldalak klímás, energetikai és egyéb szolgáltató vállalkozásoknak.
-      </p>
-    </div>
-    <nav class="footer-nav" aria-label="Alsó navigáció">
-      <a href="index.html">Főoldal</a>
-      <a href="about.html">Bemutatkozás</a>
-      <a href="contact.html">Kapcsolat</a>
-      <a href="privacy.html">Adatvédelem</a>
-    </nav>
+      <div class="container site-footer-inner">
+        <div class="footer-left">
+          <p class="footer-brand">@websitemaker.hu – Kiss Zoltán EV.</p>
+          <p class="footer-meta">Modern, reszponzív weboldalak klímás, energetikai és egyéb szolgáltató vállalkozásoknak.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Alsó navigáció">
+          <a href="index.html">Főoldal</a>
+          <a href="about.html">Bemutatkozás</a>
+          <a href="contact.html">Kapcsolat</a>
+          <a href="privacy.html">Adatvédelem</a>
+        </nav>
+      </div>
+    </footer>
   </div>
-</footer>
-  </div>
-<!-- Custom Cursor Elemek -->
+
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
-
   <script src="assets/js/main.js"></script>
 </body>
 </html>
