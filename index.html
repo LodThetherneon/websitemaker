@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ── HERO KÉPEK – browser mockup stílus ── */
+    /* ── HERO KÉPEK – browser mockup, felirat nélkül ── */
     .hero-preview-grid {
       display: flex;
       flex-direction: column;
@@ -62,35 +62,30 @@
 
     .hero-preview img {
       width: 100%;
-      height: 160px;
+      height: 170px;
       object-fit: cover;
       object-position: top;
       display: block;
     }
 
+    /* Nincs figcaption */
     .hero-preview figcaption {
-      padding: 0.6rem 1rem 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: rgba(255,255,255,0.03);
-    }
-    .hero-preview-tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--clr-accent, #7c6ff7);
-      white-space: nowrap;
-    }
-    .hero-preview-text {
-      font-size: 0.78rem;
-      color: var(--clr-muted, #aaa);
-      line-height: 1.35;
+      display: none;
     }
 
     .hero-preview-primary img {
-      height: 190px;
+      height: 200px;
+    }
+
+    /* Hero chip középre igazítva, pill elrejtve */
+    .hero-card-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .hero-stack-pill {
+      display: none;
     }
 
     /* ── TRUST BAR ── */
@@ -297,31 +292,19 @@
             </div>
           </div>
 
-          <!-- Jobb oldal: browser mockup képek -->
-          <aside class="hero-card reveal" aria-label="Weboldal előnézetek">
+          <!-- Jobb oldal: referencia képek browser mockupban -->
+          <aside class="hero-card reveal" aria-label="Legfrissebb átadott oldalak">
             <div class="hero-card-header">
-              <div class="hero-chip">Friss layout kísérletek</div>
-              <div class="hero-stack-pill">
-                <span class="hero-stack-dot"></span>
-                <span>Élő, animált UI komponensek</span>
-              </div>
+              <div class="hero-chip">Legfrissebb átadott oldalak</div>
             </div>
 
             <div class="hero-preview-grid">
               <figure class="hero-preview hero-preview-primary">
-                <img src="assets/img/3.png" alt="Hero szekció példa – asztali nézet">
-                <figcaption>
-                  <span class="hero-preview-tag">Hero szekció</span>
-                  <span class="hero-preview-text">Nagy cím, egyértelmű üzenet, fókuszban a vállalkozásod.</span>
-                </figcaption>
+                <img src="assets/img/ref1.jpg" alt="Legfrissebb átadott oldal – 1">
               </figure>
 
               <figure class="hero-preview hero-preview-secondary">
-                <img src="assets/img/4.png" alt="Szolgáltatás szekció példa">
-                <figcaption>
-                  <span class="hero-preview-tag">Szolgáltatás blokk</span>
-                  <span class="hero-preview-text">Tiszta szekciók, ikonokkal és jól olvasható leírásokkal.</span>
-                </figcaption>
+                <img src="assets/img/ref2.jpg" alt="Legfrissebb átadott oldal – 2">
               </figure>
             </div>
           </aside>
@@ -365,7 +348,6 @@
           </header>
 
           <div class="card-grid">
-            <!-- 1. One‑pager -->
             <article class="card reveal">
               <h3 class="card-title">Egyoldalas landing oldalak</h3>
               <p class="card-body">
@@ -380,7 +362,6 @@
               </div>
             </article>
 
-            <!-- 2. Többoldalas oldal -->
             <article class="card reveal">
               <h3 class="card-title">Többoldalas céges honlapok</h3>
               <p class="card-body">
@@ -395,7 +376,6 @@
               </div>
             </article>
 
-            <!-- 3. Hosszú távú support -->
             <article class="card reveal">
               <h3 class="card-title">Hosszú távú támogatás</h3>
               <p class="card-body">
