@@ -196,14 +196,20 @@ main {
     0 0 45px rgba(34, 211, 238, 0.3);
   background: rgba(34, 211, 238, 0.12);
   border: 1px solid rgba(34, 211, 238, 0.25);
-  border-radius: 999px;
+  /* kevésbé kör, enyhén lekerekítve */
+  border-radius: 0.75rem;
   box-shadow:
     0 0 0 1px rgba(34, 211, 238, 0.35),
-    0 0 30px rgba(34, 211, 238, 0.4);
+    0 0 20px rgba(34, 211, 238, 0.35);
 }
 
-.nav-links a:hover::after,
+/* Aktív menüpontnál ne jelenjen meg az aláhúzás */
 .nav-links a.is-active::after {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.nav-links a:hover::after {
   transform: scaleX(1);
   opacity: 1;
 }
@@ -976,12 +982,8 @@ form.contact-card button {
   position: relative;
   width: 100%;
   height: 2rem;
-  /* Ugyanolyan tónus mint a fedél aljának közepe – nincs kontrasztugrás */
-  background: linear-gradient(180deg,
-    #7a7a7e 0%,
-    #727276 40%,
-    #686868 100%
-  );
+  /* Lapos, egységes tónus – ne legyen színváltás görgetésnél */
+  background: #727276;
   border-radius: 0 0 0.7rem 0.7rem;
   border: 1.5px solid rgba(255,255,255,0.15);
   border-top: 1px solid rgba(0,0,0,0.35);
@@ -1027,9 +1029,9 @@ form.contact-card button {
 .references-switcher {
   display: grid;
   gap: 1.2rem;
-  max-width: 720px;
+  max-width: min(900px, 96vw);
   margin-inline: auto;
-  text-align: left;
+  text-align: center;
 }
 
 .references-tabs {
@@ -1040,6 +1042,8 @@ form.contact-card button {
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.45);
+  width: 100%;
+  justify-content: center;
 }
 
 .references-tab {
