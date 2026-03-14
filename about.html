@@ -4,139 +4,86 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bemutatkozás – websitemaker.hu</title>
-  <meta name="description" content="Frontend fejlesztő, gazd aságinformatikus hallgató és IT projektmenedzser. Egyedi, sablonmentes weboldalak, SEO alap, domain segítség, hosszú távú támogatás.">
+  <meta name="description" content="Frontend fejlesztő, gazdasaginformatikus hallgató és IT projektmenedzser. Egyedi, sablonmentes weboldalak, SEO alap, domain segítség, hosszú távú támogatás.">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* ════════════════════════════════
-       ABOUT PAGE – CUSTOM STYLES
-    ════════════════════════════════ */
 
-    /* ── HERO ── */
+    /* ── HERO: teljes szélességű, háttérkép ── */
     .about-hero {
-      padding: 5rem 0 3rem;
       position: relative;
       overflow: hidden;
-    }
-    .about-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(124,111,247,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .about-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    @media (max-width: 768px) {
-      .about-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-    }
-    .about-hero-text .hero-eyebrow {
+      padding: 7rem 0 6rem;
+      min-height: 520px;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--clr-accent, #7c6ff7);
-      margin-bottom: 1.25rem;
     }
-    .about-hero-text h1 {
-      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/img/4.png');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.13;
+      z-index: 0;
+    }
+    /* Extra sötét átmenet a szöveg olvashatóságáért */
+    .about-hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(14,14,30,0.55) 0%,
+        rgba(14,14,30,0.75) 60%,
+        rgba(14,14,30,0.95) 100%
+      );
+      z-index: 1;
+    }
+    .about-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    .about-hero-content {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-hero-content h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 800;
       line-height: 1.2;
       margin: 0 0 1.25rem;
     }
-    .about-hero-text p {
-      font-size: 1.05rem;
-      color: var(--clr-muted, #aaa);
-      line-height: 1.7;
+    .about-hero-content p {
+      font-size: 1.1rem;
+      color: var(--clr-muted, #bbb);
+      line-height: 1.75;
       margin: 0 0 2rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .about-badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
+      justify-content: center;
     }
     .about-badge {
       padding: 0.4rem 1rem;
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 600;
-      background: rgba(124,111,247,0.12);
-      border: 1px solid rgba(124,111,247,0.3);
+      background: rgba(124,111,247,0.14);
+      border: 1px solid rgba(124,111,247,0.35);
       color: var(--clr-accent, #7c6ff7);
     }
-
-    /* ── HERO KÉPEK (mockup) ── */
-    .about-hero-visuals {
+    .about-hero-actions {
+      margin-top: 2rem;
       display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-    .about-mockup {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-      position: relative;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .about-mockup:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 56px rgba(0,0,0,0.45);
-    }
-    .about-mockup::before {
-      content: '';
-      display: block;
-      height: 26px;
-      background: rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background-image:
-        radial-gradient(circle, #ff5f57 5px, transparent 5px),
-        radial-gradient(circle, #febc2e 5px, transparent 5px),
-        radial-gradient(circle, #28c840 5px, transparent 5px);
-      background-repeat: no-repeat;
-      background-size: 10px 10px, 10px 10px, 10px 10px;
-      background-position: 10px center, 26px center, 42px center;
-    }
-    .about-mockup::after {
-      content: '';
-      position: absolute;
-      top: 5px;
-      left: 60px;
-      right: 10px;
-      height: 16px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 4px;
-      pointer-events: none;
-    }
-    .about-mockup img {
-      width: 100%;
-      height: 175px;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-    .about-mockup-label {
-      padding: 0.5rem 1rem 0.65rem;
-      font-size: 0.75rem;
-      color: var(--clr-muted, #aaa);
-      background: rgba(255,255,255,0.03);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .about-mockup-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #28c840;
-      flex-shrink: 0;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     /* ── DIVIDER ── */
@@ -146,24 +93,27 @@
       margin: 0;
     }
 
-    /* ── PROFIL SZEKCIÓ ── */
-    .profile-section {
-      padding: 4.5rem 0;
-    }
+    /* ── PROFIL KÁRTYÁK ── */
+    .profile-section { padding: 4.5rem 0; }
     .profile-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
     }
     @media (max-width: 768px) {
-      .profile-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .profile-grid { grid-template-columns: 1fr; }
     }
     .profile-card {
       background: var(--clr-surface, #1a1a2e);
       border: 1px solid var(--clr-border, rgba(255,255,255,0.07));
       border-radius: 16px;
       padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .profile-card:hover {
+      border-color: rgba(124,111,247,0.35);
+      transform: translateY(-3px);
     }
     .profile-card-icon {
       font-size: 2rem;
@@ -171,7 +121,7 @@
       display: block;
     }
     .profile-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       margin: 0 0 0.75rem;
     }
@@ -188,7 +138,7 @@
       gap: 0.4rem;
     }
 
-    /* ── NO TEMPLATE SZEKCIÓ ── */
+    /* ── NEM SABLON ── */
     .no-template-section {
       background: var(--clr-surface-alt, #111122);
       padding: 4.5rem 0;
@@ -214,9 +164,7 @@
       line-height: 1.7;
       margin: 0 0 1rem;
     }
-    .no-template-text strong {
-      color: var(--clr-text, #eee);
-    }
+    .no-template-text strong { color: var(--clr-text, #eee); }
     .compare-table {
       width: 100%;
       border-collapse: collapse;
@@ -240,14 +188,12 @@
       vertical-align: middle;
     }
     .compare-table tr:last-child td { border-bottom: none; }
-    .compare-ok  { color: #28c840; font-weight: 700; }
-    .compare-no  { color: #ff5f57; font-weight: 700; }
+    .compare-ok { color: #28c840; font-weight: 700; }
+    .compare-no { color: #ff5f57; font-weight: 700; }
     .compare-table .col-label { color: var(--clr-muted, #aaa); font-size: 0.82rem; }
 
-    /* ── EXTRAS SZEKCIÓ (SEO, Domain) ── */
-    .extras-section {
-      padding: 4.5rem 0;
-    }
+    /* ── EXTRÁK ── */
+    .extras-section { padding: 4.5rem 0; }
     .extras-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -268,21 +214,9 @@
       border-color: rgba(124,111,247,0.4);
       transform: translateY(-3px);
     }
-    .extra-card-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-    }
-    .extra-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0;
-    }
-    .extra-card p {
-      font-size: 0.875rem;
-      color: var(--clr-muted, #aaa);
-      margin: 0;
-      line-height: 1.6;
-    }
+    .extra-card-icon { font-size: 1.8rem; line-height: 1; }
+    .extra-card h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+    .extra-card p { font-size: 0.875rem; color: var(--clr-muted, #aaa); margin: 0; line-height: 1.6; }
 
     /* ── FOLYAMAT (TIMELINE) ── */
     .process-full-section {
@@ -292,7 +226,6 @@
     .process-full-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
       margin-top: 2.5rem;
       position: relative;
     }
@@ -304,9 +237,6 @@
       bottom: 0;
       width: 2px;
       background: linear-gradient(to bottom, var(--clr-accent, #7c6ff7) 0%, rgba(124,111,247,0.1) 100%);
-    }
-    @media (max-width: 600px) {
-      .process-full-list::before { left: 16px; }
     }
     .process-full-item {
       display: grid;
@@ -332,26 +262,10 @@
       z-index: 1;
       box-shadow: 0 0 0 4px rgba(124,111,247,0.15);
     }
-    .process-full-body {
-      padding-top: 0.5rem;
-    }
-    .process-full-body h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem;
-    }
-    .process-full-body p {
-      font-size: 0.875rem;
-      color: var(--clr-muted, #aaa);
-      line-height: 1.65;
-      margin: 0;
-    }
-    .process-full-body .pills {
-      margin-top: 0.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    .process-full-body { padding-top: 0.5rem; }
+    .process-full-body h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; }
+    .process-full-body p { font-size: 0.875rem; color: var(--clr-muted, #aaa); line-height: 1.65; margin: 0; }
+    .process-full-body .pills { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     /* ── CTA SZALAG ── */
     .cta-strip {
@@ -359,17 +273,8 @@
       padding: 4rem 0;
       text-align: center;
     }
-    .cta-strip h2 {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 800;
-      color: #fff;
-      margin: 0 0 0.75rem;
-    }
-    .cta-strip p {
-      color: rgba(255,255,255,0.82);
-      font-size: 1rem;
-      margin: 0 0 2rem;
-    }
+    .cta-strip h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #fff; margin: 0 0 0.75rem; }
+    .cta-strip p { color: rgba(255,255,255,0.82); font-size: 1rem; margin: 0 0 2rem; }
     .btn-white {
       background: #fff;
       color: var(--clr-accent, #7c6ff7);
@@ -382,16 +287,9 @@
     }
     .btn-white:hover { opacity: 0.9; }
 
-    /* ── REVEAL ANIMÁCIÓ (scroll-based) ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.is-visible {
-      opacity: 1;
-      transform: none;
-    }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
@@ -422,66 +320,46 @@
 
     <main>
 
-      <!-- ═══ HERO ═══ -->
+      <!-- ═══ HERO – háttérkép ═══ -->
       <section class="about-hero">
+        <div class="about-hero-bg" aria-hidden="true"></div>
+        <div class="about-hero-bg-overlay" aria-hidden="true"></div>
         <div class="container">
-          <div class="about-hero-inner">
-
-            <div class="about-hero-text">
-              <div class="hero-eyebrow reveal">
-                <span class="hero-eyebrow-dot"></span>
-                <span>Kiss Zoltán – websitemaker.hu</span>
-              </div>
-              <h1 class="reveal reveal-delay-1">
-                Fejlesztő vagyok, aki érti a vállalkozásod –
-                <span class="accent">nem csak a kódot.</span>
-              </h1>
-              <p class="reveal reveal-delay-2">
-                Gazd aságinformatikus hallgatókent és aktiv IT projektmenedzserként olyan szemlélettel készítem weboldalakat,
-                amelyek nem csak szépek – hanem működnek: pontosan azt közvetitítik, amit a látogatónak tudnia kell,
-                és elvezetítik őt az ajánlatkérésig.
-              </p>
-              <div class="about-badge-row reveal reveal-delay-3">
-                <span class="about-badge">Gazd aságinformatikus hallgató</span>
-                <span class="about-badge">IT projektmenedzser</span>
-                <span class="about-badge">100+ honlap tapasztalat</span>
-                <span class="about-badge">Jogi háttér</span>
-              </div>
+          <div class="about-hero-content">
+            <h1 class="reveal">
+              Fejlesztő, aki érti a vállalkozást –
+              <span class="accent">nem csak a kódot.</span>
+            </h1>
+            <p class="reveal reveal-delay-1">
+              Gazdasaginformatikus hallgatóként és aktiv IT projektmenedzserként olyan szemlélettel készülnek az oldalak,
+              amelyek nem csak szépek – hanem működnek: pontosan azt közvetitík, amit a látogatónak tudnia kell,
+              és elvezetítik őt az ajánlatkérésig.
+            </p>
+            <div class="about-badge-row reveal reveal-delay-2">
+              <span class="about-badge">Gazdasaginformatikus hallgató</span>
+              <span class="about-badge">IT projektmenedzser</span>
+              <span class="about-badge">100+ honlap tapasztalat</span>
+              <span class="about-badge">Jogi háttér</span>
             </div>
-
-            <!-- Mockup képek -->
-            <div class="about-hero-visuals reveal reveal-delay-2">
-              <div class="about-mockup">
-                <img src="assets/img/3.png" alt="Weboldal példa – desktop nézet">
-                <div class="about-mockup-label">
-                  <span class="about-mockup-dot"></span>
-                  <span>Desktop előnézet – régi kész layout</span>
-                </div>
-              </div>
-              <div class="about-mockup">
-                <img src="assets/img/4.png" alt="Weboldal példa – szekciók">
-                <div class="about-mockup-label">
-                  <span class="about-mockup-dot"></span>
-                  <span>Szekció-szintű építőelemek</span>
-                </div>
-              </div>
+            <div class="about-hero-actions reveal reveal-delay-3">
+              <a href="contact.html" class="btn btn-primary">Ajánlatkérés</a>
+              <a href="references.html" class="btn btn-ghost">Referenciák megtekintése</a>
             </div>
-
           </div>
         </div>
       </section>
 
       <hr class="section-divider">
 
-      <!-- ═══ KI VAGYOK – 4 profil kártya ═══ -->
+      <!-- ═══ HÁTTÉR – 4 profil kártya ═══ -->
       <section class="profile-section">
         <div class="container">
           <header class="section-header reveal">
             <p class="section-kicker">Háttér</p>
-            <h2 class="section-title">Több mint egy frontend fejlesztő.</h2>
+            <h2 class="section-title">Több mint frontend fejlesztés.</h2>
             <p class="section-lead">
-              A mógottém álló tapasztalat segít abban, hogy a weboldalad ne csak kinződjek jól,
-              hanem értelmes, stratégiailag felépített eszköz legyen a vállalkozásodnak.
+              A mögöttes tapasztalat segít abban, hogy egy weboldal ne csak jól nézzen ki,
+              hanem értelmes, stratégiailag felépített eszköz legyen a vállalkozás számára.
             </p>
           </header>
 
@@ -491,36 +369,42 @@
               <span class="profile-card-icon">🏛️</span>
               <h3>IT projektmenedzser – éles környezetben</h3>
               <p>
-                Jelenleg aktiv IT projektmenedzserként dolgozom, ahol <strong>komplex, piacképes informatikai rendszerek</strong> fejlesztését koordinálom. Tudom, hogyan néz ki egy működő digitális infrastruktúra belülről – és ezt a látásmódot hozom el minden weboldal projekthez.
+                Jelenleg aktiv IT projektmenedzserként működök, ahol <strong>komplex, piacképes informatikai rendszerek</strong>
+                fejlesztését koordinálom. Ez a szemlélet minden weboldal-projektbe bekerül: átlátható folyamat,
+                mérhető célok, valódi eredmények.
               </p>
               <div class="pills">
                 <span class="pill">Projektkoord ináció</span>
                 <span class="pill">Rendszerszemllélet</span>
-                <span class="pill">Piacképes megoldások</span>
+                <span class="pill">Piacképes gondolkodás</span>
               </div>
             </div>
 
             <div class="profile-card reveal reveal-delay-2">
               <span class="profile-card-icon">🌐</span>
-              <h3>100+ honlap tapasztalat</h3>
+              <h3>100+ honlap élő tapasztalat</h3>
               <p>
-                Olyan szervezetnél dolgozom, ahol <strong>több mint 100 honlapot üzelmeltetünk</strong> szervezéti szinten. Tudom miért omlik össze egy rosszul feltérképezett weboldal, miért nem konvertál egy skálázhatótlan struktúra – és hogyan kerülünk el ezeket.
+                Olyan szervezetnél dolgozom, ahol <strong>több mint 100 honlapot üzemeltetünk</strong> szervezéti szinten.
+                Ismért, miért omlik össze egy rosszul felépített oldal, és hogyan kerülünk el ezeket
+                már a tervezési fázisban.
               </p>
               <div class="pills">
                 <span class="pill">Nagyléptékű üzemeltetés</span>
                 <span class="pill">Struktúrális gondolkodás</span>
-                <span class="pill">Sklázátható kód</span>
+                <span class="pill">Skálázható kód</span>
               </div>
             </div>
 
             <div class="profile-card reveal reveal-delay-3">
               <span class="profile-card-icon">🎓</span>
-              <h3>Gazd aságinformatikus hallgató – jogi háttérrel</h3>
+              <h3>Gazdasaginformatikus hallgató – jogi háttérrel</h3>
               <p>
-                Az egyetemen <strong>gazd aságinformatikát</strong> tanulok, amiért a fejlesztési döntéseités mögött mindig üz leti logika is áll. A jogi alapok pedig hasznosak: értem az adatvédelem, a cookie-szabályzat és az általános online jogi kereteket, amivel az oldalad is védett lesz.
+                Az egyetemen <strong>gazdasaginformatikát</strong> tanulok, ami azt jelenti, hogy a fejlesztési döntések mögött
+                mindig üzleti logika is áll. A jogi alapok hasznosak: GDPR, cookie-szabályzat, adatkezelési
+                tájékoztató – mindez bele van építve az oldalba.
               </p>
               <div class="pills">
-                <span class="pill">Gazd asági szemlélet</span>
+                <span class="pill">Üzleti szemlélet</span>
                 <span class="pill">Adatvédelmi alap</span>
                 <span class="pill">Jogi keretismeret</span>
               </div>
@@ -528,12 +412,14 @@
 
             <div class="profile-card reveal reveal-delay-4">
               <span class="profile-card-icon">💡</span>
-              <h3>Design tanácsadás – nekélkülözhetetlen tippek</h3>
+              <h3>Design tanácsadás – tippek, amelyek számítanak</h3>
               <p>
-                Nem csak lefejlesztem, amit kérsz – <strong>tippeket is adok</strong>, hogy mi nézne ki jól a célodnak megfelelően: milyen szinekbevezetés, milyen szekciósorrend, milyen CTA-szöveg, és hol veszít el látogatokat egy rosszul megirt oldalad.
+                Nem csak az elkészített kérés kerül megvalósításra – konkrét javaslatokat is kaphat, hogy
+                mi nézne ki jól: színpaletta, szekciósorrend, CTA-szöveg, és hol veszítenek látogatókat
+                a rosszul megírt oldalak.
               </p>
               <div class="pills">
-                <span class="pill">UX személélettel</span>
+                <span class="pill">UX szemlélettel</span>
                 <span class="pill">Konverzió-fókusz</span>
                 <span class="pill">Valós tanácsadás</span>
               </div>
@@ -552,18 +438,18 @@
 
             <div class="no-template-text reveal">
               <p class="section-kicker">Miben más?</p>
-              <h2>Nem sablon – minden pixel a tied.</h2>
+              <h2>Nem sablon – minden pixel egyedi.</h2>
               <p>
-                A WordPress, Wix és h as on ló rendszerek sablonokon alapszó megoldásokat kínálnak:
-                gyors, olcsó, de soha nem teljesen a te igényeidre szabott. Minden módositásnak
-                van egy pontja, ahol a sablon megallítja a fejlesztest.
+                A WordPress, Wix és hasonló rendszerek sablonokon alapó megoldásokat kínálnak:
+                gyors, olcsó, de soha nem teljesen a vállalkozás igényeire szabott. Minden módosításnak
+                van egy pontja, ahol a sablon megakasztja a fejlesztést.
               </p>
               <p>
-                Én <strong>nullaról építem fel a layoutot</strong>. A dizajn, az animációk, a szekciósorrend,
-                a betűtípus, a színpaletta – mind az te vállalkozásodra van szabva. Ha el tudjuk képzelni,
-                meg tudjuk csinálni. <strong>Nincs plugin-limit, nincs sablon-korrlát.</strong>
+                A layout <strong>nullaról épül fel</strong>. A dizajn, az animációk, a szekciósorrend,
+                a betűtípus, a színpaletta – mind az adott vállalkozásra van szabva.
+                <strong>Nincs plugin-limit, nincs sablon-korlát.</strong>
               </p>
-              <a href="contact.html" class="btn btn-primary" style="margin-top: 1.25rem; display: inline-block;">Kérj ajánlatot →</a>
+              <a href="contact.html" class="btn btn-primary" style="margin-top:1.25rem;display:inline-block;">Ajánlatkérés →</a>
             </div>
 
             <div class="reveal reveal-delay-2">
@@ -576,36 +462,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="col-label">Teljesen egyedi design</td>
-                    <td><span class="compare-no">✗</span></td>
-                    <td><span class="compare-ok">✓</span></td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">Limitáció nélkül bővíthető</td>
-                    <td><span class="compare-no">✗</span></td>
-                    <td><span class="compare-ok">✓</span></td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">Gyors betöltés (nincs felesleges kód)</td>
-                    <td><span class="compare-no">✗</span></td>
-                    <td><span class="compare-ok">✓</span></td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">SEO-barát szemantikus HTML</td>
-                    <td><span class="compare-no">✗</span></td>
-                    <td><span class="compare-ok">✓</span></td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">Havi előfizetés nélkül</td>
-                    <td><span class="compare-no">✗</span></td>
-                    <td><span class="compare-ok">✓</span></td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">Design tanácsadás benne</td>
-                    <td><span class="compare-no">✗</span></td>
-                    <td><span class="compare-ok">✓</span></td>
-                  </tr>
+                  <tr><td class="col-label">Teljesen egyedi design</td><td><span class="compare-no">✗</span></td><td><span class="compare-ok">✓</span></td></tr>
+                  <tr><td class="col-label">Limitáció nélkül bővíthető</td><td><span class="compare-no">✗</span></td><td><span class="compare-ok">✓</span></td></tr>
+                  <tr><td class="col-label">Gyors betöltés (nincs felesleges kód)</td><td><span class="compare-no">✗</span></td><td><span class="compare-ok">✓</span></td></tr>
+                  <tr><td class="col-label">SEO-barát szemantikus HTML</td><td><span class="compare-no">✗</span></td><td><span class="compare-ok">✓</span></td></tr>
+                  <tr><td class="col-label">Havi előfizetés nélkül</td><td><span class="compare-no">✗</span></td><td><span class="compare-ok">✓</span></td></tr>
+                  <tr><td class="col-label">Design tanácsadás benne</td><td><span class="compare-no">✗</span></td><td><span class="compare-ok">✓</span></td></tr>
                 </tbody>
               </table>
             </div>
@@ -621,69 +483,42 @@
             <p class="section-kicker">Ami még benne van</p>
             <h2 class="section-title">Több mint kód: SEO, domain és tanácsadás.</h2>
             <p class="section-lead">
-              A weboldalad értelmét csak akkor tölti be, ha a megfelelő emberek megtalálják,
-              és ha indulasra készen áll. Ebben is segítek.
+              Egy weboldal értelmét csak akkor tölti be, ha a megfelelő emberek megtalálják,
+              és ha indulásra készen áll. Ebben is segítséget nyújtok.
             </p>
           </header>
 
           <div class="extras-grid">
-
             <div class="extra-card reveal reveal-delay-1">
               <span class="extra-card-icon">🔍</span>
-              <h3>SEO-optimalizlalt alap</h3>
-              <p>
-                Szemantikus HTML struktúrával, jól megirt meta tagekkel, alt szövegekkel és gyors
-                betöltési idővel indíulunk. Ez az alap, amin a Google levíndéxelni fogja az oldalad.
-                Keresore optim alálás nélkül az is elveszett, aki rákeres a nev edre.
-              </p>
+              <h3>SEO-optimalizlt alap</h3>
+              <p>Szemantikus HTML struktúrával, jól megírt meta tagekkel, alt szövegekkel és gyors betöltési idővel indúdul az oldal. Ez az alap, amin a Google indexelni fogja az oldalt – ennek hiányában a legértelmesebb tartalom is elveszhet.</p>
             </div>
-
             <div class="extra-card reveal reveal-delay-2">
               <span class="extra-card-icon">🌐</span>
-              <h3>Domain szerzésben is segítek</h3>
-              <p>
-                Nincs még domain neved? Segítek a megfelelő név kiválasztásában, a regisztrációban,
-                és a Netlifyre való csatlakozt atásban. Nem kell egyagélül bolyongani a DNS beállításokközött.
-              </p>
+              <h3>Domain szerzésben is segítség</h3>
+              <p>Nincs még domain név? Segítség érhető el a megfelelő név kiválasztásában, a regisztrációban és a Netlify-ra való csatlakoztatásban. Nem kell egyedre bolyongani a DNS-beállítások között.</p>
             </div>
-
             <div class="extra-card reveal reveal-delay-3">
               <span class="extra-card-icon">🎨</span>
               <h3>Design tanácsadás – mi nézne ki jól?</h3>
-              <p>
-                Megmutatom, milyen színpaletta, tipográfia és szekció-felépítés működik a te iparágadban.
-                Mi mutat profinak, mi riaszt el látogatókat – és mitől fog a céged az online térben is
-                þg yeségesnek tűnni.
-              </p>
+              <p>Konkrét javaslatok hangzanak el, hogy milyen színpaletta, tipográfia és szekció-felépítés működik az adott iparágban. Mi mutat profinak, mi riaszt el látogatókat – és mitől fog a cég az online térben is meggyőzőnek tűnni.</p>
             </div>
-
             <div class="extra-card reveal reveal-delay-4">
               <span class="extra-card-icon">🛡️</span>
               <h3>Adatvédelem és jogi alap</h3>
-              <p>
-                Jogi háttéremnek köszönhetően értem a GDPR, cookie-hozzajárulás és adatkezelési
-                tájékoztató követelményeit. A weboldaladon ez sem marad ki – hanem beépítem.
-              </p>
+              <p>A jogi háttérnek köszönhetően értem a GDPR, cookie-hozzájárulás és adatkezelési tájékoztató követelményeit. Ezek nem maradnak ki a kész oldalól – bele vannak építve.</p>
             </div>
-
             <div class="extra-card reveal reveal-delay-1">
               <span class="extra-card-icon">⚡</span>
               <h3>Gyorsíság – mérhetően</h3>
-              <p>
-                Felesleges kód, nem használt CSS, lassitó pluginok – ezek egyike sincs benn egy készült
-                oldalban. A Lighthouse score nem szégyenkezes, hanem biszke ség lesz.
-              </p>
+              <p>Felesleges kód, nem használt CSS, lassító pluginok – ezek egyike sem kerül bele a kész oldalba. A Lighthouse-score nem szégyenkezni való, hanem büszkekeség lesz.</p>
             </div>
-
             <div class="extra-card reveal reveal-delay-2">
               <span class="extra-card-icon">📞</span>
               <h3>Közvetlen elérhetőség</h3>
-              <p>
-                Nincs support ticket, nincs várólista. Írsz, és én válaszolok. Gyorsan, értelmes
-                válasszal. A projektedért ugyanolyan lelkes vagyok, mint te.
-              </p>
+              <p>Nincs support ticket, nincs várólista. Üzenet érkezik, és gyors, értelmes válasz megy vissza. A projekt során mindvégig közvetlen és átlátható a kommunikáció.</p>
             </div>
-
           </div>
         </div>
       </section>
@@ -697,8 +532,8 @@
             <p class="section-kicker">Munkamódszer</p>
             <h2 class="section-title">Pontosan így néz ki egy projekt – lépésről lépésre.</h2>
             <p class="section-lead">
-              Tudom, hogy győz előre nem tudni, mi vár. Ezért minden projekt elején lefektetjük
-              a szabályokat: ki mit csinál, mikor, és hogyan kommunikálunk.
+              Minden projekt elején lefektetjük a szabályokat: ki mit csinál, mikor, és hogyan zajlik a kommunikáció.
+              Nincs rejtett várakozás, nincs homályos folyamat.
             </p>
           </header>
 
@@ -708,24 +543,17 @@
               <div class="process-num">1</div>
               <div class="process-full-body">
                 <h3>Előzetes érdeklődés és igényfelmérés</h3>
-                <p>Elküldöd a rövid üzeneted a kapcsolat oldalon keresztül. Válaszolok 24 órán belül, és kérdezek a vállalkozásodról: mivel foglalkozol, kik a ügyfeleid, mik a céljaid az oldallal, van-e már domain, és mi a költésgvetés.</p>
-                <div class="pills">
-                  <span class="pill">E-mail vagy telefon</span>
-                  <span class="pill">24órán belüli válasz</span>
-                </div>
+                <p>A kapcsolat oldalon érkező rövid üzenetre 24 órán belül érkezik válasz. Kérdések hangzanak el a vállalkozásról: tevékenység, célközönség, célok, előzetes domain- és költségvetési helyzet.</p>
+                <div class="pills"><span class="pill">E-mail vagy telefon</span><span class="pill">24 órán belüli válasz</span></div>
               </div>
             </div>
 
             <div class="process-full-item reveal">
               <div class="process-num">2</div>
               <div class="process-full-body">
-                <h3>Struktúrátervezés és ajánlat</h3>
-                <p>Az igényfelmérés után összerakok egy javaslatot: aloldalak száma és típusa, szekciók sorrendje, megközelítétt fejlesztési idő, és árajánlat. Indok lom is, hogy miért azt javaslom, amit javaslom.</p>
-                <div class="pills">
-                  <span class="pill">Struktúrás javalat</span>
-                  <span class="pill">Transzparens árazás</span>
-                  <span class="pill">Indokolva</span>
-                </div>
+                <h3>Struktúratervezés és ajánlat</h3>
+                <p>Az igényfelmérés után javaslatot készítek: aloldalak száma és típusa, szekciók sorrendje, becslt fejlesztési idő, és árajánlat – indokolva, miért éppen azt javaslom.</p>
+                <div class="pills"><span class="pill">Struktúrás javaslat</span><span class="pill">Transzparens árazás</span><span class="pill">Indokolva</span></div>
               </div>
             </div>
 
@@ -733,12 +561,8 @@
               <div class="process-num">3</div>
               <div class="process-full-body">
                 <h3>Design irány meghatározása</h3>
-                <p>Megbeszéljük a design irányt: színpaletta, hangulatv ilág, stilus (minimalista, modernebb, kőnyedebb). Előfordul, hogy megmutatok példa oldalakat iparágból, és bes zélgetünk róla, mi tetszik és mi nem.</p>
-                <div class="pills">
-                  <span class="pill">Szinpaletta</span>
-                  <span class="pill">Stilus-referenciák</span>
-                  <span class="pill">Iparági mintak</span>
-                </div>
+                <p>Közösen dől el a design irány: színpaletta, hangulat, stílus. Szükség esetén iparági példaoldalakat mutatok, és meg beszéljük, mi tetszik és mi nem.</p>
+                <div class="pills"><span class="pill">Színpaletta</span><span class="pill">Stílus-referenciák</span><span class="pill">Iparági minták</span></div>
               </div>
             </div>
 
@@ -746,25 +570,17 @@
               <div class="process-num">4</div>
               <div class="process-full-body">
                 <h3>Fejlesztés – nullaról, egyedileg</h3>
-                <p>Hozzafágok az építéshez. Tiszta HTML, CSS, JS – sablon, page builder, tömörítetlen pluginkód nélkül. Minden sor a te weboldaladhoz írodott. Elkészülés után előnézetre kapod az oldalt.</p>
-                <div class="pills">
-                  <span class="pill">Tiszta kód</span>
-                  <span class="pill">Animációk</span>
-                  <span class="pill">Reszponzív</span>
-                  <span class="pill">Előnézet küldés</span>
-                </div>
+                <p>A fejlesztés tisztán HTML, CSS és JS alapú – sablon, page builder és szükselgtelen kód nélkül. Minden sor az adott weboldalhoz készül. Elkészülés után előnézeti link kérül megtékíntésre.</p>
+                <div class="pills"><span class="pill">Tiszta kód</span><span class="pill">Animációk</span><span class="pill">Reszponzív</span><span class="pill">Előnézet</span></div>
               </div>
             </div>
 
             <div class="process-full-item reveal">
               <div class="process-num">5</div>
               <div class="process-full-body">
-                <h3>Visszajelzés és finomhang olás</h3>
-                <p>Megnézed az oldalt, visszajelzest adsz. Szabad kezű megjegyzések, pontjavítás ok, szövegmódosítások – mind bele fér. Addig csinálunk köröket, amíg nem vagy elégedett.</p>
-                <div class="pills">
-                  <span class="pill">Korlátlan visszajelzés</span>
-                  <span class="pill">Rugalmas módosítás</span>
-                </div>
+                <h3>Visszajelzés és finomhangolás</h3>
+                <p>Az à0előnézet megtekintése után visszajelzés érkezik. Megjegyzések, pontjavítások, szövegátírások – mind bele fér. Addig megy az iteráció, amíg az eredmény megfelel az elvárásoknak.</p>
+                <div class="pills"><span class="pill">Korlátlan visszajelzés</span><span class="pill">Rugalmas módosítás</span></div>
               </div>
             </div>
 
@@ -772,12 +588,8 @@
               <div class="process-num">6</div>
               <div class="process-full-body">
                 <h3>Élesítés – domain, hosting, deploy</h3>
-                <p>Az elkészült oldalt GitHub-ra pusholom, Netlify-n élesitjük, és (ha szükséges) segítek a domain bekötésében is. A folyamat nem hét: már néhány óra alatt élhet az oldalad.</p>
-                <div class="pills">
-                  <span class="pill">GitHub + Netlify</span>
-                  <span class="pill">Domain segítség</span>
-                  <span class="pill">Gyors deploy</span>
-                </div>
+                <p>Az elkészült oldal GitHub-ra kerül, Netlify-n élesítjük, és szükség esetén segítség van a domain bekötéséhez is. Ez nem tart hetekég – jellemzően néhány órán belül élhet az oldal.</p>
+                <div class="pills"><span class="pill">GitHub + Netlify</span><span class="pill">Domain segítség</span><span class="pill">Gyors deploy</span></div>
               </div>
             </div>
 
@@ -785,12 +597,8 @@
               <div class="process-num">7</div>
               <div class="process-full-body">
                 <h3>Hosszú távú támogatás</h3>
-                <p>Az átadás után sem tűnök el. Új szekciók, árcsomagfrissítés, új szolgáltatás hozzáadása, technikai frissítés – kérheted később is. A weboldalad veled nő a vállalkozásoddal.</p>
-                <div class="pills">
-                  <span class="pill">Új tartalom</span>
-                  <span class="pill">Technikai frissítés</span>
-                  <span class="pill">Bővítés igény szerint</span>
-                </div>
+                <p>Az átadás után sem zárul le az együttműködés. Új szekciók, tartalom-frissítés, bővítés – kérhető később is. A weboldal a vállalkozással nő.</p>
+                <div class="pills"><span class="pill">Új tartalom</span><span class="pill">Technikai frissítés</span><span class="pill">Bővítés igény szerint</span></div>
               </div>
             </div>
 
@@ -801,8 +609,8 @@
       <!-- ═══ CTA ═══ -->
       <section class="cta-strip">
         <div class="container">
-          <h2>Elég volt az olvasásból – kezdjük el!</h2>
-          <p>Irj egy rövid üzenetet, és egyeztetunk. Nincs kötelezettség, nincs előleg – csak egy beszélgetés.</p>
+          <h2>Elolvasva? Kész – kezdjük el.</h2>
+          <p>Egy rövid üzenet elegendő az elindíuláshoz. Nincs kötelezettség, nincs előleg – csak egy beszélgetés.</p>
           <a href="contact.html" class="btn-white">Kapcsolatfelvétel →</a>
         </div>
       </section>
