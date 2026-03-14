@@ -830,6 +830,16 @@ form.contact-card button {
   }
 
   .nav-links a { width: 100%; text-align: left; padding: 0.25rem 0; }
+
+  /* ── AKTÍV MENÜPONT MOBILON – nincs border, nincs glow ── */
+  .nav-links a.is-active {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    color: #22d3ee;
+    text-shadow: none;
+  }
+
   .hero-actions { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; }
   .hero-title { font-size: clamp(2.2rem, 8vw, 2.8rem); }
@@ -872,6 +882,7 @@ form.contact-card button {
   font-size: 1.05rem;
   color: rgba(156, 163, 175, 0.95);
   line-height: 1.75;
+  width: fit-content;
   max-width: 52ch;
   margin-inline: auto;
   letter-spacing: 0.01em;
