@@ -11,14 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   };
 
-  // ===== Lábléc – aktuális oldal linkje span-ra cserélve (nem kattintható) =====
+  // ===== Lábléc – aktuális oldal linkje teljesen eltávolítva =====
   document.querySelectorAll('.footer-nav a').forEach(link => {
     if (isCurrent(link.getAttribute('href'))) {
-      const span = document.createElement('span');
-      span.className = 'footer-nav-current';
-      span.setAttribute('aria-current', 'page');
-      span.textContent = link.textContent;
-      link.parentNode.replaceChild(span, link);
+      link.remove();
     }
   });
 
