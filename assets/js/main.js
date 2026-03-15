@@ -11,18 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   };
 
-  // ===== Fejléc – aktuális oldal linkje span-ra cserélve (nem kattintható) =====
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    if (isCurrent(link.getAttribute('href'))) {
-      const span = document.createElement('span');
-      span.className = link.className + ' is-active';
-      span.setAttribute('aria-current', 'page');
-      span.textContent = link.textContent;
-      link.parentNode.replaceChild(span, link);
-    }
-  });
-
-  // ===== Lábléc – aktuális oldal linkje span-ra cserélve =====
+  // ===== Lábléc – aktuális oldal linkje span-ra cserélve (nem kattintható) =====
   document.querySelectorAll('.footer-nav a').forEach(link => {
     if (isCurrent(link.getAttribute('href'))) {
       const span = document.createElement('span');
