@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderRef("energetika");
   }
 
-  // ===== Custom Cursor – csak a dot, ring törölve =====
+  // ===== Custom Cursor =====
   if (window.matchMedia("(pointer: fine)").matches && window.innerWidth >= 768) {
     const dot = document.querySelector(".cursor-dot");
     if (dot) {
@@ -161,4 +161,32 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+  // ===== Lábléc aktív link – automatikus =====
+  // Felismeri az aktuális oldalt, a megfelelő footer linket
+  // vizuálisan kiemeli, kattinthatatlanná teszi és aria-current-et ad
+  (function() {
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const footerLinks = document.querySelectorAll('.footer-nav a');
+    footerLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const linkFile = href ? href.split('/').pop() : '';
+      // index.html + üres path egyezés
+      const isCurrent =
+        linkFile === currentFile ||
+        (currentFile === '' && linkFile === 'index.html') ||
+        (currentFile === 'index.html' && linkFile === 'index.html');
+      if (isCurrent) {
+        link.classList.add('footer-nav-current');
+        link.setAttribute('aria-current', 'page');
+        // Lecseréljük <a>-t <span>-ra, hogy ne legyen kattintható
+        const span = document.createElement('span');
+        span.className = link.className;
+        span.setAttribute('aria-current', 'page');
+        span.textContent = link.textContent;
+        link.parentNode.replaceChild(span, link);
+      }
+    });
+  })();
+
 });

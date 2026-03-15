@@ -704,7 +704,7 @@ form.contact-card button {
 }
 
 /* =========================================
-   8. LÁBLÉC & ANIMÁCIÓK
+   8. LÁBLÉC
    ========================================= */
 
 .site-footer {
@@ -719,8 +719,27 @@ form.contact-card button {
 }
 
 .footer-nav { display: flex; flex-wrap: wrap; gap: 0.9rem; }
-.footer-nav a { color: var(--text-muted); text-decoration: none; }
+
+/* Normál lábléc link */
+.footer-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
 .footer-nav a:hover { color: var(--accent); }
+
+/* Aktív oldal – nem link, hanem span, kiemelve */
+.footer-nav span.footer-nav-current {
+  color: var(--accent);
+  font-weight: 600;
+  cursor: default;
+  position: relative;
+  /* Alul vékony vonal mint aktív jelző */
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid var(--accent);
+  /* Enyhe glow */
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.45);
+}
 
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -786,7 +805,6 @@ form.contact-card button {
     line-height: 1;
   }
 
-  /* ── MOBIL LENYÍLÓ MENÜ – CSAK GLOW, SEMMI BORDER ── */
   .nav-links {
     position: fixed;
     top: 4.5rem;
@@ -831,7 +849,6 @@ form.contact-card button {
 
   .nav-links a { width: 100%; text-align: left; padding: 0.25rem 0; }
 
-  /* ── AKTÍV MENÜPONT MOBILON – nincs border, nincs glow ── */
   .nav-links a.is-active {
     border: none;
     box-shadow: none;
@@ -852,12 +869,10 @@ form.contact-card button {
    REFERENCIÁK – MACBOOK LAPTOP MOCKUP
    ========================================= */
 
-/* A szekció maga NEM kap text-align-t – a gyerekek egyenként kapják */
 .references-laptop {
   padding-block: 4rem;
 }
 
-/* Fejléc – minden elem középre */
 .references-laptop .section-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -903,7 +918,6 @@ form.contact-card button {
   transform-style: preserve-3d;
 }
 
-/* ---- FEDÉL ---- */
 .laptop-lid {
   position: relative;
   width: 100%;
@@ -993,7 +1007,6 @@ form.contact-card button {
   z-index: 1;
 }
 
-/* ---- ALAP ---- */
 .laptop-base {
   position: relative;
   width: 100%;
@@ -1014,11 +1027,7 @@ form.contact-card button {
   content: "";
   width: 20%;
   height: 0.3rem;
-  background: linear-gradient(90deg,
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.15)
-  );
+  background: rgba(255,255,255,0.15);
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,0.15);
 }
@@ -1038,7 +1047,6 @@ form.contact-card button {
 .laptop-foot-left  { left: 5%; }
 .laptop-foot-right { right: 5%; }
 
-/* ---- LAPOZÓ + SZÖVEG ---- */
 .references-switcher {
   display: grid;
   gap: 1.2rem;
@@ -1047,7 +1055,6 @@ form.contact-card button {
   text-align: center;
 }
 
-/* A leíró szövegblokk maga balra igazított marad */
 .references-detail {
   text-align: left;
 }
