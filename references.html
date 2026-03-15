@@ -48,7 +48,6 @@
       z-index: 2;
     }
 
-    /* Két oszlopos grid a projektkart yákhoz */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -59,7 +58,6 @@
       .projects-grid { grid-template-columns: 1fr; }
     }
 
-    /* Egy projekt kártya */
     .project-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.09);
@@ -240,7 +238,8 @@
             <p class="section-kicker">Referenciák</p>
             <h1 class="section-title">Nézze meg a kész oldalakat egy laptop kijelzőjén.</h1>
             <p class="section-lead">
-              Ahogy lefelé görget, a laptop felnyílik – a kijelzőre rákattintva pedig megnézheti az oldalakat.
+              Ahogy lefelé görget, a laptop felnyílik – a kijelzőn pedig
+              váltogathatóak az elkészült referencia projektek.
             </p>
           </header>
 
@@ -263,12 +262,17 @@
             </div>
           </div>
 
-          <!-- TAB váltó – csak a gombok, leírás nélkül -->
+          <!-- TAB váltó + rejtett detail (JS szükséges hozzá) -->
           <div class="references-switcher reveal">
             <div class="references-tabs" aria-label="Referencia váltó">
               <button class="references-tab is-active" data-ref="energetika" type="button">Energetikai tanúsító</button>
               <button class="references-tab" data-ref="klima" type="button">KlimaMed</button>
             </div>
+            <article class="references-detail" id="reference-detail" style="display:none;" aria-live="polite">
+              <h2 class="references-detail-title"></h2>
+              <p class="references-detail-text"></p>
+              <ul class="references-detail-list"></ul>
+            </article>
           </div>
         </div>
       </section>
@@ -293,8 +297,7 @@
             <!-- PROJEKT 1: ENERGETIKA -->
             <div class="project-card reveal">
               <span class="project-type-badge">📌 One-pager • Helyi SEO</span>
-              <h2>Energetikai tanúsító
-Kiss Péter István</h2>
+              <h2>Energetikai tanúsító<br>Kiss Péter István</h2>
               <p class="project-lead">
                 Aki Győrben, Mosonmagyaróváron vagy a környékén keres energetikai tanúsítót,
                 gyorsan megtalálja – és perceken belül az áraknál jár. Nincs körülírt szöveg, csak a lényeg.
@@ -314,7 +317,7 @@ Kiss Péter István</h2>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">📱</span>
-                  <span><strong>Mobilra tervezett:</strong> a látogatók többsége telefon ról érkezik – az oldal erre van optim alálva.</span>
+                  <span><strong>Mobilra tervezett:</strong> a látogatók többsége telefonról érkezik – az oldal erre van optim alálva.</span>
                 </div>
               </div>
               <div class="project-tech">
@@ -327,9 +330,8 @@ Kiss Péter István</h2>
 
             <!-- PROJEKT 2: KLIMAMED -->
             <div class="project-card reveal reveal-delay-1">
-              <span class="project-type-badge">🌐 Többoldalas • Bizalomg erjsztés</span>
-              <h2>KlimaMed
-Klímaberendezések</h2>
+              <span class="project-type-badge">🌐 Többoldalas • Bizalomgerjsztés</span>
+              <h2>KlimaMed<br>Klímaberendezések</h2>
               <p class="project-lead">
                 Nem elegendő megjelenni – meg kell győzni. A KlimaMed honlapja erre épül: többoldalas struktúrában
                 minden részlet a bizalmat erősíti és a látogatót az ajánlatkérésig vezeti.
@@ -337,7 +339,7 @@ Klímaberendezések</h2>
               <div class="project-goals">
                 <div class="project-goal-item">
                   <span class="project-goal-icon">🤝</span>
-                  <span><strong>Bizalomgerjsztés:</strong> referenciák, márkaismeret, – az ügyfél biztonságban érzi magát.</span>
+                  <span><strong>Bizalomgerjsztés:</strong> referenciák, márkaismeret, csapat – az ügyfél biztonságban érzi magát.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">💼</span>
@@ -356,7 +358,7 @@ Klímaberendezések</h2>
                 <span class="project-tech-pill">HTML5 / CSS3</span>
                 <span class="project-tech-pill">JavaScript</span>
                 <span class="project-tech-pill">Többoldalas</span>
-                <span class="project-tech-pill">Bizalomg erjsztés</span>
+                <span class="project-tech-pill">Bizalomgerjsztés</span>
               </div>
             </div>
 
@@ -377,7 +379,7 @@ Klímaberendezések</h2>
           </header>
           <div class="stats-strip reveal reveal-delay-1">
             <div class="stat-item">
-              <span class="stat-number">~5–10</span>
+              <span class="stat-number">~3–7</span>
               <span class="stat-label">nap átlagos átadási idő</span>
             </div>
             <div class="stat-item">
@@ -385,7 +387,11 @@ Klímaberendezések</h2>
               <span class="stat-label">egyedi, sablonmentes kód</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">1év+</span>
+              <span class="stat-number">2</span>
+              <span class="stat-label">kész éles referencia oldal</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">∞</span>
               <span class="stat-label">hosszú távú támogatás</span>
             </div>
           </div>
@@ -395,8 +401,8 @@ Klímaberendezések</h2>
       <!-- ═══ CTA ═══ -->
       <section class="cta-strip">
         <div class="container">
-          <h2>Hasonló eredményt szeretne?</h2>
-          <p>Egy rövid üzenet elegendő az elindíuláshoz. Nincs kötelezettség, nincs előleg.</p>
+          <h2>Hasonló eredményt szeretné?</h2>
+          <p>Egy rövid üzenet elegendő az elindìuláshoz. Nincs kötelezettség, nincs előleg.</p>
           <a href="contact.html" class="btn-white">Ajánlatkérés →</a>
         </div>
       </section>
