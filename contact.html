@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kapcsolat – websitemaker.hu</title>
-  <meta name="description" content="Ajánlatkérés weboldalra – telefon, online értekezlet vagy üzenet. Hétfőtől péntekig 9-16 óráig elérhető.">
+  <meta name="description" content="Ajánlatkérés weboldalra – telefon vagy e-mail. Hétfőtől péntekig 9-16 óráig elérhető.">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
 
-    /* ── HÉRÓ (kép nélkül, egyszerű szekció) ── */
+    /* ── HÉRÓ ── */
     .contact-hero {
       padding: 5.5rem 0 3.5rem;
       text-align: center;
@@ -72,25 +72,21 @@
       .contact-grid { grid-template-columns: 1fr; }
     }
 
-    /* ── BAL OLDAL: INFO ── */
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
+    /* ── INFO KÁRTYÁK – világosabb háttér ── */
+    .contact-info { display: flex; flex-direction: column; gap: 1.75rem; }
     .contact-info-card {
-      background: rgba(14,14,30,0.75);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(40, 40, 72, 0.82);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 14px;
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       transition: border-color 0.25s;
     }
-    .contact-info-card:hover { border-color: rgba(124,111,247,0.35); }
+    .contact-info-card:hover { border-color: rgba(124,111,247,0.45); }
     .contact-info-card-title {
       font-size: 0.75rem;
       font-weight: 700;
@@ -109,29 +105,23 @@
     }
     a.contact-row:hover { color: var(--clr-accent, #7c6ff7); }
     .contact-row-icon {
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 10px;
-      background: rgba(124,111,247,0.12);
-      border: 1px solid rgba(124,111,247,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
+      background: rgba(124,111,247,0.15);
+      border: 1px solid rgba(124,111,247,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
     }
     .contact-row-label { display: flex; flex-direction: column; gap: 0.1rem; }
     .contact-row-label strong { font-weight: 700; font-size: 0.9rem; }
-    .contact-row-label span { font-size: 0.8rem; color: var(--clr-muted, #aaa); }
+    .contact-row-label span { font-size: 0.8rem; color: var(--clr-muted, #bbb); }
 
     .meeting-options { display: flex; flex-direction: column; gap: 0.6rem; }
     .meeting-option {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
       padding: 0.7rem 0.9rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 10px;
       font-size: 0.875rem;
       color: var(--clr-text, #eee);
@@ -140,44 +130,79 @@
 
     .trust-list { display: flex; flex-direction: column; gap: 0.6rem; }
     .trust-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      font-size: 0.875rem;
-      color: var(--clr-muted, #aaa);
-      line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.875rem; color: #ccc; line-height: 1.5;
     }
-    .trust-item-check {
-      color: #28c840;
-      font-weight: 800;
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .trust-item-check { color: #28c840; font-weight: 800; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
 
-    /* ── JOBB OLDAL: ŰRLAP ── */
+    /* ── FORM WRAP – világosabb + tekercs keret ── */
     .contact-form-wrap {
-      background: rgba(14,14,30,0.80);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(40, 40, 72, 0.82);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 16px;
       padding: 2rem;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      /* Tekercs-alap: kezdetben "görgetett fel" – clip-path mask */
+      position: relative;
+      overflow: hidden;
     }
+    /* A tekercs "feltárulás" animáció – fölről lefelé nyílik */
+    @keyframes scrollUnroll {
+      0%   { clip-path: inset(0 0 100% 0); opacity: 0; }
+      15%  { opacity: 1; }
+      100% { clip-path: inset(0 0 0% 0); opacity: 1; }
+    }
+    .scroll-unroll {
+      animation: scrollUnroll 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    /* Top "tekercs perem" dísz */
+    .contact-form-wrap::before {
+      content: '';
+      display: block;
+      height: 6px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(124,111,247,0.6) 20%,
+        rgba(124,111,247,0.9) 50%,
+        rgba(124,111,247,0.6) 80%,
+        transparent 100%
+      );
+      border-radius: 3px;
+      margin-bottom: 1.5rem;
+      opacity: 0.7;
+    }
+    /* Bottom tekercs perem */
+    .contact-form-wrap::after {
+      content: '';
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(124,111,247,0.4) 30%,
+        rgba(124,111,247,0.6) 50%,
+        rgba(124,111,247,0.4) 70%,
+        transparent 100%
+      );
+      border-radius: 3px;
+      margin-top: 1.5rem;
+      opacity: 0.5;
+    }
+
     .contact-form-wrap h2 { font-size: 1.2rem; font-weight: 800; margin: 0 0 0.4rem; }
-    .contact-form-wrap > p { font-size: 0.875rem; color: var(--clr-muted,#aaa); margin: 0 0 1.75rem; line-height: 1.6; }
+    .contact-form-wrap > p { font-size: 0.875rem; color: #bbb; margin: 0 0 1.5rem; line-height: 1.6; }
     .form-grid { display: flex; flex-direction: column; gap: 1rem; }
     .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-field label { font-size: 0.8rem; font-weight: 600; color: var(--clr-muted,#aaa); letter-spacing: .04em; }
+    .form-field label { font-size: 0.8rem; font-weight: 600; color: #bbb; letter-spacing: .04em; }
     .form-field input,
     .form-field textarea,
     .form-field select {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
       border-radius: 8px;
       padding: 0.7rem 0.9rem;
       font-size: 0.9rem;
-      color: var(--clr-text, #eee);
+      color: #eee;
       outline: none;
       transition: border-color 0.2s;
       width: 100%;
@@ -185,20 +210,15 @@
       font-family: inherit;
     }
     .form-field input::placeholder,
-    .form-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-field textarea::placeholder { color: rgba(255,255,255,0.28); }
     .form-field input:focus,
     .form-field textarea:focus,
     .form-field select:focus { border-color: var(--clr-accent, #7c6ff7); }
     .form-field select option { background: #1a1a2e; }
     .form-field textarea { resize: vertical; min-height: 110px; }
     .form-checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-      color: var(--clr-muted,#aaa);
-      cursor: pointer;
-      line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.8rem; color: #bbb; cursor: pointer; line-height: 1.5;
     }
     .form-checkbox input { margin-top: 2px; flex-shrink: 0; }
     .form-checkbox a { color: var(--clr-accent,#7c6ff7); text-decoration: underline; }
@@ -243,7 +263,7 @@
 
     <main>
 
-      <!-- ═══ HERO (egyszerű, kép nélkül) ═══ -->
+      <!-- ═══ HERO ═══ -->
       <section class="contact-hero">
         <div class="container">
           <p class="section-kicker reveal">Kapcsolat</p>
@@ -257,7 +277,7 @@
 
       <hr class="section-divider">
 
-      <!-- ═══ FŐ TARTALOM – cont.jpg háttérrel ═══ -->
+      <!-- ═══ FŐ TARTALOM ═══ -->
       <section class="contact-main">
         <div class="contact-main-bg" aria-hidden="true"></div>
         <div class="contact-main-overlay" aria-hidden="true"></div>
@@ -287,7 +307,7 @@
 
               <div class="contact-info-card reveal">
                 <p class="contact-info-card-title">Elbeszélgetés – hogy illeszkedjen</p>
-                <p style="font-size:0.875rem;color:var(--clr-muted,#aaa);margin:0;line-height:1.6;">
+                <p style="font-size:0.875rem;color:#bbb;margin:0;line-height:1.6;">
                   Nem kell rögtön mindent tudni – elég egy rövid elbeszélgetés, hogy kiderüljön,
                   mire lenne szükség. Telefonon vagy online értekezleten egyaránt elérhető vagyok.
                 </p>
@@ -343,8 +363,8 @@
 
             </div>
 
-            <!-- JOBB: ŰRLAP -->
-            <div class="contact-form-wrap reveal reveal-delay-1">
+            <!-- JOBB: ŰRLAP – tekercs animációval -->
+            <div class="contact-form-wrap" id="contact-form-wrap">
               <h2>Küldjön üzenetet</h2>
               <p>Pár mondat elég: mivel foglalkozik, milyen oldalban gondolkodik, és mikor lenne rá szüksége.</p>
               <form action="#" method="post">
@@ -367,9 +387,6 @@
                       <option value="">Válasszon…</option>
                       <option value="email">✉️ E-mailben</option>
                       <option value="phone">📞 Telefonon</option>
-                      <option value="meet">📹 Google Meet</option>
-                      <option value="teams">💻 Microsoft Teams</option>
-                      <option value="zoom">🌐 Zoom</option>
                     </select>
                   </div>
                   <div class="form-field">
@@ -416,5 +433,23 @@
 
   <div class="cursor-dot"></div>
   <script src="assets/js/main.js"></script>
+  <script>
+    // Tekercs feltárulás: amint az űrlap láthatóvá válik (IntersectionObserver), indul az animáció
+    (function() {
+      var formWrap = document.getElementById('contact-form-wrap');
+      if (!formWrap) return;
+      var triggered = false;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            formWrap.classList.add('scroll-unroll');
+            observer.unobserve(formWrap);
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(formWrap);
+    })();
+  </script>
 </body>
 </html>
