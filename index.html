@@ -46,36 +46,20 @@
     .hero-preview::after {
       content: '';
       position: absolute;
-      top: 6px;
-      left: 62px;
-      right: 12px;
-      height: 16px;
+      top: 6px; left: 62px; right: 12px; height: 16px;
       background: rgba(255,255,255,0.07);
       border-radius: 4px;
       pointer-events: none;
     }
     .hero-preview img {
-      width: 100%;
-      height: 185px;
-      object-fit: cover;
-      object-position: top;
-      display: block;
+      width: 100%; height: 185px;
+      object-fit: cover; object-position: top; display: block;
     }
-    .hero-preview-primary img,
-    .hero-preview-secondary img { height: 185px; }
+    .hero-preview-primary img, .hero-preview-secondary img { height: 185px; }
     .hero-preview figcaption { display: none; }
-    .hero-preview-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
+    .hero-preview-link { display: block; text-decoration: none; color: inherit; }
     .hero-preview-link .hero-preview { cursor: pointer; }
-    .hero-card-header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
+    .hero-card-header { display: flex; justify-content: center; align-items: center; margin-bottom: 1rem; }
     .hero-stack-pill { display: none; }
 
     /* ── TRUST BAR ── */
@@ -84,34 +68,58 @@
       border-top: 1px solid var(--clr-border, rgba(255,255,255,0.07));
       border-bottom: 1px solid var(--clr-border, rgba(255,255,255,0.07));
     }
-    .trust-bar-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2.5rem 3.5rem;
-      text-align: center;
-    }
-    .trust-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .trust-number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--clr-accent, #7c6ff7);
-      line-height: 1;
-    }
-    .trust-label {
-      font-size: 0.8rem;
-      color: var(--clr-muted, #aaa);
-      letter-spacing: .04em;
+    .trust-bar-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 3.5rem; text-align: center; }
+    .trust-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .trust-number { font-size: 2rem; font-weight: 800; color: var(--clr-accent, #7c6ff7); line-height: 1; }
+    .trust-label { font-size: 0.8rem; color: var(--clr-muted, #aaa); letter-spacing: .04em; }
+
+    /* ── KÁRTYA CÍMEK – egységes mozgó színátmenet ──
+       Technika: mindhárom cím ugyanazt a 300%-os gradientet használja,
+       de különböző background-position-nel (0% / 50% / 100%),
+       így balkól jobbra egybefüggő színátmenetnek látszik.
+       A mozgó animáció mindkét irányba lassan lélegzik (alternate).
+    */
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
-    /* ── HOW IT WORKS ── */
-    .process-section {
-      background: var(--clr-surface-alt, #111122);
+    /* Közös színátmenet-alap */
+    .card-title-grad {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0 0 0.75rem;
+      line-height: 1.3;
+
+      /* Színátmenet: lila → égkék → cian → lila – lágy, ismétlődő */
+      background: linear-gradient(
+        90deg,
+        #a78bfa 0%,
+        #60a5fa 33%,
+        #67e8f9 55%,
+        #818cf8 78%,
+        #a78bfa 100%
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+
+      /* Alap pozició – felüíródik kártyánként */
+      background-position: 0% 50%;
+      animation: gradShift 5s ease-in-out infinite alternate;
     }
+
+    /* Kártyánként különböző animáció késleltetés –
+       így a 3 cím egymáshoz képest épp olyan pozícióban van,
+       mint ha egy folyamatos vízsz. sávból lennének kivették */
+    .card:nth-child(1) .card-title-grad { animation-delay: 0s; }
+    .card:nth-child(2) .card-title-grad { animation-delay: -1.67s; }
+    .card:nth-child(3) .card-title-grad { animation-delay: -3.33s; }
+
+    /* ── HOW IT WORKS ── */
+    .process-section { background: var(--clr-surface-alt, #111122); }
     .process-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -119,103 +127,54 @@
       counter-reset: steps;
       margin-top: 2.5rem;
     }
-
-    /* Kártya alap */
     .process-step {
       position: relative;
       padding: 1.75rem 1.5rem 1.5rem;
       border-radius: 14px;
-      background: linear-gradient(
-        145deg,
-        rgba(36, 34, 70, 0.95) 0%,
-        rgba(22, 20, 50, 0.98) 100%
-      );
-      border: 1px solid rgba(124, 111, 247, 0.18);
+      background: linear-gradient(145deg, rgba(36,34,70,0.95) 0%, rgba(22,20,50,0.98) 100%);
+      border: 1px solid rgba(124,111,247,0.18);
       counter-increment: steps;
-      /* Glow réteg előkészítés */
-      box-shadow:
-        0 2px 16px rgba(0,0,0,0.3),
-        0 0 0 0 rgba(124, 111, 247, 0);
-      transition:
-        transform 0.3s cubic-bezier(0.22,1,0.36,1),
-        box-shadow 0.3s cubic-bezier(0.22,1,0.36,1),
-        border-color 0.3s ease;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3), 0 0 0 0 rgba(124,111,247,0);
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease;
       overflow: hidden;
     }
-
-    /* Hover: glow + float */
     .process-step:hover {
       transform: translateY(-6px);
-      border-color: rgba(124, 111, 247, 0.55);
-      box-shadow:
-        0 8px 32px rgba(0,0,0,0.35),
-        0 0 28px rgba(124, 111, 247, 0.28),
-        0 0 60px rgba(124, 111, 247, 0.12);
+      border-color: rgba(124,111,247,0.55);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 28px rgba(124,111,247,0.28), 0 0 60px rgba(124,111,247,0.12);
     }
-
-    /* Belső fényes felső szél hover-re */
     .process-step::after {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       border-radius: 14px;
-      background: linear-gradient(
-        160deg,
-        rgba(124, 111, 247, 0.10) 0%,
-        transparent 55%
-      );
+      background: linear-gradient(160deg, rgba(124,111,247,0.10) 0%, transparent 55%);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
     }
-    .process-step:hover::after {
-      opacity: 1;
-    }
-
-    /* Számláló */
+    .process-step:hover::after { opacity: 1; }
     .process-step::before {
       content: counter(steps, decimal-leading-zero);
       display: block;
-      font-size: 2.2rem;
-      font-weight: 800;
+      font-size: 2.2rem; font-weight: 800;
       color: var(--clr-accent, #7c6ff7);
-      opacity: 0.4;
-      line-height: 1;
-      margin-bottom: 0.75rem;
-      position: relative;
-      z-index: 1;
+      opacity: 0.4; line-height: 1; margin-bottom: 0.75rem;
+      position: relative; z-index: 1;
     }
-    .process-step h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-    .process-step p {
-      font-size: 0.875rem;
-      color: var(--clr-muted, #aaa);
-      margin: 0;
-      line-height: 1.55;
-      position: relative;
-      z-index: 1;
-    }
+    .process-step h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; position: relative; z-index: 1; }
+    .process-step p { font-size: 0.875rem; color: var(--clr-muted, #aaa); margin: 0; line-height: 1.55; position: relative; z-index: 1; }
 
     /* ── WHY ME ── */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.5rem;
+      gap: 1.5rem; margin-top: 2.5rem;
     }
     .why-item {
-      padding: 1.5rem;
-      border-radius: 12px;
+      padding: 1.5rem; border-radius: 12px;
       background: var(--clr-surface, #1a1a2e);
       border: 1px solid var(--clr-border, rgba(255,255,255,0.07));
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
     }
     .why-icon { font-size: 1.6rem; line-height: 1; }
     .why-item h3 { font-size: 0.95rem; font-weight: 700; margin: 0; }
@@ -224,40 +183,24 @@
     /* ── CTA SZALAG ── */
     .cta-strip {
       background: linear-gradient(135deg, var(--clr-accent, #7c6ff7) 0%, #5a52d5 100%);
-      padding: 4rem 0;
-      text-align: center;
+      padding: 4rem 0; text-align: center;
     }
-    .cta-strip h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #fff; margin: 0 0 0.75rem; }
+    .cta-strip h2 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; color: #fff; margin: 0 0 0.75rem; }
     .cta-strip p { color: rgba(255,255,255,0.82); font-size: 1rem; margin: 0 0 2rem; }
     .cta-strip .btn-white {
-      background: #fff;
-      color: var(--clr-accent, #7c6ff7);
-      font-weight: 700;
-      padding: 0.85rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      display: inline-block;
-      transition: opacity 0.2s;
+      background: #fff; color: var(--clr-accent, #7c6ff7); font-weight: 700;
+      padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none;
+      display: inline-block; transition: opacity 0.2s;
     }
     .cta-strip .btn-white:hover { opacity: 0.9; }
 
     /* ── TECH STACK ── */
-    .tech-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
+    .tech-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
     .tech-badge {
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
       background: var(--clr-surface, #1a1a2e);
       border: 1px solid var(--clr-border, rgba(255,255,255,0.1));
-      color: var(--clr-text, #eee);
-      letter-spacing: .03em;
+      color: var(--clr-text, #eee); letter-spacing: .03em;
     }
   </style>
 </head>
@@ -335,22 +278,10 @@
       <div class="trust-bar">
         <div class="container">
           <div class="trust-bar-inner">
-            <div class="trust-item">
-              <span class="trust-number">100%</span>
-              <span class="trust-label">Egyedi kód, sablon nélkül</span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-number">~5–10</span>
-              <span class="trust-label">nap átlagos átadási idő</span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-number">Netlify</span>
-              <span class="trust-label">ingyenes hosting lehetőség</span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-number">1+év</span>
-              <span class="trust-label">Ingyenes támogatás</span>
-            </div>
+            <div class="trust-item"><span class="trust-number">100%</span><span class="trust-label">Egyedi kód, sablon nélkül</span></div>
+            <div class="trust-item"><span class="trust-number">~5–10</span><span class="trust-label">nap átlagos átadási idő</span></div>
+            <div class="trust-item"><span class="trust-number">Netlify</span><span class="trust-label">ingyenes hosting lehetőség</span></div>
+            <div class="trust-item"><span class="trust-number">1+év</span><span class="trust-label">Ingyenes támogatás</span></div>
           </div>
         </div>
       </div>
@@ -363,12 +294,14 @@
             <h2 class="section-title">Egyoldalas landing, többoldalas honlap, és hosszú távú támogatás.</h2>
             <p class="section-lead">
               Nem csak egy szép kezdőoldalt kapsz, hanem olyan struktúrát és technikai hátteret,
-              amire később is biztonsággal tudsz építeni. Későbbi tartalomfrissítés, új szekciók hozzáadása vagy akár egy teljes új aloldal kialakítása sem jelent majd gondot.
+              amire később is biztonsággal tudsz építeni.
             </p>
           </header>
           <div class="card-grid">
+
             <article class="card reveal">
-              <h3 class="card-title">Egyoldalas landing oldalak</h3>
+              <!-- card-title-grad osztály adja a színátmenetes stílust -->
+              <h3 class="card-title card-title-grad">Egyoldalas landing oldalak</h3>
               <p class="card-body">
                 Ha egy szolgáltatást vagy ajánlatot szeretnél kiemelni, egy jól felépített
                 one‑pager tökéletes: röviden elmondja, miről szól a vállalkozásod, mit kap az ügyfél,
@@ -380,8 +313,9 @@
                 <span class="pill">Erős CTA gombok</span>
               </div>
             </article>
+
             <article class="card reveal">
-              <h3 class="card-title">Többoldalas céges honlapok</h3>
+              <h3 class="card-title card-title-grad">Többoldalas céges honlapok</h3>
               <p class="card-body">
                 Ha több szolgáltatásod, referenciád, csapatod van, akkor külön aloldalakra bontjuk
                 a tartalmat. A menü átlátható, a látogató pedig gyorsan megtalálja, amit keres –
@@ -393,8 +327,9 @@
                 <span class="pill">Könnyen skálázható, bővíthető struktúra</span>
               </div>
             </article>
+
             <article class="card reveal">
-              <h3 class="card-title">Hosszú távú támogatás</h3>
+              <h3 class="card-title card-title-grad">Hosszú távú támogatás</h3>
               <p class="card-body">
                 Nem tűnök el az átadás után. Segítek kisebb módosításokban, új szekciók
                 kialakításában, technikai frissítésekben, hogy a weboldalad nem csak ma,
@@ -407,6 +342,7 @@
                 <span class="pill">Költségmentes támogatás</span>
               </div>
             </article>
+
           </div>
         </div>
       </section>
@@ -417,31 +353,14 @@
           <header class="section-header reveal">
             <p class="section-kicker">Hogyan dolgozom</p>
             <h2 class="section-title">Átlátható, egyszerű munkamenet – lépésről lépésre.</h2>
-            <p class="section-lead">
-              Tudod pontosan, mikor mi történik. Nincs rejtett várakozás, nincs homályos kommunikáció.
-            </p>
+            <p class="section-lead">Tudod pontosan, mikor mi történik. Nincs rejtett várakozás, nincs homályos kommunikáció.</p>
           </header>
           <div class="process-steps">
-            <div class="process-step reveal">
-              <h3>Egyeztetés</h3>
-              <p>Rövid megbeszélés – megismerem a vállalkozását, céljait és elvárásait. E-mailben, telefonon, vagy online meet keretében ahogy önnek kényelmes.</p>
-            </div>
-            <div class="process-step reveal">
-              <h3>Tervezés</h3>
-              <p>Meghatározzuk a struktúrát, a szekciók sorrendjét és a designt. Mielőtt egyetlen sor kód születik, mindent jóváhagy így eikerülve a felesleges köröket.</p>
-            </div>
-            <div class="process-step reveal">
-              <h3>Fejlesztés</h3>
-              <p>Fejlesztés megkezdése – tiszta HTML, CSS és JavaScript, sablon vagy page builder nélkül. Minden az ön igényeidre szabva.</p>
-            </div>
-            <div class="process-step reveal">
-              <h3>Visszajelzés &amp; finomitás</h3>
-              <p>Prezentálom az elkészült oldalt, ön visszajelzést ad, és ha szükséges, elvégzem a igényelt módosításokat.</p>
-            </div>
-            <div class="process-step reveal">
-              <h3>Átadás &amp; élesítés</h3>
-              <p>SEO optimalizálás és feltöltés a hosting szolgáltatóra (vagy a saját tárhelyre), domain beállítása és az oldala aktív.</p>
-            </div>
+            <div class="process-step reveal"><h3>Egyeztetés</h3><p>Rövid megbeszélés – megismerem a vállalkozását, céljait és elvárásait. E-mailben, telefonon, vagy online meet keretében ahogy önnek kényelmes.</p></div>
+            <div class="process-step reveal"><h3>Tervezés</h3><p>Meghatározzuk a struktúrát, a szekciók sorrendjét és a designt. Mielőtt egyetlen sor kód születik, mindent jóváhagy így elkerülve a felesleges köröket.</p></div>
+            <div class="process-step reveal"><h3>Fejlesztés</h3><p>Fejlesztés megkezdése – tiszta HTML, CSS és JavaScript, sablon vagy page builder nélkül. Minden az ön igényeidre szabva.</p></div>
+            <div class="process-step reveal"><h3>Visszajelzés &amp; finomitás</h3><p>Prezentálom az elkészült oldalt, ön visszajelzést ad, és ha szükséges, elvégzem az igényelt módosításokat.</p></div>
+            <div class="process-step reveal"><h3>Átadás &amp; élesítés</h3><p>SEO optimalizálás és feltöltés a hosting szolgáltatóra (vagy a saját tárhelyre), domain beállítása és az oldala aktív.</p></div>
           </div>
         </div>
       </section>
@@ -453,49 +372,21 @@
             <p class="section-kicker">Miért éngem válasszon?</p>
             <h2 class="section-title">Amit egy freelance fejlesztőtől kaphat, amit egy ügynökségtől nem mindig.</h2>
             <p class="section-lead">
-              Közvetlen kommunikáció, valódi személyes felelősségvállalás, és egy fejlesztő, aki tényleg érti a kis- és középvállalkozások igényeit. Árba kalkulált SEO optimalizálás, domain és hosting beállítás, és egy olyan partner, aki nem csak átadja az oldalt, hanem hosszú távon is támogatja a vállalkozását.
+              Közvetlen kommunikáció, valódi személyes felelősségvállalás, és egy fejlesztő, aki tényleg érti a kis- és középvállalkozások igényeit.
             </p>
           </header>
           <div class="why-grid">
-            <div class="why-item reveal">
-              <span class="why-icon">⚡</span>
-              <h3>Gyors átadás</h3>
-              <p>Általában 5–10 munkanapon belül kész az oldal – nem heteket, hónapokat hanem napokat vár.</p>
-            </div>
-            <div class="why-item reveal">
-              <span class="why-icon">🎯</span>
-              <h3>Személyre szabott</h3>
-              <p>Nincs sablon. Minden oldal az adott vállalkozásra, célközönségre és üzenetre épül.</p>
-            </div>
-            <div class="why-item reveal">
-              <span class="why-icon">📱</span>
-              <h3>Mobilon is tökéletes</h3>
-              <p>Reszponzív design: telefonon, tableten és asztali gépen egyformán szép és használható.</p>
-            </div>
-            <div class="why-item reveal">
-              <span class="why-icon">🔍</span>
-              <h3>SEO-barát alap</h3>
-              <p>Szemantikus HTML, meta tagek, gyors betöltés – jó alap a keresőkben való megjelenéshez.</p>
-            </div>
-            <div class="why-item reveal">
-              <span class="why-icon">💬</span>
-              <h3>Közvetlen kommunikáció</h3>
-              <p>Velem kommunikál, nem egy ügyfélszolgálattal. Gyors válasz, átlátható folyamat.</p>
-            </div>
-            <div class="why-item reveal">
-              <span class="why-icon">🛠️</span>
-              <h3>Átadás utáni segítség</h3>
-              <p>Ha valami változik, kéred, hogy frissítsem az oldalt – itt vagyok, és segítek.</p>
-            </div>
+            <div class="why-item reveal"><span class="why-icon">⚡</span><h3>Gyors átadás</h3><p>Általában 5–10 munkanapon belül kész az oldal – nem heteket, hónapokat hanem napokat vár.</p></div>
+            <div class="why-item reveal"><span class="why-icon">🎯</span><h3>Személyre szabott</h3><p>Nincs sablon. Minden oldal az adott vállalkozásra, célközönségre és üzenetre épül.</p></div>
+            <div class="why-item reveal"><span class="why-icon">📱</span><h3>Mobilon is tökéletes</h3><p>Reszponzív design: telefonon, tableten és asztali gépen egyformán szép és használható.</p></div>
+            <div class="why-item reveal"><span class="why-icon">🔍</span><h3>SEO-barát alap</h3><p>Szemantikus HTML, meta tagek, gyors betöltés – jó alap a keresőkben való megjelenéshez.</p></div>
+            <div class="why-item reveal"><span class="why-icon">💬</span><h3>Közvetlen kommunikáció</h3><p>Velem kommunikál, nem egy ügyfélszolgálattal. Gyors válasz, átlátható folyamat.</p></div>
+            <div class="why-item reveal"><span class="why-icon">🛠️</span><h3>Átadás utáni segítség</h3><p>Ha valami változik, kéred, hogy frissítsem az oldalt – itt vagyok, és segítek.</p></div>
           </div>
           <div class="tech-strip reveal">
-            <span class="tech-badge">HTML5</span>
-            <span class="tech-badge">CSS3</span>
-            <span class="tech-badge">JavaScript</span>
-            <span class="tech-badge">Domain</span>
-            <span class="tech-badge">Hosting</span>
-            <span class="tech-badge">Reszponzív design</span>
-            <span class="tech-badge">Egyedi animációk</span>
+            <span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">Domain</span><span class="tech-badge">Hosting</span>
+            <span class="tech-badge">Reszponzív design</span><span class="tech-badge">Egyedi animációk</span>
           </div>
         </div>
       </section>
