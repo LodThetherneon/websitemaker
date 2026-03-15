@@ -734,10 +734,8 @@ form.contact-card button {
   font-weight: 600;
   cursor: default;
   position: relative;
-  /* Alul vékony vonal mint aktív jelző */
   padding-bottom: 2px;
   border-bottom: 1.5px solid var(--accent);
-  /* Enyhe glow */
   text-shadow: 0 0 10px rgba(34, 211, 238, 0.45);
 }
 
@@ -812,8 +810,8 @@ form.contact-card button {
     right: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: stretch;
+    gap: 0;
     padding: 0;
     max-height: 0;
     overflow: hidden;
@@ -840,14 +838,26 @@ form.contact-card button {
     max-height: 22rem;
     opacity: 1;
     pointer-events: auto;
-    padding: 1rem;
+    padding: 0.5rem;
     box-shadow:
       0 18px 36px rgba(15, 23, 42, 0.92),
       0 0 0 1px rgba(34, 211, 238, 0.28),
       0 0 28px rgba(34, 211, 238, 0.16);
   }
 
-  .nav-links a { width: 100%; text-align: left; padding: 0.25rem 0; }
+  /* Teljes sor kattintható mobilon */
+  .nav-links li {
+    display: block;
+    width: 100%;
+  }
+
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 0.6rem;
+    text-align: left;
+  }
 
   .nav-links a.is-active {
     border: none;
