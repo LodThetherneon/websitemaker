@@ -3,10 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Adatvédelmi tájékoztató – websitemaker.hu</title>
-  <meta name="description" content="Adatvédelmi tájékoztató mintaszöveg a websitemaker.hu oldalhoz.">
+  <title>Adatvédelem és Impresszum – websitemaker.hu</title>
+  <meta name="description" content="Adatvédelmi tájékoztató és impresszum – websitemaker.hu, Kiss Zoltán EV.">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+
+    /* ── HERO ── */
+    .legal-hero {
+      padding: 5rem 0 3rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .legal-hero h1 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      margin: 0.5rem 0 0.75rem;
+    }
+    .legal-hero p {
+      font-size: 0.9rem;
+      color: var(--clr-muted, #aaa);
+      margin: 0;
+    }
+
+    /* ── TAB VÁLTÓ ── */
+    .legal-tabs-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 2.5rem 0 0;
+    }
+    .legal-tabs {
+      display: inline-flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .legal-tab {
+      padding: 0.5rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--clr-muted, #aaa);
+      transition: background 0.2s, color 0.2s;
+    }
+    .legal-tab.is-active {
+      background: var(--clr-accent, #7c6ff7);
+      color: #fff;
+    }
+
+    /* ── DOKUMENTUM PANEL ── */
+    .legal-main {
+      padding: 3rem 0 5rem;
+    }
+    .legal-panel {
+      display: none;
+    }
+    .legal-panel.is-active {
+      display: block;
+    }
+
+    /* ── DOKUMENTUM STÍLUS ── */
+    .legal-doc {
+      max-width: 820px;
+      margin: 0 auto;
+      background: rgba(28, 28, 52, 0.90);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-top: 4px solid var(--clr-accent, #7c6ff7);
+      border-radius: 0 0 14px 14px;
+      padding: 3rem 3.5rem;
+      position: relative;
+    }
+    @media (max-width: 640px) {
+      .legal-doc { padding: 2rem 1.25rem; }
+    }
+
+    /* Jogi pec sét hatás */
+    .legal-doc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+    .legal-doc-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .legal-doc-type {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-accent, #7c6ff7);
+    }
+    .legal-doc-title {
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-weight: 800;
+      margin: 0.2rem 0 0.1rem;
+      line-height: 1.25;
+    }
+    .legal-doc-version {
+      font-size: 0.78rem;
+      color: var(--clr-muted, #aaa);
+    }
+    .legal-seal {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid rgba(124,111,247,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: rgba(124,111,247,0.08);
+    }
+
+    /* Fejezetek */
+    .legal-section {
+      margin-bottom: 2rem;
+    }
+    .legal-section:last-child { margin-bottom: 0; }
+    .legal-section-num {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--clr-accent, #7c6ff7);
+      margin-bottom: 0.35rem;
+    }
+    .legal-section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.65rem;
+      color: #fff;
+    }
+    .legal-section p,
+    .legal-section ul,
+    .legal-section li {
+      font-size: 0.875rem;
+      color: #ccc;
+      line-height: 1.75;
+      margin: 0 0 0.5rem;
+    }
+    .legal-section ul {
+      padding-left: 1.2rem;
+    }
+    .legal-section li { margin-bottom: 0.25rem; }
+    .legal-section strong { color: #eee; }
+    .legal-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin: 1.75rem 0;
+    }
+
+    /* Impresszum tábla */
+    .impressum-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+    }
+    .impressum-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .impressum-table tr:last-child { border-bottom: none; }
+    .impressum-table td {
+      padding: 0.65rem 0.5rem;
+      color: #ccc;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .impressum-table td:first-child {
+      font-weight: 600;
+      color: #eee;
+      white-space: nowrap;
+      padding-right: 1.5rem;
+      width: 38%;
+    }
+    .impressum-table a {
+      color: var(--clr-accent, #7c6ff7);
+      text-decoration: none;
+    }
+    .impressum-table a:hover { text-decoration: underline; }
+
+    /* Lábjegyzet a dokumentumban */
+    .legal-doc-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.775rem;
+      color: var(--clr-muted, #888);
+      text-align: center;
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+  </style>
 </head>
 <body>
   <div class="page-shell">
@@ -21,7 +224,7 @@
             <span></span><span></span><span></span>
           </button>
           <ul class="nav-links" role="list">
-            <li><a href="index.html" class="is-active">Főoldal</a></li>
+            <li><a href="index.html">Főoldal</a></li>
             <li><a href="about.html">Bemutatkozás</a></li>
             <li><a href="references.html">Referenciák</a></li>
             <li><a href="contact.html">Kapcsolat</a></li>
@@ -31,48 +234,269 @@
     </header>
 
     <main>
-      <section>
+
+      <!-- ═══ HERO ═══ -->
+      <section class="legal-hero">
         <div class="container">
-          <article class="privacy-card reveal">
-            <p class="section-kicker">Adatvédelem</p>
-            <h1 class="section-title">Adatvédelmi tájékoztató – websitemaker.hu</h1>
-            <h2>1. Az adatkezelő adatai</h2>
-            <p>Az oldal üzemeltetszője: websitemaker.hu (egyéni fejlesztő, továbbiakban: Adatkezelő).<br>Elérhetlség: hello@websitemaker.hu</p>
-            <h2>2. Milyen adatokat kezelek?</h2>
-            <p>A Kapcsolat oldalon elhelyezett űrlap kitöltésekor az alábbi adatok kerülhetnek megadásra: név, e‑mail cím, a tervezett projekt típusa, az üzenet szövege.</p>
-            <h2>3. Az adatkezelés célja</h2>
-            <p>Az adatkezelés célja kizárólag kapcsolatfelvétel és ajánlatadás, illetve a fejlesztéssel kapcsolatos részletek egyeztetése.</p>
-            <h2>4. Az adatkezelés jogalapja</h2>
-            <p>Az adatkezelés jogalapja az érintett önkéntes hozzájárulása, amelyet az űrlap elküldésével ad meg.</p>
-            <h2>5. Adatmegőrzés időtartama</h2>
-            <p>Az adatokat legfeljebb addig őrzöm meg, amíg a kommunikáció lezáról, vagy amíg az érintett azok törlését nem kéri.</p>
-            <h2>6. Az adatokhoz való hozzáférés</h2>
-            <p>A megadott adatokhoz kizárólag az Adatkezelő fér hozzá, azokat harmadik félnek nem adom tovább, kivéve, ha azt jogszabály írja elő.</p>
-            <h2>7. Érintetti jogok</h2>
-            <p>Az érintett jogosult kérelmezni személyes adatainak helyesbítését, törlését, kezelésének korlátozását, valamint tiltakozhat az adatkezelés ellen. Ilyen igény esetén e‑mailben lehet jelezni a hello@websitemaker.hu címen.</p>
-            <h2>8. Záró rendelkezések</h2>
-            <p>Jelen adatvédelmi tájékoztató mintáként szolgál, a tényleges működéshez és jogi környezethez igazitandó. A websitemaker.hu fenntartja a jogot a tájékoztató jövőbeni módosítására.</p>
-          </article>
+          <p class="section-kicker reveal">Jogi dokumentumok</p>
+          <h1 class="reveal">Adatvédelem &amp; Impresszum</h1>
+          <p class="reveal">websitemaker.hu – Kiss Zoltán EV.</p>
+
+          <!-- Tab gömbsor -->
+          <div class="legal-tabs-wrap reveal">
+            <div class="legal-tabs" role="tablist" aria-label="Dokumentum választó">
+              <button class="legal-tab is-active" role="tab" data-panel="privacy" type="button"
+                aria-selected="true" aria-controls="panel-privacy">
+                🔒 Adatvédelmi tájékoztató
+              </button>
+              <button class="legal-tab" role="tab" data-panel="impressum" type="button"
+                aria-selected="false" aria-controls="panel-impressum">
+                🏢 Impresszum
+              </button>
+            </div>
+          </div>
         </div>
       </section>
+
+      <!-- ═══ DOKUMENTUMOK ═══ -->
+      <section class="legal-main">
+        <div class="container">
+
+          <!-- ═══ PANEL 1: ADATVÉDELEM ═══ -->
+          <div class="legal-panel is-active" id="panel-privacy" role="tabpanel">
+            <div class="legal-doc reveal">
+
+              <div class="legal-doc-header">
+                <div class="legal-doc-meta">
+                  <span class="legal-doc-type">GDPR • 2016/679/EU rendelet</span>
+                  <h2 class="legal-doc-title">Adatvédelmi tájékoztató</h2>
+                  <span class="legal-doc-version">Hatályos: 2025. január 1-jétől • Verzió: 1.1</span>
+                </div>
+                <div class="legal-seal" aria-hidden="true">🔒</div>
+              </div>
+
+              <div class="legal-section">
+                <span class="legal-section-num">1. fejezet</span>
+                <h2>Az adatkezelő adatai</h2>
+                <p>
+                  <strong>Név:</strong> Kiss Zoltán EV.<br>
+                  <strong>Székhely:</strong> 9012 Győr, Hegyalja utca 50.<br>
+                  <strong>E-mail:</strong> <a href="mailto:sikklizo@gmail.com" style="color:var(--clr-accent,#7c6ff7)">sikklizo@gmail.com</a><br>
+                  <strong>Telefon:</strong> +36 20 432 8086<br>
+                  <strong>Weboldal:</strong> websitemaker.hu
+                </p>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">2. fejezet</span>
+                <h2>Kezelt adatok köre</h2>
+                <p>A weboldal használata során az alábbi személyes adatok kerülhetnek kezelésre:</p>
+                <ul>
+                  <li><strong>Kapcsolatfelvételi űrlap:</strong> név, e-mail cím, telefonszám (opcionális), üzenet szövege, projekt típusa, visszakereshetőségi preferált mód.</li>
+                  <li><strong>Analitika (Google Analytics):</strong> süti alapon: IP-cím (anonimizálva), böngésztő típusa, készüléktípus, látogatott oldalak, időtöltés.</li>
+                </ul>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">3. fejezet</span>
+                <h2>Az adatkezelés célja és jogalapja</h2>
+                <ul>
+                  <li><strong>Űrlap adatok:</strong> célja ajánlatkérés megválaszolása, kommunikáció. Jogalapja: az érintett önkéntes hozzájárulása (GDPR 6. cikk (1) bek. a) pont).</li>
+                  <li><strong>Google Analytics:</strong> célja látogatottsági statisztikák és weboldal optimálás. Jogalapja: hozzájárulás (GDPR 6. cikk (1) bek. a) pont), amelyet a sütikezelő barán keresztül lehet megadni vagy visszavonni.</li>
+                </ul>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">4. fejezet</span>
+                <h2>Sütik (cookie-k)</h2>
+                <p>A weboldal az alábbi sütikat használja:</p>
+                <ul>
+                  <li><strong>Szükséges sütik:</strong> az oldal működéséhez elengedhetetlen sütik, hozzájárulás nélkül is alkalmazhatók.</li>
+                  <li><strong>Analitikai sütik (Google Analytics – GA4):</strong> látogatói viselkedés mérése, csak hozzájárulás esetén aktiválódnak. A Google adatvédelmi irányelveiről: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--clr-accent,#7c6ff7)">policies.google.com/privacy</a>.</li>
+                </ul>
+                <p>A süti-hozzájárulás az oldal alján megjelenő sütikezelő sávon keresztül adható meg vagy vonható vissza bármikor.</p>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">5. fejezet</span>
+                <h2>Adatmegőrzés időtartama</h2>
+                <ul>
+                  <li><strong>Űrlap adatok:</strong> a kommunikáció lezárásáig, legfeljebb 2 évig, ezt követően törlésre kerülnek.</li>
+                  <li><strong>Google Analytics sütik:</strong> a Google rendszere által meghatározottan, általában 13 hónap.</li>
+                </ul>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">6. fejezet</span>
+                <h2>Adattovábbítás, adatfeldolgozók</h2>
+                <p>Az űrlapon beküldött adatokat harmadik félnek nem adom tovább, kivéve jogszabályi kötelezettség esetén.</p>
+                <p>Adatfeldolgozók:</p>
+                <ul>
+                  <li><strong>Google LLC</strong> (Google Analytics) – az USA-ban tárolt adatokra a GDPR 46. cikke szerinti megfelelő garanciák alkalmazandók (Standard Szerződéses Klauzulák).</li>
+                </ul>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">7. fejezet</span>
+                <h2>Érintetti jogok</h2>
+                <p>Az érintett az alábbi jogokat gyakorolhatja:</p>
+                <ul>
+                  <li><strong>Hozzáférés joga</strong> – tájékoztatás kérhető a kezelt adatokról.</li>
+                  <li><strong>Helyesbítés joga</strong> – pontatlan adat javítását lehet kérni.</li>
+                  <li><strong>Törlés joga („elfeledtetés”)</strong> – adatok törlését lehet kérni.</li>
+                  <li><strong>Korlátozás joga</strong> – az adatkezelés korlátozását lehet kérni.</li>
+                  <li><strong>Tiltakozás joga</strong> – az adatkezelés ellen tiltakozni lehet.</li>
+                  <li><strong>Adathordozhatóság joga</strong> – az adatok géppel olvasható formátumban kérhetők.</li>
+                </ul>
+                <p>Kérés küldhető: <a href="mailto:sikklizo@gmail.com" style="color:var(--clr-accent,#7c6ff7)">sikklizo@gmail.com</a> – válasz határideje: 30 nap.</p>
+                <p>Panasszal az alábbi hatósághoz lehet fordulni:<br>
+                <strong>Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</strong><br>
+                1055 Budapest, Falk Miksa utca 9–11. • <a href="https://www.naih.hu" target="_blank" rel="noopener" style="color:var(--clr-accent,#7c6ff7)">naih.hu</a></p>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">8. fejezet</span>
+                <h2>Módosítás</h2>
+                <p>Az adatkezelő fenntartja a jogot a jelen tájékoztató módosítására. A változtatásokról az oldalon előzetesen tájékoztatás ad. A hatályos verzió mindig ezen az oldalon érhető el.</p>
+              </div>
+
+              <div class="legal-doc-footer">
+                websitemaker.hu • Kiss Zoltán EV. • Hatályos: 2025. január 1-jétől
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ PANEL 2: IMPRESSZUM ═══ -->
+          <div class="legal-panel" id="panel-impressum" role="tabpanel">
+            <div class="legal-doc reveal">
+
+              <div class="legal-doc-header">
+                <div class="legal-doc-meta">
+                  <span class="legal-doc-type">2001. évi CVIII. tv. • Eker. tv.</span>
+                  <h2 class="legal-doc-title">Impresszum</h2>
+                  <span class="legal-doc-version">Weboldal: websitemaker.hu • Utoljára frissítve: 2025</span>
+                </div>
+                <div class="legal-seal" aria-hidden="true">🏢</div>
+              </div>
+
+              <div class="legal-section">
+                <span class="legal-section-num">Szolgáltató adatai</span>
+                <h2>A weboldal üzemeltezője</h2>
+                <table class="impressum-table">
+                  <tbody>
+                    <tr><td>Név</td><td>Kiss Zoltán EV.</td></tr>
+                    <tr><td>Vállalkozás típusa</td><td>Egyéni vállalkozó</td></tr>
+                    <tr><td>Székhely</td><td>9012 Győr, Hegyalja utca 50.</td></tr>
+                    <tr><td>E-mail</td><td><a href="mailto:sikklizo@gmail.com">sikklizo@gmail.com</a></td></tr>
+                    <tr><td>Telefon</td><td><a href="tel:+36204328086">+36 20 432 8086</a></td></tr>
+                    <tr><td>Weboldal</td><td>websitemaker.hu</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">Működési adatok</span>
+                <h2>Tárhely és tárhelyszolgáltató</h2>
+                <table class="impressum-table">
+                  <tbody>
+                    <tr><td>Tárhelyszolgáltató</td><td>Netlify, Inc.</td></tr>
+                    <tr><td>Székhely</td><td>44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</td></tr>
+                    <tr><td>Web</td><td><a href="https://www.netlify.com" target="_blank" rel="noopener">netlify.com</a></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">Szellemi tulajdon</span>
+                <h2>Szerzői jogok</h2>
+                <p>A websitemaker.hu weboldalon megjelenő szövegek, képek, grafikai elemek és kód Kiss Zoltán EV. szellemi tulajdonát képezik. Az engedély nélküli felhasználás, másolás vagy terjesztés tilos.</p>
+              </div>
+
+              <hr class="legal-divider">
+
+              <div class="legal-section">
+                <span class="legal-section-num">Felelősség</span>
+                <h2>Felelősségkorlátozás</h2>
+                <p>A weboldalon található információk tájékoztató jellegűek. Kiss Zoltán EV. nem vállal felelősséget az esetleges pontatlansságokból, kihagásokból vagy a weboldal használatából eredő károkért.</p>
+                <p>A weboldalon elhelyezett külső hivatkozásokra (linkekre) az adatkezelő nem gyakorol hatást és azok tartalmáért nem vállal felelősséget.</p>
+              </div>
+
+              <div class="legal-doc-footer">
+                websitemaker.hu • Kiss Zoltán EV. • 9012 Győr, Hegyalja utca 50.
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
       <div class="container site-footer-inner">
         <div class="footer-left">
           <p class="footer-brand">@websitemaker.hu – Kiss Zoltán EV.</p>
-          <p class="footer-meta">Modern, reszponzív weboldalak klímás, energetikai és egyéb szolgáltató vállalkozásoknak.</p>
+          <p class="footer-meta">Modern, reszponzív weboldalak vállalkozásoknak – egyoldalas landingtől a többoldalas honlapig.</p>
         </div>
         <nav class="footer-nav" aria-label="Alsó navigáció">
           <a href="index.html">Főoldal</a>
           <a href="about.html">Bemutatkozás</a>
           <a href="references.html">Referenciák</a>
           <a href="contact.html">Kapcsolat</a>
+          <a href="privacy.html">Adatvédelem</a>
         </nav>
       </div>
     </footer>
   </div>
+
   <div class="cursor-dot"></div>
   <script src="assets/js/main.js"></script>
+  <script>
+    // Tab váltó logic
+    var tabs = document.querySelectorAll('.legal-tab');
+    var panels = document.querySelectorAll('.legal-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var target = tab.dataset.panel;
+        tabs.forEach(function(t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(function(p) { p.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById('panel-' + target);
+        if (panel) {
+          panel.classList.add('is-active');
+          // reveal animáció ismételt indulása a panel doc-on
+          var doc = panel.querySelector('.legal-doc');
+          if (doc) {
+            doc.classList.remove('is-visible');
+            void doc.offsetWidth;
+            doc.classList.add('is-visible');
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
