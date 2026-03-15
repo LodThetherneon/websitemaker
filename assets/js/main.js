@@ -1,4 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ===== Aktuális oldal felismerése =====
+  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+
+  const isCurrent = (href) => {
+    const linkFile = href ? href.split('/').pop() : '';
+    return (
+      linkFile === currentFile ||
+      (currentFile === '' && linkFile === 'index.html')
+    );
+  };
+
+  // ===== Fejléc – aktuális oldal linkje span-ra cserélve (nem kattintható) =====
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (isCurrent(link.getAttribute('href'))) {
+      const span = document.createElement('span');
+      span.className = link.className + ' is-active';
+      span.setAttribute('aria-current', 'page');
+      span.textContent = link.textContent;
+      link.parentNode.replaceChild(span, link);
+    }
+  });
+
+  // ===== Lábléc – aktuális oldal linkje span-ra cserélve =====
+  document.querySelectorAll('.footer-nav a').forEach(link => {
+    if (isCurrent(link.getAttribute('href'))) {
+      const span = document.createElement('span');
+      span.className = 'footer-nav-current';
+      span.setAttribute('aria-current', 'page');
+      span.textContent = link.textContent;
+      link.parentNode.replaceChild(span, link);
+    }
+  });
+
   // ===== Mobil menü =====
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelector(".nav-links");
@@ -161,32 +195,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-
-  // ===== Lábléc aktív link – automatikus =====
-  // Felismeri az aktuális oldalt, a megfelelő footer linket
-  // vizuálisan kiemeli, kattinthatatlanná teszi és aria-current-et ad
-  (function() {
-    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-    const footerLinks = document.querySelectorAll('.footer-nav a');
-    footerLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const linkFile = href ? href.split('/').pop() : '';
-      // index.html + üres path egyezés
-      const isCurrent =
-        linkFile === currentFile ||
-        (currentFile === '' && linkFile === 'index.html') ||
-        (currentFile === 'index.html' && linkFile === 'index.html');
-      if (isCurrent) {
-        link.classList.add('footer-nav-current');
-        link.setAttribute('aria-current', 'page');
-        // Lecseréljük <a>-t <span>-ra, hogy ne legyen kattintható
-        const span = document.createElement('span');
-        span.className = link.className;
-        span.setAttribute('aria-current', 'page');
-        span.textContent = link.textContent;
-        link.parentNode.replaceChild(span, link);
-      }
-    });
-  })();
 
 });
