@@ -9,91 +9,72 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
 
-    /* ── REFERENCIA LAPTOP SZEKCIÓ ── */
+    /* ── LAPTOP SZEKCIÓ ── */
     .references-laptop {
       padding-top: 4rem;
       padding-bottom: 3rem;
     }
 
-    /* ── PROJEKT KÁRTYÁK ── */
+    /* ── PROJEKT KÁRTYÁK SZEKCIÓ – háttérképpel ── */
     .projects-section {
-      padding: 4rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 0 5rem;
+    }
+    .projects-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/img/3.png');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.07;
+      filter: blur(4px);
+      transform: scale(1.06);
+      z-index: 0;
+    }
+    .projects-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(14,14,30,0.82) 0%,
+        rgba(14,14,30,0.65) 50%,
+        rgba(14,14,30,0.88) 100%
+      );
+      z-index: 1;
+    }
+    .projects-section .container {
+      position: relative;
+      z-index: 2;
     }
 
-    .project-block {
+    /* Két oszlopos grid a projektkart yákhoz */
+    .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      align-items: start;
-      margin-bottom: 5rem;
+      gap: 2rem;
+      margin-top: 2.5rem;
     }
-    .project-block:last-child { margin-bottom: 0; }
-    .project-block.reverse { direction: rtl; }
-    .project-block.reverse > * { direction: ltr; }
     @media (max-width: 860px) {
-      .project-block,
-      .project-block.reverse {
-        grid-template-columns: 1fr;
-        direction: ltr;
-      }
-      .project-block.reverse > * { direction: ltr; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
 
-    /* Mockup kép */
-    .project-mockup {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 14px 48px rgba(0,0,0,0.40);
-      position: relative;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .project-mockup:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.50);
-    }
-    .project-mockup::before {
-      content: '';
-      display: block;
-      height: 28px;
-      background: rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background-image:
-        radial-gradient(circle, #ff5f57 5px, transparent 5px),
-        radial-gradient(circle, #febc2e 5px, transparent 5px),
-        radial-gradient(circle, #28c840 5px, transparent 5px);
-      background-repeat: no-repeat;
-      background-size: 10px 10px, 10px 10px, 10px 10px;
-      background-position: 10px center, 26px center, 42px center;
-    }
-    .project-mockup::after {
-      content: '';
-      position: absolute;
-      top: 6px;
-      left: 62px;
-      right: 12px;
-      height: 16px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 4px;
-      pointer-events: none;
-    }
-    .project-mockup img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-    @media (max-width: 600px) {
-      .project-mockup img { height: 200px; }
-    }
-
-    /* Projekt szöveg oldal */
-    .project-text {
+    /* Egy projekt kártya */
+    .project-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      padding-top: 0.5rem;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .project-card:hover {
+      border-color: rgba(124,111,247,0.35);
+      transform: translateY(-3px);
     }
     .project-type-badge {
       display: inline-flex;
@@ -110,44 +91,40 @@
       color: var(--clr-accent, #7c6ff7);
       width: fit-content;
     }
-    .project-text h2 {
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    .project-card h2 {
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
       font-weight: 800;
       margin: 0;
       line-height: 1.25;
     }
-    .project-text .project-lead {
-      font-size: 1rem;
+    .project-lead {
+      font-size: 0.95rem;
       color: var(--clr-muted, #aaa);
       line-height: 1.7;
       margin: 0;
     }
-
-    /* Cél kártyák */
     .project-goals {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
     .project-goal-item {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      padding: 0.85rem 1rem;
-      background: var(--clr-surface, #1a1a2e);
-      border: 1px solid var(--clr-border, rgba(255,255,255,0.07));
+      gap: 0.7rem;
+      padding: 0.75rem 0.9rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 10px;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       line-height: 1.5;
       color: var(--clr-text, #eee);
     }
     .project-goal-icon {
-      font-size: 1.1rem;
+      font-size: 1rem;
       flex-shrink: 0;
       margin-top: 1px;
     }
-
-    /* Tech pills */
     .project-tech {
       display: flex;
       flex-wrap: wrap;
@@ -158,67 +135,23 @@
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 600;
-      background: var(--clr-surface, #1a1a2e);
-      border: 1px solid var(--clr-border, rgba(255,255,255,0.1));
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       color: var(--clr-muted, #aaa);
     }
 
-    .project-cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--clr-accent, #7c6ff7);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-      width: fit-content;
-    }
-    .project-cta-link:hover { border-color: var(--clr-accent, #7c6ff7); }
-
-    /* ── HÁTTÉRKÉP SZEKCIÓ (3.png) ── */
-    .bg-image-section {
-      position: relative;
-      overflow: hidden;
-      padding: 5rem 0;
-    }
-    .bg-image-section-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('assets/img/3.png');
-      background-size: cover;
-      background-position: center 30%;
-      opacity: 0.08;
-      filter: blur(3px);
-      z-index: 0;
-      transform: scale(1.05);
-    }
-    .bg-image-section-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(14,14,30,0.7) 0%,
-        rgba(14,14,30,0.5) 50%,
-        rgba(14,14,30,0.85) 100%
-      );
-      z-index: 1;
-    }
-    .bg-image-section .container {
-      position: relative;
-      z-index: 2;
-    }
-
     /* ── STATS SÁV ── */
+    .stats-section {
+      padding: 4rem 0;
+      background: var(--clr-surface-alt, #111122);
+    }
     .stats-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1.5rem;
       text-align: center;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
     }
-    .stat-item {}
     .stat-number {
       font-size: 2.4rem;
       font-weight: 800;
@@ -247,17 +180,8 @@
       padding: 4rem 0;
       text-align: center;
     }
-    .cta-strip h2 {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 800;
-      color: #fff;
-      margin: 0 0 0.75rem;
-    }
-    .cta-strip p {
-      color: rgba(255,255,255,0.82);
-      font-size: 1rem;
-      margin: 0 0 2rem;
-    }
+    .cta-strip h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: #fff; margin: 0 0 0.75rem; }
+    .cta-strip p { color: rgba(255,255,255,0.82); font-size: 1rem; margin: 0 0 2rem; }
     .btn-white {
       background: #fff;
       color: var(--clr-accent, #7c6ff7);
@@ -276,11 +200,11 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
 
-    /* ── MOBIL FINOMÍTÁSOK ── */
+    /* ── MOBIL ── */
     @media (max-width: 480px) {
       .stats-strip { grid-template-columns: 1fr 1fr; }
-      .project-goals { gap: 0.5rem; }
-      .project-goal-item { padding: 0.7rem 0.85rem; font-size: 0.82rem; }
+      .project-card { padding: 1.5rem; }
+      .project-goal-item { font-size: 0.82rem; padding: 0.65rem 0.8rem; }
       .cta-strip { padding: 3rem 0; }
     }
   </style>
@@ -314,12 +238,9 @@
         <div class="container">
           <header class="section-header reveal">
             <p class="section-kicker">Referenciák</p>
-            <h1 class="section-title">
-              Nézze meg a kész oldalakat
-              egy laptop kijelzőjén.
-            </h1>
+            <h1 class="section-title">Nézze meg a kész oldalakat egy laptop kijelzőjén.</h1>
             <p class="section-lead">
-              Ahogy lefelé görget, a laptop felnyílik, a kijelzőn pedig
+              Ahogy lefelé görget, a laptop felnyílik – a kijelzőn pedig
               váltogathatóak az elkészült referencia projektek.
             </p>
           </header>
@@ -343,62 +264,59 @@
             </div>
           </div>
 
+          <!-- TAB váltó – csak a gombok, leírás nélkül -->
           <div class="references-switcher reveal">
             <div class="references-tabs" aria-label="Referencia váltó">
               <button class="references-tab is-active" data-ref="energetika" type="button">Energetikai tanúsító</button>
               <button class="references-tab" data-ref="klima" type="button">KlimaMed</button>
             </div>
-            <article class="references-detail" id="reference-detail">
-              <h2 class="references-detail-title">Energetikai tanúsító – területi láthatóság, gyors érdeklődés.
-              </h2>
-              <p class="references-detail-text">
-                Egy letisztult one-pager, amelynek célja, hogy a környéken kereső potenciális
-                ügyfelet gyorsan az árakhoz és a kapcsolatfelvételi lehetőséghez vezesse.
-              </p>
-              <ul class="references-detail-list">
-                <li>Átlátható szekciók: Hero, szolgáltatások, ártablázat, folyamat, GYIK.</li>
-                <li>Erős CTA gombok – az előjébbre kerülés érdekében.</li>
-                <li>Mobilon is tökéletesen használható, SEO-barát alapokkal.</li>
-              </ul>
-            </article>
           </div>
         </div>
       </section>
 
       <hr class="section-divider">
 
-      <!-- ═══ PROJEKT 1: ENERGETIKA ═══ -->
+      <!-- ═══ PROJEKTEK EGYMÁS MELLETT (3.png háttérrel) ═══ -->
       <section class="projects-section">
+        <div class="projects-bg" aria-hidden="true"></div>
+        <div class="projects-bg-overlay" aria-hidden="true"></div>
         <div class="container">
+          <header class="section-header reveal">
+            <p class="section-kicker">A két projekt</p>
+            <h2 class="section-title">Két különböző cél – két különböző megközelítés.</h2>
+            <p class="section-lead">
+              Egy one-pager gyors döntésre vezet. Egy többoldalas honlap mély bizalmat épít.
+              Mindkét esetben az ügyfél célja határozza meg a struktúrát.
+            </p>
+          </header>
 
-          <div class="project-block reveal">
-            <div class="project-mockup">
-              <img src="assets/img/ref1.jpg" alt="Kiss Péter István energetikai tanúsító weboldal">
-            </div>
-            <div class="project-text">
+          <div class="projects-grid">
+
+            <!-- PROJEKT 1: ENERGETIKA -->
+            <div class="project-card reveal">
               <span class="project-type-badge">📌 One-pager • Helyi SEO</span>
-              <h2>Energetikai tanúsító<br>Kiss Péter István</h2>
+              <h2>Energetikai tanúsító
+Kiss Péter István</h2>
               <p class="project-lead">
-                Az oldal célja egyértelmű: aki Győrben, Mosonmagyaróváron vagy a környékén keres
-                energetikai tanúsítót, hamar megtalálja – és hamar kérdezés nélkül el is jut az
-                árakig. Nincs körülírt szöveg, csak a lényeg.
+                Aki Győrben, Mosonmagyaróváron vagy a környékén keres energetikai tanúsítót,
+                gyorsan megtalálja – és perceken belül az áraknál jár. Nincs körülírt szöveg, csak a lényeg.
               </p>
               <div class="project-goals">
                 <div class="project-goal-item">
                   <span class="project-goal-icon">📍</span>
-                  <span><strong>Területi SEO:</strong> a környékön kereső potenciális ügyfelek gyorsan rátalálnak Google keresésssel is.</span>
+                  <span><strong>Területi SEO:</strong> a környéken kereső potenciális ügyfelek Google kereséssel is rátalálnak.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">💰</span>
-                  <span><strong>Ártablázat kiemelve:</strong> nem kell kérdezni – az árak fő helyen, átláthatóan szerepelnek.</span>
+                  <span><strong>Ártablázat kiemelve:</strong> az árak fő helyen és átláthatóan szerepelnek – kérdezni sem kell.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">⏱️</span>
-                  <span><strong>Gyors döntésés:</strong> az érdeklődő másodpercek alatt érti, mit készít és mennyibe kerül.</span>
+                  <span><strong>Gyors döntés:</strong> másodpercek alatt értheti az érdeklődő, mit készít és mennyibe kerül.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">📱</span>
-                  <span><strong>Mobilra tervezett:</strong> a látogatók többsége telefónról érkezik – az oldal erre van optim alálva.</span>
+                  <span><strong>Mobilra tervezett:</strong> a látogatók többsége telefon ról érkezik – az oldal erre van optim alálva.</span>
                 </div>
               </div>
               <div class="project-tech">
@@ -408,44 +326,33 @@
                 <span class="project-tech-pill">Helyi SEO</span>
                 <span class="project-tech-pill">Netlify</span>
               </div>
-              <a href="https://energetikaitanusito1.hu" target="_blank" rel="noopener noreferrer" class="project-cta-link">
-                Oldal megnyitása →
-              </a>
             </div>
-          </div>
 
-          <!-- ── ELVÁLASZTÓ ── -->
-          <hr class="section-divider" style="margin: 3.5rem 0;">
-
-          <!-- ═══ PROJEKT 2: KLIMAMED ═══ -->
-          <div class="project-block reverse reveal">
-            <div class="project-mockup">
-              <img src="assets/img/ref2.jpg" alt="KlimaMed klímaberendezés honlap">
-            </div>
-            <div class="project-text">
-              <span class="project-type-badge">🌐 Többoldalas honlap • Bizalomg erjsztés</span>
-              <h2>KlimaMed<br>Klímaberendezések</h2>
+            <!-- PROJEKT 2: KLIMAMED -->
+            <div class="project-card reveal reveal-delay-1">
+              <span class="project-type-badge">🌐 Többoldalas • Bizalomg erjsztés</span>
+              <h2>KlimaMed
+Klímaberendezések</h2>
               <p class="project-lead">
-                Nem elegendő megjelenni – meg kell győzni. A KlimaMed honlapja erre épül:
-                több aloldalon épülő profi megjelentés, ahol minden részlet a származó bizalmat erősíti
-                és a szárvazó latogatót az ajánlatkérésig vezeti.
+                Nem elegendő megjelenni – meg kell győzni. A KlimaMed honlapja erre épül: többoldalas struktúrában
+                minden részlet a bizalmat erősíti és a látogatót az ajánlatkérésig vezeti.
               </p>
               <div class="project-goals">
                 <div class="project-goal-item">
                   <span class="project-goal-icon">🤝</span>
-                  <span><strong>Bizalom gerjsztés:</strong> referenciák, márkaismeret, csapat – az ügyfél biztonságban érzi magát.</span>
+                  <span><strong>Bizalomg erjsztés:</strong> referenciák, márkaismeret, csapatés – az ügyfél biztonságban érzi magát.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">💼</span>
-                  <span><strong>Profizmus bemutatása:</strong> több oldalon épített struktúra – szerviz, tervék, galéria, érlős szekciók.</span>
+                  <span><strong>Profizmus bemutatása:</strong> szerviz, galéria, értékesítés – többoldalas, kibővíthető struktúra.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">🔍</span>
-                  <span><strong>Terjesztés és SEO:</strong> szemantikus HTML, tart al om-gazdagsag, és egy hálózat, amit a Google is értékel.</span>
+                  <span><strong>SEO és tartalom:</strong> szemantikus HTML és tartalomgazdagság – amit a Google is értékel.</span>
                 </div>
                 <div class="project-goal-item">
                   <span class="project-goal-icon">📧</span>
-                  <span><strong>Közvetlen ajánlatkérés:</strong> a látogató könnyen eléri a kapcsolatot – minden oldal rávezet.</span>
+                  <span><strong>Közvetlen ajánlatkérés:</strong> minden oldal a kapcsolatfelvételre vezeti a látogatót.</span>
                 </div>
               </div>
               <div class="project-tech">
@@ -456,19 +363,17 @@
                 <span class="project-tech-pill">Netlify</span>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 
-      <!-- ═══ HÁTTÉRKÉP SZEKCIÓ (3.png elmosódva) + STATS ═══ -->
-      <section class="bg-image-section">
-        <div class="bg-image-section-bg" aria-hidden="true"></div>
-        <div class="bg-image-section-overlay" aria-hidden="true"></div>
+      <!-- ═══ STATS ═══ -->
+      <section class="stats-section">
         <div class="container">
-          <header class="section-header reveal" style="margin-bottom:0;">
+          <header class="section-header reveal">
             <p class="section-kicker">Módszertan</p>
-            <h2 class="section-title">Minden projekt mögött értelmes str atégia áll.</h2>
+            <h2 class="section-title">Minden projekt mögött értelmes stratégia áll.</h2>
             <p class="section-lead">
               Egy weboldal annyi, amennyit életet lehel bele a struktúra, a szöveg és a vizualitás.
               A lényeg nem az, hogy szép legyen – hanem hogy működjön.
