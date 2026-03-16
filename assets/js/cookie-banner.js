@@ -43,11 +43,11 @@
     banner.innerHTML = `
       <div class="wm-cookie-inner">
         <div class="wm-cookie-text">
-          <strong>🍪 Sütiket használunk</strong>
-          <p>Az oldal Google Analytics sütiket használ a látogatottság mérésére. Ezek csak az elfogadás után töltődnek be. Bővebben az <a href="privacy.html">Adatvédelmi tájékoztatóban</a>.</p>
+          <strong>Sütiket beállítása</strong>
+          <p>Az oldal Google Analytics sütiket használ a látogatottság mérésére. Ezek csak az elfogadás után töltődnek be. Bővebben az erről az<a href="privacy.html">Adatvédelmi tájékoztatóban</a>.</p>
         </div>
         <div class="wm-cookie-buttons">
-          <button id="wm-cookie-reject" class="wm-btn-reject">Csak szükséges</button>
+          <button id="wm-cookie-reject" class="wm-btn-reject">Elutasítom</button>
           <button id="wm-cookie-accept" class="wm-btn-accept">Elfogadom</button>
         </div>
       </div>
