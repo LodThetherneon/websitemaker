@@ -43,7 +43,7 @@
     banner.innerHTML = `
       <div class="wm-cookie-inner">
         <div class="wm-cookie-text">
-          <strong>Sütiket beállítása</strong>
+          <strong>Sütik beállítása</strong>
           <p>Az oldal Google Analytics sütiket használ a látogatottság mérésére. Ezek csak az elfogadás után töltődnek be. Bővebben az erről az <a href="privacy.html">Adatvédelmi tájékoztatóban</a>.</p>
         </div>
         <div class="wm-cookie-buttons">
