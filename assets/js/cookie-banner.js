@@ -1,14 +1,3 @@
-/*
-  ================================================================
-  GDPR Süti Banner – websitemaker.hu
-  ================================================================
-  Automatikusan megjelenik az első látogatáskor.
-  - Elfogadás → süti elmentve, Google Analytics betöltve
-  - Elutasítás → csak funkcionális sütik futnak
-  - 365 napig emlékezik a döntésre
-  ================================================================
-*/
-
 (function () {
   const COOKIE_KEY = 'wm_cookie_consent';
   const COOKIE_DAYS = 365;
@@ -30,7 +19,8 @@
     const banner = document.getElementById('wm-cookie-banner');
     if (banner) {
       banner.style.opacity = '0';
-      banner.style.transform = 'translateY(20px)';
+      // Lefelé csúszik ki a képernyő alján
+      banner.style.transform = 'translateY(100%)';
       setTimeout(() => banner.remove(), 350);
     }
   }
@@ -58,49 +48,53 @@
     style.textContent = `
       #wm-cookie-banner {
         position: fixed;
-        bottom: 1.5rem;
-        left: 50%;
-        transform: translateX(-50%) translateY(0);
-        width: calc(100% - 2rem);
-        max-width: 720px;
-        background: #1a1a2e;
-        border: 1px solid rgba(124,111,247,0.35);
-        border-radius: 14px;
-        padding: 1.25rem 1.5rem;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #413a79;
+        border-top: 1px solid rgba(13, 10, 41, 0.72);
+        padding: 0.8rem 1.5rem;
         z-index: 9999;
-        box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
         transition: opacity 0.35s ease, transform 0.35s ease;
         opacity: 0;
-        animation: wm-cookie-in 0.4s 0.5s ease forwards;
+        transform: translateY(100%);
+        animation: wm-cookie-in 0.4s 0.2s ease forwards;
+        box-sizing: border-box;
       }
       @keyframes wm-cookie-in {
-        from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-        to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        from { opacity: 0; transform: translateY(100%); }
+        to   { opacity: 1; transform: translateY(0); }
       }
       .wm-cookie-inner {
+        max-width: 1200px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 1.5rem;
         flex-wrap: wrap;
       }
       .wm-cookie-text {
         flex: 1;
         min-width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
       }
       .wm-cookie-text strong {
-        display: block;
         font-size: 0.95rem;
         color: #fff;
-        margin-bottom: 0.35rem;
+        white-space: nowrap;
       }
       .wm-cookie-text p {
-        font-size: 0.82rem;
-        color: #aaa;
+        font-size: 0.85rem;
+        color: #e3e3e3;
         margin: 0;
-        line-height: 1.55;
+        line-height: 1.4;
       }
       .wm-cookie-text a {
-        color: #7c6ff7;
+        color: #b4b8e7;
         text-decoration: underline;
       }
       .wm-cookie-buttons {
@@ -109,31 +103,34 @@
         flex-shrink: 0;
       }
       .wm-btn-reject {
-        padding: 0.55rem 1.1rem;
-        border-radius: 8px;
-        border: 1px solid rgba(255,255,255,0.15);
+        padding: 0.45rem 1rem;
+        border-radius: 6px;
+        border: 1px solid rgba(212, 108, 108, 0.77);
         background: transparent;
-        color: #aaa;
+        color: #fefefe;
         font-size: 0.85rem;
         cursor: pointer;
         transition: border-color 0.2s, color 0.2s;
       }
-      .wm-btn-reject:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+      .wm-btn-reject:hover { border-color: rgba(154, 98, 98, 0.69); color: #fff; }
       .wm-btn-accept {
-        padding: 0.55rem 1.25rem;
-        border-radius: 8px;
+        padding: 0.45rem 1.25rem;
+        border-radius: 6px;
         border: none;
-        background: #7c6ff7;
+        background: #64ae74;
         color: #fff;
         font-size: 0.85rem;
         font-weight: 700;
         cursor: pointer;
         transition: background 0.2s;
       }
-      .wm-btn-accept:hover { background: #6357e0; }
-      @media (max-width: 500px) {
-        .wm-cookie-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
-        .wm-cookie-buttons { width: 100%; }
+      .wm-btn-accept:hover { background: #2e8f48; }
+
+      @media (max-width: 768px) {
+        #wm-cookie-banner { padding: 1rem; }
+        .wm-cookie-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
+        .wm-cookie-text { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+        .wm-cookie-buttons { justify-content: flex-end; width: 100%; }
         .wm-btn-reject, .wm-btn-accept { flex: 1; text-align: center; }
       }
     `;
@@ -154,23 +151,19 @@
     });
   }
 
-  // Fő logika: ellenőrizzük van-e már döntés
   function init() {
     const consent = getCookie(COOKIE_KEY);
     if (consent === 'accepted') {
-      // Már elfogadta korábban → azonnal töltjük az analytics-t
       if (typeof window.loadGoogleAnalytics === 'function') {
         window.loadGoogleAnalytics();
       }
     } else if (consent === null) {
-      // Még nincs döntés → megjelenítjük a bannert
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', createBanner);
       } else {
         createBanner();
       }
     }
-    // 'rejected' esetén nem töltünk be semmit
   }
 
   init();
