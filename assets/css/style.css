@@ -449,77 +449,166 @@ section {
   border-radius: 999px; background: rgba(15, 23, 42, 0.8);
   border: 1px solid rgba(148, 163, 184, 0.45); color: var(--text-muted);
 }
+
 /* =========================================
    7. HOGYAN DOLGOZOM (FOLYAMAT LÉPÉSEK)
    ========================================= */
 
-.process-section { 
-  background: transparent; 
+.process-section {
+  background: rgba(2, 8, 32, 0.5);
+  padding: 5rem 0;
 }
 
 .process-steps {
-  display: flex; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 2.5rem; 
-  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 3rem;
+  counter-reset: steps;
+}
+
+/* 2. sor középre: a 4-5. kártyát egy wrapper-rel kezeljük */
+.process-steps-row2 {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 1.75rem;
+}
+
+.process-steps-row2 .process-step {
+  flex: 0 1 calc(33.333% - 0.875rem);
+  max-width: calc(33.333% - 0.875rem);
 }
 
 .process-step {
-  
-  flex: 1 1 300px; 
-  max-width: 380px; 
-  
- 
-  position: relative; 
-  padding: 2rem 1.8rem; 
-  border-radius: var(--radius-lg);
-  background: var(--bg-card-soft); 
-  border: 1px solid rgba(148, 163, 184, 0.2); 
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.4);
-  transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  position: relative;
+  padding: 2rem 1.75rem 1.75rem;
+  border-radius: 16px;
+  background: rgba(10, 18, 50, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  counter-increment: steps;
+
+  /* Bekúszás alapállapota */
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+/* Lépcsőzetes késleltetés */
+.process-step:nth-child(1) { transition-delay: 0.0s; }
+.process-step:nth-child(2) { transition-delay: 0.1s; }
+.process-step:nth-child(3) { transition-delay: 0.2s; }
+.process-steps-row2 .process-step:nth-child(1) { transition-delay: 0.3s; }
+.process-steps-row2 .process-step:nth-child(2) { transition-delay: 0.4s; }
 
-.process-step:hover { 
-  transform: translateY(-5px); 
-  border-color: rgba(34, 211, 238, 0.5); 
-  background: rgba(15, 23, 42, 0.95); 
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.8), 0 0 20px rgba(34, 211, 238, 0.1);
+/* Reveal */
+.process-step.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
+/* Hover: felcsúszik + cyan glow */
+.process-step:hover {
+  transform: translateY(-8px);
+  border-color: rgba(34, 211, 238, 0.55);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.55),
+    0 0 32px rgba(34, 211, 238, 0.18);
+}
 
-.step-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 50%;
-  background: rgba(34, 211, 238, 0.12);
+/* Háttér fény-sáv hover-en */
+.process-step::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.07) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.process-step:hover::after {
+  opacity: 1;
+}
+
+/* Szám: nagy, halvány, pulse hover-en */
+@keyframes stepPulse {
+  0%, 100% { text-shadow: 0 0 0px rgba(34, 211, 238, 0); }
+  50%       { text-shadow: 0 0 18px rgba(34, 211, 238, 0.6); }
+}
+
+.process-step::before {
+  content: counter(steps, decimal-leading-zero);
+  display: block;
+  font-size: 3rem;
+  font-weight: 900;
   color: var(--accent);
-  font-size: 1.1rem;
-  font-weight: 800;
-  margin-bottom: 1.2rem;
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  box-shadow: inset 0 0 10px rgba(34, 211, 238, 0.1);
+  opacity: 0.55;
+  line-height: 1;
+  margin-bottom: 1rem;
+  animation: stepPulse 3s ease-in-out infinite;
+  animation-play-state: paused;
 }
 
-.process-step h3 { 
-  font-size: 1.1rem; 
-  font-weight: 600; 
+.process-step:hover::before {
+  animation-play-state: running;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.process-step h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.8rem; 
+  margin: 0 0 0.65rem;
 }
 
-.process-step p { 
-  font-size: 0.95rem; 
-  color: var(--text-muted); 
-  margin: 0; 
-  line-height: 1.65; 
+.process-step p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* Reszponzív */
+@media (max-width: 860px) {
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-steps-row2 {
+    grid-column: auto;
+    display: contents;
+  }
+  .process-steps-row2 .process-step {
+    flex: none;
+    max-width: none;
+  }
+  .process-steps-row2 .process-step:last-child {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .process-steps-row2 .process-step:last-child {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
+  }
 }
 
 /* =========================================
@@ -582,9 +671,7 @@ section {
   line-height: 1.7;
 }
 
-.about-block p {
-  max-width: 64ch;
-}
+.about-block p { max-width: 64ch; }
 
 .about-image {
   border-radius: var(--radius-lg);
@@ -647,7 +734,6 @@ section {
 .project-link { font-size: 0.85rem; color: var(--accent); font-weight: 500; }
 
 .contact-layout { display: grid; gap: 2.5rem; align-items: flex-start; }
-
 .contact-meta { margin-bottom: 1.5rem; }
 
 .contact-links {
@@ -664,9 +750,7 @@ section {
   transition: color var(--transition-fast);
 }
 
-.contact-links a:hover {
-  color: var(--accent);
-}
+.contact-links a:hover { color: var(--accent); }
 
 form.contact-card {
   background: radial-gradient(circle at top right, rgba(53, 212, 237, 0.08), var(--bg-card-soft));
@@ -698,9 +782,7 @@ form.contact-card {
   transition: color var(--transition-fast);
 }
 
-.form-field:focus-within label {
-  color: var(--accent);
-}
+.form-field:focus-within label { color: var(--accent); }
 
 .form-field input,
 .form-field textarea {
@@ -718,9 +800,7 @@ form.contact-card {
 }
 
 .form-field input::placeholder,
-.form-field textarea::placeholder {
-  color: rgba(229, 233, 243, 0.63);
-}
+.form-field textarea::placeholder { color: rgba(229, 233, 243, 0.63); }
 
 .form-field input:hover,
 .form-field textarea:hover {
@@ -761,14 +841,8 @@ form.contact-card {
   flex-shrink: 0;
 }
 
-.form-checkbox span a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.form-checkbox span a:hover {
-  text-decoration: underline;
-}
+.form-checkbox span a { color: var(--accent); text-decoration: none; }
+.form-checkbox span a:hover { text-decoration: underline; }
 
 form.contact-card button {
   align-self: flex-start;
@@ -790,16 +864,15 @@ form.contact-card button {
   align-items: center; justify-content: center; text-align: center;
 }
 
-.footer-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;}
-
+.footer-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
 
 .footer-nav a {
   color: var(--text-muted);
   text-decoration: none;
   transition: color 180ms ease; padding: 0.5rem;
 }
-.footer-nav a:hover { color: var(--accent); }
 
+.footer-nav a:hover { color: var(--accent); }
 
 .footer-nav span.footer-nav-current {
   color: var(--accent);
@@ -813,7 +886,6 @@ form.contact-card button {
 
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
 
 /* =========================================
    10. RESZPONZÍV NÉZETEK (TABLET / ASZTAL)
@@ -918,10 +990,7 @@ form.contact-card button {
       0 0 28px rgba(34, 211, 238, 0.16);
   }
 
-  .nav-links li {
-    display: block;
-    width: 100%;
-  }
+  .nav-links li { display: block; width: 100%; }
 
   .nav-links li a {
     display: block;
@@ -942,19 +1011,16 @@ form.contact-card button {
   .hero-actions { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; }
   .hero-title { font-size: clamp(2.2rem, 8vw, 2.8rem); }
-  .site-footer {padding-block: 2.5rem;}
-  .site-footer-inner { flex-direction: column; align-items: center; gap:1.5rem; }
+  .site-footer { padding-block: 2.5rem; }
+  .site-footer-inner { flex-direction: column; align-items: center; gap: 1.5rem; }
   form.contact-card button { width: 100%; }
-
-} 
+}
 
 /* =========================================
    REFERENCIÁK – MACBOOK LAPTOP MOCKUP
    ========================================= */
 
-.references-laptop {
-  padding-block: 4rem;
-}
+.references-laptop { padding-block: 4rem; }
 
 .references-laptop .section-header {
   text-align: center;
@@ -963,10 +1029,7 @@ form.contact-card button {
   max-width: 700px;
 }
 
-.references-laptop .section-kicker {
-  text-align: center;
-  display: block;
-}
+.references-laptop .section-kicker { text-align: center; display: block; }
 
 .references-laptop .section-title {
   font-size: clamp(1.9rem, 4vw, 2.8rem);
@@ -1138,9 +1201,7 @@ form.contact-card button {
   text-align: center;
 }
 
-.references-detail {
-  text-align: left;
-}
+.references-detail { text-align: left; }
 
 .references-tabs {
   display: inline-flex;
@@ -1193,18 +1254,11 @@ form.contact-card button {
   line-height: 1.7;
 }
 
-.references-detail-list li {
-  margin-bottom: 0.45rem;
-}
+.references-detail-list li { margin-bottom: 0.45rem; }
 
 @media (max-width: 767px) {
-  .references-laptop {
-    padding-block: 4rem 3rem;
-  }
-  .references-tabs {
-    width: 100%;
-    justify-content: center;
-  }
+  .references-laptop { padding-block: 4rem 3rem; }
+  .references-tabs { width: 100%; justify-content: center; }
 }
 
 /* =========================================
@@ -1236,41 +1290,38 @@ form.contact-card button {
     border-color: rgba(34, 211, 238, 0.5);
   }
 }
+
 /* =========================================
    13. MIÉRT ÉN (WHY ME) - 4 KÁRTYA ANIMÁCIÓVAL
    ========================================= */
 
-.why-grid { 
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 2.5rem; 
-  margin-top: 3.5rem; 
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-top: 3.5rem;
 }
 
 @media (max-width: 850px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
+  .why-grid { grid-template-columns: 1fr; }
 }
 
-
-
-.why-item { 
+.why-item {
   position: relative;
-  padding: 2.5rem 2rem; 
-  border-radius: var(--radius-lg); 
-  background: rgba(15, 23, 42, 0.6); 
-  border: 1px solid rgba(148, 163, 184, 0.15); 
-  display: flex; 
-  flex-direction: column; 
-  gap: 1rem; 
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   overflow: hidden;
   z-index: 1;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-              box-shadow 0.4s ease, 
-              border-color 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
-
 
 .why-item::before {
   content: "";
@@ -1287,31 +1338,28 @@ form.contact-card button {
   transform: translate(0, 0) scale(0.5);
 }
 
-
 .why-item:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: rgba(34, 211, 238, 0.5);
   background: rgba(15, 23, 42, 0.95);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4), 
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
     0 0 30px rgba(34, 211, 238, 0.15);
 }
-
 
 .why-item:hover::before {
   opacity: 1;
   transform: translate(10%, -10%) scale(1);
 }
 
-
-.why-icon { 
+.why-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 3.5rem;
   height: 3.5rem;
-  font-size: 1.8rem; 
-  line-height: 1; 
+  font-size: 1.8rem;
+  line-height: 1;
   border-radius: 12px;
   background: rgba(34, 211, 238, 0.1);
   border: 1px solid rgba(34, 211, 238, 0.2);
@@ -1319,48 +1367,45 @@ form.contact-card button {
   transition: transform 0.4s ease, background 0.4s ease;
 }
 
-
 .why-item:hover .why-icon {
   transform: translateY(-5px) rotate(-5deg);
   background: rgba(34, 211, 238, 0.2);
 }
 
-.why-item h3 { 
-  font-size: 1.2rem; 
-  font-weight: 700; 
+.why-item h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--text-main);
-  margin: 0; 
+  margin: 0;
   transition: color 0.3s ease;
 }
 
-.why-item:hover h3 {
-  color: var(--accent); 
+.why-item:hover h3 { color: var(--accent); }
+
+.why-item p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
 }
 
-.why-item p { 
-  font-size: 0.95rem; 
-  color: var(--text-muted); 
-  margin: 0; 
-  line-height: 1.6; 
+.tech-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 3.5rem;
 }
 
-.tech-strip { 
-  display: flex; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 0.8rem; 
-  margin-top: 3.5rem; 
-}
-
-.tech-badge { 
-  padding: 0.5rem 1.2rem; 
-  border-radius: 999px; 
-  font-size: 0.85rem; 
-  font-weight: 600; 
-  background: var(--bg-card-soft); 
-  border: 1px solid rgba(148, 163, 184, 0.25); 
-  color: var(--text-main); 
-  letter-spacing: .03em; 
+.tech-badge {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--bg-card-soft);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: var(--text-main);
+  letter-spacing: .03em;
   transition: all var(--transition-fast);
 }
 
