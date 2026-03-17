@@ -12,7 +12,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.websitemaker.hu/">
 
-  <!-- ═══ OPEN GRAPH (Facebook, LinkedIn) ═══ -->
+  <!-- ═══ OPEN GRAPH ═══ -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.websitemaker.hu/">
   <meta property="og:title" content="websitemaker.hu – Egyedi weboldal fejlesztés vállalkozásoknak">
@@ -27,7 +27,7 @@
   <meta name="twitter:description" content="Sablon nélküli, egyedi HTML weboldalak vállalkozásoknak. Gyors átadás, SEO alap, hosszú távú támogatás.">
   <meta name="twitter:image" content="https://www.websitemaker.hu/assets/img/og-image.jpg">
 
-  <!-- ═══ SCHEMA.ORG STRUKTURÁLT ADAT (Google Rich Results) ═══ -->
+  <!-- ═══ SCHEMA.ORG ═══ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,9 +45,7 @@
       "@type": "Person",
       "name": "Kiss Zoltán"
     },
-    "sameAs": [
-      "https://www.websitemaker.hu"
-    ],
+    "sameAs": ["https://www.websitemaker.hu"],
     "priceRange": "€€",
     "openingHours": "Mo-Fr 08:00-18:00",
     "areaServed": "HU"
@@ -68,7 +66,7 @@
       margin: 0;
       border-radius: 12px;
       overflow: hidden;
-      background: var(--clr-surface, #525283);
+      background: var(--bg-card-soft);
       border: 1px solid rgba(255,255,255,0.10);
       box-shadow: 0 12px 40px rgba(0,0,0,0.35);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -114,14 +112,15 @@
     /* ── TRUST BAR ── */
     .trust-bar {
       padding: 2.5rem 0;
-      border-top: 1px solid var(--clr-border, rgba(255, 255, 255, 0));
-      border-bottom: 1px solid var(--clr-border, rgba(255, 255, 255, 0));
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
     }
     .trust-bar-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 3.5rem; text-align: center; }
     .trust-item { display: flex; flex-direction: column; gap: 0.25rem; }
-    .trust-number { font-size: 2rem; font-weight: 800; color: var(--clr-accent, #7c6ff7); line-height: 1; }
-    .trust-label { font-size: 0.8rem; color: var(--clr-muted, #d2d1d1); letter-spacing: .04em; }
+    .trust-number { font-size: 2rem; font-weight: 800; color: var(--clr-accent, #a296f8); line-height: 1; }
+    .trust-label { font-size: 0.8rem; color: var(--clr-muted, #f8f8f8); letter-spacing: .04em; }
 
+    /* ── KÁRTYA CÍM GRADIENS ANIMÁCIÓ ── */
     @keyframes gradShift {
       0%   { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
@@ -139,44 +138,12 @@
     .card:nth-child(2) .card-title-grad { animation-delay: -1.67s; }
     .card:nth-child(3) .card-title-grad { animation-delay: -3.33s; }
 
-    /* ── HOW IT WORKS ── */
-    .process-section { background: var(--clr-surface-alt, rgba(39, 29, 78, 0.077)); }
-    .process-steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem; counter-reset: steps; margin-top: 2.5rem;
-    }
-    .process-step {
-      position: relative; padding: 1.75rem 1.5rem 1.5rem; border-radius: 14px;
-      background: linear-gradient(145deg, rgba(71, 69, 116, 0.95) 0%, rgba(22,20,50,0.98) 100%);
-      border: 1px solid rgba(124,111,247,0.18); counter-increment: steps;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
-      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease;
-      overflow: hidden;
-    }
-    .process-step:hover { transform: translateY(-6px); border-color: rgba(124,111,247,0.55); box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 28px rgba(124,111,247,0.28); }
-    .process-step::after { content: ''; position: absolute; inset: 0; border-radius: 14px; background: linear-gradient(160deg, rgba(124,111,247,0.10) 0%, transparent 55%); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
-    .process-step:hover::after { opacity: 1; }
-    .process-step::before { content: counter(steps, decimal-leading-zero); display: block; font-size: 2.2rem; font-weight: 800; color: var(--clr-accent, #7c6ff7); opacity: 0.4; line-height: 1; margin-bottom: 0.75rem; position: relative; z-index: 1; }
-    .process-step h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; position: relative; z-index: 1; }
-    .process-step p { font-size: 0.875rem; color: var(--clr-muted, #aaa); margin: 0; line-height: 1.55; position: relative; z-index: 1; }
-
-    /* ── WHY ME ── */
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-    .why-item { padding: 1.5rem; border-radius: 12px; background: var(--clr-surface, #313c5f); border: 1px solid var(--clr-border, rgba(255,255,255,0.07)); display: flex; flex-direction: column; gap: 0.6rem; }
-    .why-icon { font-size: 1.6rem; line-height: 1; }
-    .why-item h3 { font-size: 0.95rem; font-weight: 700; margin: 0; }
-    .why-item p { font-size: 0.85rem; color: var(--clr-muted, #aaa); margin: 0; line-height: 1.55; }
-
     /* ── CTA SZALAG ── */
-    .cta-strip { background: linear-gradient(135deg, var(--clr-accent, #7c6ff7) 0%, #5a52d5 100%); padding: 4rem 0; text-align: center; }
-    .cta-strip h2 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; color: #fff; margin: 0 0 0.75rem; }
-    .cta-strip p { color: rgba(255,255,255,0.82); font-size: 1rem; margin: 0 0 2rem; }
-    .cta-strip .btn-white { background: #fff; color: var(--clr-accent, #7c6ff7); font-weight: 700; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
-    .cta-strip .btn-white:hover { opacity: 0.9; }
-
-    /* ── TECH STACK ── */
-    .tech-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
-    .tech-badge { padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: var(--clr-surface, #1a1a2e); border: 1px solid var(--clr-border, rgba(255,255,255,0.1)); color: var(--clr-text, #eee); letter-spacing: .03em; }
+    .cta-strip { background: linear-gradient(135deg, var(--clr-accent, #7c6ff7) 0%, var(--clr-accent-dark, #5a52d5) 100%); padding: 4rem 0; text-align: center; }
+    .cta-strip h2 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; color: #ffffff; margin: 0 0 0.75rem; }
+    .cta-strip p { color: rgba(255, 255, 255, 0.75); font-size: 1rem; margin: 0 0 2rem; }
+    .cta-strip .btn-white { background: #ffffff; color: var(--clr-accent, #7c6ff7); font-weight: 700; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .cta-strip .btn-white:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -202,6 +169,7 @@
     </header>
 
     <main>
+
       <!-- ═══ HERO ═══ -->
       <section class="hero">
         <div class="container hero-layout">
@@ -211,7 +179,7 @@
               <span>Egyedi HTML weboldal fejlesztés vállalkozásának</span>
             </div>
             <h1 class="hero-title">
-              Weboldalak fejleszése, amelyek <span class="accent">átláthatók, gyorsak</span> és jól bemutatják a vállalkozását.
+              Weboldalak fejlesztése, amelyek <span class="accent">átláthatók, gyorsak</span> és jól bemutatják a vállalkozását.
             </h1>
             <p class="hero-subtitle">
               Egyoldalas landingtől a többoldalas honlapokig segítek, hogy a
@@ -261,7 +229,7 @@
         </div>
       </div>
 
-            <!-- ═══ MIBEN SEGÍTEK ═══ -->
+      <!-- ═══ MIBEN SEGÍTEK ═══ -->
       <section id="szolgaltatasok">
         <div class="container">
           <header class="section-header reveal">
@@ -272,9 +240,7 @@
               amire később is biztonsággal tudsz építeni.
             </p>
           </header>
-          
           <div class="card-grid">
-            <!-- 1. Kártya -->
             <article class="card reveal">
               <div class="card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem;">🚀</div>
               <h3 class="card-title card-title-grad">Egyoldalas landing</h3>
@@ -286,8 +252,6 @@
                 <span class="pill">Gyors konverzió</span>
               </div>
             </article>
-            
-            <!-- 2. Kártya -->
             <article class="card reveal">
               <div class="card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem;">📑</div>
               <h3 class="card-title card-title-grad">Többoldalas honlapok</h3>
@@ -299,8 +263,6 @@
                 <span class="pill">Könnyen skálázható</span>
               </div>
             </article>
-            
-            <!-- 3. Kártya -->
             <article class="card reveal">
               <div class="card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem;">🤝</div>
               <h3 class="card-title card-title-grad">Hosszú távú támogatás</h3>
@@ -316,52 +278,43 @@
         </div>
       </section>
 
-
-            <!-- ═══ HOGYAN DOLGOZOM ═══ -->
+      <!-- ═══ HOGYAN DOLGOZOM ═══ -->
       <section class="process-section" id="folyamat">
         <div class="container">
           <header class="section-header reveal">
             <p class="section-kicker">Hogyan dolgozom</p>
-            <h2 class="section-title">Átlátható munkamenet, rejtett költségek nélkül.</h2>
-            <p class="section-lead">Tudod pontosan, mikor mi történik. Nincs hosszas várakozás, nincs homályos kommunikáció.</p>
+            <h2 class="section-title">5 lépésben az ötlettől az éles oldalig.</h2>
+            <p class="section-lead">Átlátható folyamat, nincsenek meglepetések – tudja mindig, hol tartunk.</p>
           </header>
-          
           <div class="process-steps">
             <div class="process-step reveal">
-       
               <h3>Egyeztetés</h3>
               <p>Rövid megbeszélés telefonon vagy online. Megismerem a vállalkozását, a céljait és a pontos elvárásait.</p>
             </div>
-            
             <div class="process-step reveal">
-             
               <h3>Tervezés</h3>
               <p>Közösen meghatározzuk a struktúrát és a designt. Mindent jóváhagy, még mielőtt a kódolás elkezdődne.</p>
             </div>
-            
             <div class="process-step reveal">
-        
               <h3>Fejlesztés</h3>
               <p>Tiszta HTML, CSS és JS alapú építkezés, felesleges sablonok és lassító page builderek nélkül.</p>
             </div>
-            
-            <div class="process-step reveal">
-              
-              <h3>Finomítás</h3>
-              <p>Prezentálom az oldalt. Ön visszajelzést ad, és elvégzem a kért módosításokat a tökéletes eredményért.</p>
-            </div>
-            
-            <div class="process-step reveal">
-              
-              <h3>Átadás</h3>
-              <p>SEO optimalizálás, domain beállítása és a tárhelyre való feltöltés. Az oldala éles és használatra kész.</p>
+            <!-- 2. sor – középre igazítva CSS-ből -->
+            <div class="process-steps-row2">
+              <div class="process-step reveal">
+                <h3>Finomítás</h3>
+                <p>Prezentálom az oldalt. Ön visszajelzést ad, és elvégzem a kért módosításokat a tökéletes eredményért.</p>
+              </div>
+              <div class="process-step reveal">
+                <h3>Átadás</h3>
+                <p>SEO optimalizálás, domain beállítása és a tárhelyre való feltöltés. Az oldala éles és használatra kész.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-
-            <!-- ═══ MIÉRT ÉN ═══ -->
+      <!-- ═══ MIÉRT ÉN ═══ -->
       <section id="miert-en">
         <div class="container">
           <header class="section-header reveal">
@@ -371,50 +324,49 @@
               Közvetlen kommunikáció, valódi személyes felelősségvállalás, és egy fejlesztő, aki tényleg érti a kis- és középvállalkozások igényeit.
             </p>
           </header>
-          
           <div class="why-grid">
             <div class="why-item reveal">
               <span class="why-icon">⚡</span>
               <h3>Gyors átadás</h3>
               <p>Általában 5–10 munkanapon belül kész az oldal – nem heteket vagy hónapokat, hanem napokat vár.</p>
             </div>
-            
             <div class="why-item reveal">
               <span class="why-icon">🎯</span>
               <h3>Személyre szabott</h3>
               <p>Nincs sablon. Minden oldal az adott vállalkozásra, célközönségre és egyedi üzenetre épül.</p>
             </div>
-            
             <div class="why-item reveal">
               <span class="why-icon">📱</span>
               <h3>Mobilon is tökéletes</h3>
               <p>Reszponzív design: az oldala telefonon, tableten és asztali gépen is egyformán gyors és használható.</p>
             </div>
-            
             <div class="why-item reveal">
               <span class="why-icon">💬</span>
               <h3>Közvetlen kommunikáció</h3>
               <p>Velem kommunikál, nem egy ügyfélszolgálattal. Gyors válaszok, módosítások és átlátható folyamat.</p>
             </div>
           </div>
-          
           <div class="tech-strip reveal">
-            <span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span>
-            <span class="tech-badge">Domain</span><span class="tech-badge">Hosting</span>
-            <span class="tech-badge">Reszponzív design</span><span class="tech-badge">Egyedi animációk</span>
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">Domain</span>
+            <span class="tech-badge">Hosting</span>
+            <span class="tech-badge">Reszponzív design</span>
+            <span class="tech-badge">Egyedi animációk</span>
           </div>
         </div>
       </section>
-
 
       <!-- ═══ CTA SZALAG ═══ -->
       <section class="cta-strip">
         <div class="container">
           <h2>Készen áll egy egyedi weboldalra?</h2>
           <p>Írjon egy üzenetet – megbeszéljük az igényeit, 24 órán belül visszajelzek.</p>
-          <a href="contact.html" class="btn-white">Kérjen ingyenes ajánlatot →&rarr;</a>
+          <a href="contact.html" class="btn-white">Kérjen ingyenes ajánlatot →</a>
         </div>
       </section>
+
     </main>
 
     <footer class="site-footer">
@@ -424,7 +376,7 @@
           <p class="footer-meta">Modern, reszponzív weboldalak vállalkozásoknak – egyoldalas landingtől a többoldalas honlapig.</p>
         </div>
         <nav class="footer-nav" aria-label="Alsó navigáció">
-          <a href="index.html">Főoldal</a>
+          <span class="footer-nav-current">Főoldal</span>
           <a href="about.html">Bemutatkozás</a>
           <a href="references.html">Referenciák</a>
           <a href="contact.html">Kapcsolat</a>
@@ -433,9 +385,10 @@
       </div>
     </footer>
   </div>
+
   <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
   <script src="assets/js/main.js"></script>
-  <!-- Google Analytics + Süti banner -->
   <script src="assets/js/analytics.js"></script>
   <script src="assets/js/cookie-banner.js"></script>
 </body>
