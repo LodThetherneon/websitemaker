@@ -68,7 +68,7 @@
       margin: 0;
       border-radius: 12px;
       overflow: hidden;
-      background: var(--clr-surface, #1a1a2e);
+      background: var(--clr-surface, #525283);
       border: 1px solid rgba(255,255,255,0.10);
       box-shadow: 0 12px 40px rgba(0,0,0,0.35);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -114,20 +114,20 @@
     /* ── TRUST BAR ── */
     .trust-bar {
       padding: 2.5rem 0;
-      border-top: 1px solid var(--clr-border, rgba(255,255,255,0.07));
-      border-bottom: 1px solid var(--clr-border, rgba(255,255,255,0.07));
+      border-top: 1px solid var(--clr-border, rgba(255, 255, 255, 0));
+      border-bottom: 1px solid var(--clr-border, rgba(255, 255, 255, 0));
     }
     .trust-bar-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 3.5rem; text-align: center; }
     .trust-item { display: flex; flex-direction: column; gap: 0.25rem; }
     .trust-number { font-size: 2rem; font-weight: 800; color: var(--clr-accent, #7c6ff7); line-height: 1; }
-    .trust-label { font-size: 0.8rem; color: var(--clr-muted, #aaa); letter-spacing: .04em; }
+    .trust-label { font-size: 0.8rem; color: var(--clr-muted, #d2d1d1); letter-spacing: .04em; }
 
     @keyframes gradShift {
       0%   { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
     .card-title-grad {
-      font-size: 1.15rem; font-weight: 800; margin: 0 0 0.75rem; line-height: 1.3;
+      font-size: 1.25rem; font-weight: 800; margin: 0 0 0.75rem; line-height: 1.3;
       background: linear-gradient(90deg, #a78bfa 0%, #60a5fa 33%, #67e8f9 55%, #818cf8 78%, #a78bfa 100%);
       background-size: 300% 100%;
       -webkit-background-clip: text; background-clip: text;
@@ -140,14 +140,14 @@
     .card:nth-child(3) .card-title-grad { animation-delay: -3.33s; }
 
     /* ── HOW IT WORKS ── */
-    .process-section { background: var(--clr-surface-alt, #111122); }
+    .process-section { background: var(--clr-surface-alt, rgba(39, 29, 78, 0.077)); }
     .process-steps {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem; counter-reset: steps; margin-top: 2.5rem;
     }
     .process-step {
       position: relative; padding: 1.75rem 1.5rem 1.5rem; border-radius: 14px;
-      background: linear-gradient(145deg, rgba(36,34,70,0.95) 0%, rgba(22,20,50,0.98) 100%);
+      background: linear-gradient(145deg, rgba(71, 69, 116, 0.95) 0%, rgba(22,20,50,0.98) 100%);
       border: 1px solid rgba(124,111,247,0.18); counter-increment: steps;
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
       transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease;
@@ -162,7 +162,7 @@
 
     /* ── WHY ME ── */
     .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-    .why-item { padding: 1.5rem; border-radius: 12px; background: var(--clr-surface, #1a1a2e); border: 1px solid var(--clr-border, rgba(255,255,255,0.07)); display: flex; flex-direction: column; gap: 0.6rem; }
+    .why-item { padding: 1.5rem; border-radius: 12px; background: var(--clr-surface, #313c5f); border: 1px solid var(--clr-border, rgba(255,255,255,0.07)); display: flex; flex-direction: column; gap: 0.6rem; }
     .why-icon { font-size: 1.6rem; line-height: 1; }
     .why-item h3 { font-size: 0.95rem; font-weight: 700; margin: 0; }
     .why-item p { font-size: 0.85rem; color: var(--clr-muted, #aaa); margin: 0; line-height: 1.55; }
@@ -219,7 +219,7 @@
             </p>
             <div class="hero-actions">
               <a href="contact.html" class="btn btn-primary">Ajánlat kérése</a>
-              <a href="about.html" class="btn btn-ghost">Ismerjen meg – és a munkamódszeremet</a>
+              <a href="about.html" class="btn btn-ghost">Ismerjen meg</a>
             </div>
             <div class="hero-meta">
               <span>
@@ -261,8 +261,8 @@
         </div>
       </div>
 
-      <!-- ═══ MIBEN SEGÍTEK ═══ -->
-      <section>
+            <!-- ═══ MIBEN SEGÍTEK ═══ -->
+      <section id="szolgaltatasok">
         <div class="container">
           <header class="section-header reveal">
             <p class="section-kicker">Miben segítek</p>
@@ -272,83 +272,132 @@
               amire később is biztonsággal tudsz építeni.
             </p>
           </header>
+          
           <div class="card-grid">
+            <!-- 1. Kártya -->
             <article class="card reveal">
-              <h3 class="card-title card-title-grad">Egyoldalas landing oldalak</h3>
+              <div class="card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem;">🚀</div>
+              <h3 class="card-title card-title-grad">Egyoldalas landing</h3>
               <p class="card-body">
-                Ha egy szolgáltatást vagy ajánlatot szeretnél kiemelni, egy jól felépített
-                one‑pager tökéletes: röviden elmondja, miről szól a vállalkozásod, mit kap az ügyfél,
-                és egyértelműen mutatja a következő lépést (ajánlatkérés, foglalás, kapcsolat).
+                Tökéletes választás egy konkrét szolgáltatás vagy ajánlat kiemelésére. Röviden és lényegretörően mutatja be a vállalkozást, egyértelmű konverziós célokkal.
               </p>
               <div class="pills">
                 <span class="pill">Fókuszban az üzenet</span>
-                <span class="pill">Scroll‑ra épülő történet</span>
+                <span class="pill">Gyors konverzió</span>
               </div>
             </article>
+            
+            <!-- 2. Kártya -->
             <article class="card reveal">
-              <h3 class="card-title card-title-grad">Többoldalas céges honlapok</h3>
+              <div class="card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem;">📑</div>
+              <h3 class="card-title card-title-grad">Többoldalas honlapok</h3>
               <p class="card-body">
-                Ha több szolgáltatásod, referenciád, csapatod van, akkor külön aloldalakra bontjuk
-                a tartalmat. A menü átlátható, a látogató pedig gyorsan megtalálja, amit keres –
-                akár mobillól, akár gépről nézi.
+                Ideális, ha több szolgáltatásod és referenciád van. A jól tagolt, aloldalakra bontott tartalom segít a látogatóknak gyorsan megtalálni, amit keresnek.
               </p>
               <div class="pills">
                 <span class="pill">Áttekinthető menü</span>
-                <span class="pill">Könnyen skálázható, struktúra</span>
+                <span class="pill">Könnyen skálázható</span>
               </div>
             </article>
+            
+            <!-- 3. Kártya -->
             <article class="card reveal">
+              <div class="card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem;">🤝</div>
               <h3 class="card-title card-title-grad">Hosszú távú támogatás</h3>
               <p class="card-body">
-                Nem tűnök el az átadás után. Segítek kisebb módosításokban, új szekciók
-                kialakításában, technikai frissítésekben, hogy a weboldalad nem csak ma,
-                hanem hónapok múlva is stabilan működjön.
+                Nem tűnök el az átadás után. Segítek a kisebb módosításokban és a technikai frissítésekben, hogy az oldalad hónapok múlva is stabil maradjon.
               </p>
               <div class="pills">
                 <span class="pill">Tartalom frissítés</span>
-                <span class="pill">Technikai karbantartás</span>
+                <span class="pill">Karbantartás</span>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- ═══ HOGYAN DOLGOZOM ═══ -->
-      <section class="process-section">
+
+            <!-- ═══ HOGYAN DOLGOZOM ═══ -->
+      <section class="process-section" id="folyamat">
         <div class="container">
           <header class="section-header reveal">
             <p class="section-kicker">Hogyan dolgozom</p>
-            <h2 class="section-title">Átlátható, egyszerű munkamenet – lépésről lépésre.</h2>
-            <p class="section-lead">Tudod pontosan, mikor mi történik. Nincs rejtett várakozás, nincs homályos kommunikáció.</p>
+            <h2 class="section-title">Átlátható munkamenet, rejtett költségek nélkül.</h2>
+            <p class="section-lead">Tudod pontosan, mikor mi történik. Nincs hosszas várakozás, nincs homályos kommunikáció.</p>
           </header>
+          
           <div class="process-steps">
-            <div class="process-step reveal"><h3>Egyeztetés</h3><p>Rövid megbeszélés – megismerem a vállalkozását, céljait és elvárásait. E-mailben, telefonon, vagy online meet keretében ahogy önnék kényelmes.</p></div>
-            <div class="process-step reveal"><h3>Tervezés</h3><p>Meghatározzuk a struktúrát, a szekciók sorrendét és a designt. Mielőtt egyetlen sor kód születik, mindent jóváhagy így elkerülve a felesleges köröket.</p></div>
-            <div class="process-step reveal"><h3>Fejlesztés</h3><p>Fejlesztés megkezdése – tiszta HTML, CSS és JavaScript, sablon vagy page builder nélkül. Minden az ön igényeidre szabva.</p></div>
-            <div class="process-step reveal"><h3>Visszajelzés &amp; finomitás</h3><p>Prezentálom az elkészült oldalt, ön visszajelzést ad, és ha szükséges, elvégzem az igényelt módosításokat.</p></div>
-            <div class="process-step reveal"><h3>Átadás &amp; élesítés</h3><p>SEO optimalizálás és feltöltés a hosting szolgáltatóra (vagy a saját tárhelyre), domain beállítása és az oldala aktív.</p></div>
+            <div class="process-step reveal">
+       
+              <h3>Egyeztetés</h3>
+              <p>Rövid megbeszélés telefonon vagy online. Megismerem a vállalkozását, a céljait és a pontos elvárásait.</p>
+            </div>
+            
+            <div class="process-step reveal">
+             
+              <h3>Tervezés</h3>
+              <p>Közösen meghatározzuk a struktúrát és a designt. Mindent jóváhagy, még mielőtt a kódolás elkezdődne.</p>
+            </div>
+            
+            <div class="process-step reveal">
+        
+              <h3>Fejlesztés</h3>
+              <p>Tiszta HTML, CSS és JS alapú építkezés, felesleges sablonok és lassító page builderek nélkül.</p>
+            </div>
+            
+            <div class="process-step reveal">
+              
+              <h3>Finomítás</h3>
+              <p>Prezentálom az oldalt. Ön visszajelzést ad, és elvégzem a kért módosításokat a tökéletes eredményért.</p>
+            </div>
+            
+            <div class="process-step reveal">
+              
+              <h3>Átadás</h3>
+              <p>SEO optimalizálás, domain beállítása és a tárhelyre való feltöltés. Az oldala éles és használatra kész.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══ MIÉRT ÉN ═══ -->
-      <section>
+
+            <!-- ═══ MIÉRT ÉN ═══ -->
+      <section id="miert-en">
         <div class="container">
           <header class="section-header reveal">
-            <p class="section-kicker">Miért éngem válasszon?</p>
+            <p class="section-kicker">Miért engem válasszon?</p>
             <h2 class="section-title">Amit egy freelance fejlesztőtől kaphat, amit egy ügynökségtől nem mindig.</h2>
             <p class="section-lead">
               Közvetlen kommunikáció, valódi személyes felelősségvállalás, és egy fejlesztő, aki tényleg érti a kis- és középvállalkozások igényeit.
             </p>
           </header>
+          
           <div class="why-grid">
-            <div class="why-item reveal"><span class="why-icon">⚡</span><h3>Gyors átadás</h3><p>Általában 5–10 munkanapon belül kész az oldal – nem heteket, hónapokat hanem napokat vár.</p></div>
-            <div class="why-item reveal"><span class="why-icon">🎯</span><h3>Személyre szabott</h3><p>Nincs sablon. Minden oldal az adott vállalkozásra, célközönségre és üzenetre épül.</p></div>
-            <div class="why-item reveal"><span class="why-icon">📱</span><h3>Mobilon is tökéletes</h3><p>Reszponzív design: telefonon, tableten és asztali gépen egyformán szép és használható.</p></div>
-            <div class="why-item reveal"><span class="why-icon">🔍</span><h3>SEO-barát alap</h3><p>Szemantikus HTML, meta tagek, gyors betöltés – jó alap a keresőkben való megjelenéshez.</p></div>
-            <div class="why-item reveal"><span class="why-icon">💬</span><h3>Közvetlen kommunikáció</h3><p>Velem kommunikál, nem egy ügyfélszolgálattal. Gyors válasz, átlátható folyamat.</p></div>
-            <div class="why-item reveal"><span class="why-icon">🛠️</span><h3>Átadás utáni segítség</h3><p>Ha valami változik, kéred, hogy frissísem az oldalt – itt vagyok, és segítek.</p></div>
+            <div class="why-item reveal">
+              <span class="why-icon">⚡</span>
+              <h3>Gyors átadás</h3>
+              <p>Általában 5–10 munkanapon belül kész az oldal – nem heteket vagy hónapokat, hanem napokat vár.</p>
+            </div>
+            
+            <div class="why-item reveal">
+              <span class="why-icon">🎯</span>
+              <h3>Személyre szabott</h3>
+              <p>Nincs sablon. Minden oldal az adott vállalkozásra, célközönségre és egyedi üzenetre épül.</p>
+            </div>
+            
+            <div class="why-item reveal">
+              <span class="why-icon">📱</span>
+              <h3>Mobilon is tökéletes</h3>
+              <p>Reszponzív design: az oldala telefonon, tableten és asztali gépen is egyformán gyors és használható.</p>
+            </div>
+            
+            <div class="why-item reveal">
+              <span class="why-icon">💬</span>
+              <h3>Közvetlen kommunikáció</h3>
+              <p>Velem kommunikál, nem egy ügyfélszolgálattal. Gyors válaszok, módosítások és átlátható folyamat.</p>
+            </div>
           </div>
+          
           <div class="tech-strip reveal">
             <span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span>
             <span class="tech-badge">Domain</span><span class="tech-badge">Hosting</span>
@@ -357,12 +406,13 @@
         </div>
       </section>
 
+
       <!-- ═══ CTA SZALAG ═══ -->
       <section class="cta-strip">
         <div class="container">
           <h2>Készen áll egy egyedi weboldalra?</h2>
           <p>Írjon egy üzenetet – megbeszéljük az igényeit, 24 órán belül visszajelzek.</p>
-          <a href="contact.html" class="btn-white">Kérjen ingyenes ajánlatot &rarr;</a>
+          <a href="contact.html" class="btn-white">Kérjen ingyenes ajánlatot →&rarr;</a>
         </div>
       </section>
     </main>
